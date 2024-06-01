@@ -11,11 +11,17 @@ app.set('views', path.join(__dirname, '..', 'client', 'views'));
 
 // Application's routes
 app.get('/',(req, res) =>{
-    res.render('layouts/accueil');
+    res.render('layouts/accueil', {title: "Bienvenue à Cinéphoria."});
 });
 
 app.get('/contact',(req, res) =>{
-    res.render('layouts/contact');
+    res.render('layouts/contact', {title: "Contactez-Nous."});
+    
+})
+
+app.get('/login',(req, res) =>{
+    res.render('layouts/login', {title: "Connectez-Vous."});
+    
 })
 
 module.exports = app;
