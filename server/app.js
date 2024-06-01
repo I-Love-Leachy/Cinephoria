@@ -12,6 +12,10 @@ app.set('views', path.join(__dirname, '..', 'client', 'views'));
 // Application's routes
 app.get('/',(req, res) =>{
     res.render('layouts/accueil');
+});
+
+app.get('/contact',(req, res) =>{
+    res.render('layouts/contact');
 })
 
 module.exports = app;
