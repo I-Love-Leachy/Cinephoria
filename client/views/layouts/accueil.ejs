@@ -9,6 +9,7 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="text/javascript" defer src="js/main.js"></script>
+    <script type="text/javascript" defer src="js/swipper.js"></script>
     <link rel="stylesheet" href="css/style.css">
   </head>
 
@@ -19,7 +20,7 @@
       <%- include('../components/nav-bar') %>
 
       <!-- Slider main container -->
-      <div class="swiper h-[60vh]">
+      <div class="swiper main-slider h-[60vh]">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
           <!-- Slides -->
@@ -33,14 +34,18 @@
       </div>
     </header>
 
-    <!-- main content -->
-    <main class="flex-grow">
-      <!-- Add your main content here -->
-      <section class="h-[40vh] font-arvo text-blueOne font-bold">
-        <p class="text-3xl mx-28 my-16">NOUVEAUTÉS</p>
-      </section>
-      <%- include('../components/latest-movies') %>
-    </main>
+   <!-- main content -->
+   <main class="flex-grow">
+    <!-- Add your main content here -->
+    <section>
+      <p class="text-3xl mx-28 my-16 font-arvo text-blueOne font-bold">
+        NOUVEAUTÉS
+      </p>
+
+      <!-- latest movies carousel -->
+      <div class=""><%- include('../components/latest-movies') %></div>
+    </section>
+  </main>
     
     <footer>
       <!-- footer section -->
