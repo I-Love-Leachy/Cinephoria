@@ -26,12 +26,14 @@ app.get('/reservation',(req, res) =>{
 
 app.get('/contact',(req, res) =>{
     res.render('layouts/contact', {title: "Contactez-Nous."});
-    
 });
 
 app.get('/login',(req, res) =>{
-    res.render('layouts/login', {title: "Connectez-Vous."});
-    
+    res.render('layouts/login', {title: "Connectez-Vous."}); 
+});
+
+app.get('/register',(req, res) =>{
+    res.render('layouts/register', {title: "Inscrivez-Vous."}); 
 });
 
 module.exports = app;

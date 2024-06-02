@@ -559,9 +559,6 @@ video {
 .bottom-\[-200px\]{
   bottom: -200px;
 }
-.bottom-\[-200px\]{
-  bottom: -200px;
-}
 .left-0{
   left: 0px;
 }
@@ -663,11 +660,8 @@ video {
 .mt-8{
   margin-top: 2rem;
 }
-.mt-10{
-  margin-top: 2.5rem;
-}
-.mt-40{
-  margin-top: 10rem;
+.mb-10{
+  margin-bottom: 2.5rem;
 }
 .block{
   display: block;
@@ -708,16 +702,6 @@ video {
 }
 .h-full{
   height: 100%;
-}
-.h-fit{
-  height: -moz-fit-content;
-  height: fit-content;
-}
-.h-20{
-  height: 5rem;
-}
-.h-10{
-  height: 2.5rem;
 }
 .max-h-\[30vh\]{
   max-height: 30vh;
@@ -931,9 +915,6 @@ video {
 .p-3{
   padding: 0.75rem;
 }
-.p-8{
-  padding: 2rem;
-}
 .px-10{
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -966,14 +947,6 @@ video {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
-.px-3{
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
 .pb-20{
   padding-bottom: 5rem;
 }
@@ -994,21 +967,6 @@ video {
 }
 .pt-8{
   padding-top: 2rem;
-}
-.pb-3{
-  padding-bottom: 0.75rem;
-}
-.pl-10{
-  padding-left: 2.5rem;
-}
-.pt-3{
-  padding-top: 0.75rem;
-}
-.pt-4{
-  padding-top: 1rem;
-}
-.pl-16{
-  padding-left: 4rem;
 }
 .text-center{
   text-align: center;
@@ -1054,10 +1012,6 @@ video {
 }
 .text-xxs{
   font-size: 9px;
-}
-.text-6xl{
-  font-size: 3.75rem;
-  line-height: 1;
 }
 .font-bold{
   font-weight: 700;
@@ -1121,9 +1075,6 @@ video {
 }
 .duration-500{
   transition-duration: 500ms;
-}
-.duration-200{
-  transition-duration: 200ms;
 }
 .ease-in-out{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1360,21 +1311,6 @@ video {
   animation: bg-fill 1.5s forwards;
 }
 
-@keyframes bg-fill{
-
-  0%{
-    background-position: 200% 0;
-  }
-
-  100%{
-    background-position: 0 0;
-  }
-}
-
-.hover\:animate-bg-fill-animation:hover{
-  animation: bg-fill 1.5s forwards;
-}
-
 .hover\:bg-red-500:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
@@ -1481,9 +1417,6 @@ video {
   .md\:px-20{
     padding-left: 5rem;
     padding-right: 5rem;
-  .md\:text-3xl{
-    font-size: 1.875rem;
-    line-height: 2.25rem;
   }
 
   .md\:px-5{
