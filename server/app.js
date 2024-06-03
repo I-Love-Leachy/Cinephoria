@@ -15,7 +15,9 @@ app.get('/',(req, res) =>{
 });
 
 app.get('/accueil',(req, res) =>{
-    res.render('layouts/accueil', {title: "Bienvenue à Cinéphoria."});
+    res.render('layouts/accueil', {
+        title: 'bienvenue à Cinéphoria.'
+    });
 });
 
 app.get('/reservation',(req, res) =>{
@@ -25,15 +27,24 @@ app.get('/reservation',(req, res) =>{
 });
 
 app.get('/contact',(req, res) =>{
-    res.render('layouts/contact', {title: "Contactez-Nous."});
+    res.render('layouts/contact', {
+        title: "Contactez-nous."
+    });
 });
 
 app.get('/login',(req, res) =>{
-    res.render('layouts/login', {title: "Connectez-Vous."}); 
+    res.render('auth/login', {
+        title: "Connectez-vous à votre compte."
+    });
 });
 
-app.get('/register',(req, res) =>{
-    res.render('layouts/register', {title: "Inscrivez-Vous."}); 
+//form components routes 
+app.get('/components/login-form.ejs', (req, res) => {
+    res.render('components/login-form');
+});
+
+app.get('/components/register-form.ejs', (req, res) => {
+    res.render('components/register-form');
 });
 
 module.exports = app;
