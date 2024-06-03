@@ -47,7 +47,7 @@ const initApp = () => {
 
   openTheaterMenueBtn.forEach(btn => {
     btn.addEventListener('click', openTheaterMenue)
-  })
+  });
 
 };
 
