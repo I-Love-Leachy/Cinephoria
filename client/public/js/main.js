@@ -1,4 +1,6 @@
+
 const initApp = () => {
+
   const hamburgerBtn = document.getElementById("hamburger-button");
   const mobileMenu = document.getElementById("mobile-menu");
 
@@ -8,6 +10,7 @@ const initApp = () => {
   const franceCinemaMenu = document.getElementById("france-cinema-list");
   const belgiumCinemaMenu = document.getElementById("belgium-cinema-list");
 
+  
   const openTheaterMenueBtn = document.querySelectorAll('.theater-filter');
   const theaterMenu = document.getElementById("theater-menu");
   const closeTheaterMenuBtn = document.getElementById("close-search-theater-menu");
@@ -37,13 +40,13 @@ const initApp = () => {
   };
 
   const closeTheaterMenu = () => {
-    theaterMenu.classList.add("hidden");
-    theaterMenu.classList.remove("flex");
+    theaterMenu.classList.toggle("hidden");
+    theaterMenu.classList.toggle("flex");
   };
 
   const openTheaterMenue = () => {
-    theaterMenu.classList.add("flex");
-    theaterMenu.classList.remove("hidden");
+    theaterMenu.classList.toggle("hidden");
+    theaterMenu.classList.toggle("flex");
   };
 
   const openFilterMenue = () => {
@@ -66,30 +69,10 @@ const initApp = () => {
     searchMoviesMenu.classList.toggle("flex");
   };
 
-  
-  // Hamburger menu responsive
   hamburgerBtn.addEventListener("click", toggleHamburgerMenu);
   quickaccess1Btn.addEventListener("click", toggleFranceCinemaMenu);
   quickaccess2Btn.addEventListener("click", toggleBelgiumCinemaMenu);
   closeTheaterMenuBtn.addEventListener("click", closeTheaterMenu);
-
-  if (openTheaterMenueBtn) {
-    openTheaterMenueBtn.forEach(btn => {
-      btn.addEventListener('click', openTheaterMenue);
-    });
-  }
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      if (!mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('flex');
-        hamburgerBtn.classList.remove('toggle-btn');
-      }
-    }
-  });
-
-  // Filter items
   closeFilterBtn.addEventListener("click", closeFilterMenue);
   closeSearchMoviesMenuBtn.addEventListener("click", closeSearchMoviesMenu);
   
@@ -106,7 +89,10 @@ const initApp = () => {
   openSearchMoviesMenuBtn.forEach(btn => {
     btn.addEventListener('click', openSearchMoviesMenu)
   });
-};
 
+  
+  
+
+};
 
 document.addEventListener("DOMContentLoaded", initApp);

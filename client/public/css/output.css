@@ -1330,7 +1330,6 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   background-color: transparent;
 }
-
 /*custom checkbox */
 .custom-checkbox{
   height: 1.5rem;
@@ -1392,18 +1391,15 @@ video {
   position: absolute;
 }
 
-
 .before\:h-1::before{
   content: var(--tw-content);
   height: 0.25rem;
 }
 
-
 .before\:w-8::before{
   content: var(--tw-content);
   width: 2rem;
 }
-
 
 .before\:-translate-x-4::before{
   content: var(--tw-content);
@@ -1411,19 +1407,16 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-
 .before\:-translate-y-3::before{
   content: var(--tw-content);
   --tw-translate-y: -0.75rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-
 .before\:rounded::before{
   content: var(--tw-content);
   border-radius: 0.25rem;
 }
-
 
 .before\:bg-blueOne::before{
   content: var(--tw-content);
@@ -1431,14 +1424,12 @@ video {
   background-color: rgb(16 44 87 / var(--tw-bg-opacity));
 }
 
-
 .before\:transition-all::before{
   content: var(--tw-content);
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-
 
 .before\:duration-500::before{
   content: var(--tw-content);
@@ -1516,7 +1507,6 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-
 .hover\:scale-95:hover{
   --tw-scale-x: .95;
   --tw-scale-y: .95;
@@ -1543,7 +1533,6 @@ video {
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 
-
 .hover\:bg-gradient-to-r:hover{
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -1553,11 +1542,9 @@ video {
   color: rgb(227 176 75 / var(--tw-text-opacity));
 }
 
-
 .hover\:opacity-90:hover{
   opacity: 0.9;
 }
-
 
 .group:hover .group-hover\:text-goldOne{
   --tw-text-opacity: 1;
@@ -1580,7 +1567,6 @@ video {
     line-height: 1.5rem;
   }
 }
-
 
 @media (min-width: 768px){
 
@@ -1716,7 +1702,6 @@ video {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
-
 }
 
 @media (min-width: 1024px){
@@ -1735,7 +1720,6 @@ video {
     line-height: 1.75rem;
   }
 }
-
 
 @media (min-width: 1280px){
 
