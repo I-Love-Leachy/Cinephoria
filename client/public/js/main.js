@@ -69,9 +69,9 @@ const initApp = () => {
   
   // Hamburger menu responsive
   hamburgerBtn.addEventListener("click", toggleHamburgerMenu);
-  if (quickaccess1Btn) quickaccess1Btn.addEventListener("click", toggleFranceCinemaMenu);
-  if (quickaccess2Btn) quickaccess2Btn.addEventListener("click", toggleBelgiumCinemaMenu);
-  if (closeTheaterMenuBtn) closeTheaterMenuBtn.addEventListener("click", closeTheaterMenu);
+  quickaccess1Btn.addEventListener("click", toggleFranceCinemaMenu);
+  quickaccess2Btn.addEventListener("click", toggleBelgiumCinemaMenu);
+  closeTheaterMenuBtn.addEventListener("click", closeTheaterMenu);
 
   if (openTheaterMenueBtn) {
     openTheaterMenueBtn.forEach(btn => {
