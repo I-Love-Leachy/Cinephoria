@@ -8,3 +8,22 @@
     height: 100%;
     object-fit: cover;
   }
+
+  .text-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 8; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+    .movie-details {
+      display: none;
+  }
+  .relative:hover .movie-details {
+      display: flex;
+  }
+
+  .swiper-button-next,.swiper-button-prev {
+    color: #102C57;
+  }
