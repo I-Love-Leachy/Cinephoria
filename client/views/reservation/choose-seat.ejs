@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en" class=" h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="icon" href="../images/logo-blanc.png" />
+    <link type="text/css" rel="stylesheet" href="../css/output.css" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+    ></script>
+    <script type="text/javascript" defer src="../js/main.js"></script>
+    <script type="text/javascript" defer src="../js/swipper.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/activeLink.js" defer></script>
+    <script src="../js/choose-seat.js" defer></script>
+    <style>
+   
+  </style>
+  </head> 
+  <body class="relative  overflow-x-hidden h-full ">
+
+    <!-- movie trailer video -->
+    <div class="absolute bg-black w-[80%] h-[70%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 hidden no-blur " id="movie">
+        <div class="h-full w-full relative no-blur">
+            <video class="w-full h-full" autoplay muted loop id="video">
+                <source src="../video/blade-runner.mp4" type="video/mp4">
+            </video>
+            <div class="absolute top-2 right-4">
+                <button id="close-video" class="hover:scale-105 hover:rotate-180 duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 15 15">
+                        <path fill="white" d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <header class="relative">
+        <!-- navbar section -->
+        <%- include('../components/nav-bar') %>
+
+        <!-- Slider main container -->
+        <section class=" relative md:hidden">
+
+            
+
+            <div class="swiper hidden main-slider h-[60vh] ">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                <img
+                    src="../images/films/blade-runner.png"
+                    alt="photo header"
+                    class="object-cover w-full h-full"
+                />
+                </div>
+                
+            </div>
+            </div>
+
+            <div class=" h-full w-full bg-black/65 blur-md  absolute flex flex-col top-0 z-40 ">
+                
+
+            </div>
+            
+            <div class=" h-full w-full items-center gap-y-3 justify-start absolute flex flex-col top-0 z-40  pt-8 md:gap-y-0 ">
+                
+                
+                <div class="container mx-auto w-[30%] min-h-[80%] md:h-[80%] md:w-[15%]">
+                    <img src="../images/films/blade-runner.png" class="object-cover w-full h-full" alt="">
+                </div>
+
+                <h1 class="font-arvo tracking-wider font-bold text-2xl text-white">Blade Runner</h1>
+                    
+            </div>
+            
+        </section>
+      
+    </header>
+
+   
+    <!-- main content -->
+    <main class=" h-full w-full md:flex relative">
+        
+        <!-- DESKTOP sidebar -->
+        <aside class="h-full  w-[20%] relative hidden md:block">
+
+            <div class="swiper hidden main-slider h-full ">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                    <img
+                        src="../images/films/blade-runner.png"
+                        alt="photo header"
+                        class="object-cover w-full h-full"
+                    />
+                    </div>
+                    
+                </div>
+            </div>
+    
+            <div class=" h-screen w-full bg-black/65 blur-sm  absolute flex flex-col top-0 z-40 "> </div>
+
+            <!-- cinephoria logo -->
+            <div class=" h-fit w-fit items-center space-y-8  justify-start absolute flex flex-col -top-2 right-5 z-40  pt-8 md:gap-y-0 ">
+                <img src="../images/logo-blanc.png" height="25" width="25" alt="logo cinephoria">
+            </div>
+
+            <!-- current movie card -->
+            <div class=" h-full w-full items-center space-y-12  justify-start absolute flex flex-col top-28 z-40  pt-8 md:gap-y-0 ">
+                
+                <div class="container mx-auto w-[80%] min-h-[60%]  relative">
+                    <img src="../images/films/blade-runner.png" class="object-cover w-full h-full" alt="">
+
+                    <button class="absolute w-12 h-12 rounded-full bg-goldOne text-white flex items-center justify-center hover:scale-110 hover:rotate-[360deg] duration-500 left-1/2 -bottom-10 -translate-x-1/2 -translate-y-1/2" id="start-trailer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><g fill="none"><g clip-path="url(#gravityUiPlayFill0)"><path fill="currentColor" fill-rule="evenodd" d="M14.756 10.164c1.665-.962 1.665-3.366 0-4.329L6.251.918C4.585-.045 2.5 1.158 2.5 3.083v9.834c0 1.925 2.085 3.128 3.751 2.164z" clip-rule="evenodd"/></g><defs><clipPath id="gravityUiPlayFill0"><path fill="currentColor" d="M0 0h16v16H0z"/></clipPath></defs></g></svg>
+                    </button>
+                    
+
+                </div>
+
+                <h1 class="font-arvo tracking-wider font-bold text-3xl text-white">Blade Runner</h1>
+
+            </div>
+
+          <!-- session details -->
+            <div class="container">
+                <div class=" px-3 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-3">
+                    <h1 class="font-arvo text-white text-sm">Cinéma</h1>
+                    <h2 class="font-arvo text-white text-lg font-bold">Cinéphoria les Halles</h2>
+                </div>
+    
+                <div class=" px-3 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-3">
+                    <h1 class="font-arvo text-white text-sm">Date</h1>
+                    <h2 class="font-arvo text-white text-lg font-bold">Mardi 07 Mai 2024</h2>
+                </div>
+    
+                <div class=" px-3 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-3">
+                    <h1 class="font-arvo text-white text-sm">Scéance</h1>
+                    <h2 class="font-arvo text-white text-lg font-bold">19:45 VF</h2>
+                    <p class="font-arvo font-light text-white text-xs">Fin prévue à 21:16</p>
+                </div>
+            </div>
+
+        </aside>
+      
+        <!--MOBILE session information -->
+        <section class="flex flex-col w-full md:hidden">
+
+            <div class=" px-5 mx-auto bg-[#060F1E]  w-full   border-b-1  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-4">
+                <h1 class="font-arvo text-white text-lg">Cinéma</h1>
+                <h2 class="font-arvo text-white text-2xl font-bold">Cinéphoria les Halles</h2>
+            </div>
+
+            <div class=" px-5 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-4">
+                <h1 class="font-arvo text-white text-lg">Date</h1>
+                <h2 class="font-arvo text-white text-2xl font-bold">Mardi 07 Mai 2024</h2>
+            </div>
+
+            <div class=" px-5 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-4">
+                <h1 class="font-arvo text-white text-lg">Scéance</h1>
+                <h2 class="font-arvo text-white text-2xl font-bold">19:45 VF</h2>
+                <p class="font-arvo font-light text-white text-xs">Fin prévue à 21:16</p>
+            </div>
+
+        </section>
+     
+       
+        <!-- choose your seat section -->
+        <section class=" h-full md:mx-auto md:w-[80%] md:pt-28  relative">
+          
+    
+            
+            <div class="container md:pt-10 pt-20  flex flex-col items-center mx-auto w-full space-y-7">
+                <h1 class="font-arvo font-bold text-blueOne text-4xl">Sélectionnez vos places</h1>
+                <p class="font-arvo text-blueOne text-xl">160 places libres</p>
+            </div>
+
+            <!-- seat map and selection -->
+            <div class="screen text-blueOne mx-auto mt-4">
+                écran
+            </div>
+
+            <!-- chairs -->
+            <%- include('../components/chairs') %>
+
+          
+            <!-- details -->
+            <div class="details" id="det">
+                <div class="details_chair">
+                    <li>Disponible</li>
+                    <li>Occupé</li>
+                    <li>Séléctionné</li>
+                </div>
+            </div>
+            
+        </section>
+
+         
+        <!-- MOBILE RESERVATION CONFIRMATION -->
+        <div class="w-full flex-col md:hidden">
+            <div class="w-full flex items-center justify-between py-7 px-3">
+                <!-- VERIFY NUMBER OF SEAT -->
+                <button id="view-seat">
+                    <div class="flex items-center space-x-2 text-blueOne justify-between px-2">
+                        <p class="font-arvo ">1 place réservée</p>
+                        <div class="mt-0.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill="currentColor" d="M12.78 5.22a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.75.75 0 0 1 1.06 0"/></svg>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- CURRENT SEAT CHOOSEN -->
+                <p class="font-arvo text-blueOne">B15</p>
+            </div>
+
+            <!-- RESERVATION CONFIRMATION BUTTON -->
+            <button class=" flex items-center justify-center text-blueOne font-arvo font-bold tracking-wide gap-x-1 text-xl w-full bg-goldOne reservation-confirmation h-[13vh]" >
+                RÉSERVER
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 16 16"><path fill="currentColor" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.042-.018a.75.75 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06"/></svg>
+            </button>
+        </div>
+ 
+             
+    </main>
+
+    <!-- DESKTOP RESERVATION CONFIRMATION -->
+    <footer class=" w-[80%] ml-[20%] mt-[75.5px] hidden md:block">
+        <div class="w-full flex items-center justify-between py-7 px-7">
+            <!-- VERIFY NUMBER OF SEAT -->
+            <button id="view-seat">
+                <div class="flex items-center space-x-2 text-blueOne justify-between px-2">
+                    <p class="font-arvo ">1 place réservée</p>
+                    <div class="mt-0.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill="currentColor" d="M12.78 5.22a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.75.75 0 0 1 1.06 0"/></svg>
+                    </div>
+                </div>
+            </button>
+
+            <!-- CURRENT SEAT CHOOSEN -->
+            <p class="font-arvo text-blueOne">B15</p>
+        </div>
+
+        <!-- RESERVATION CONFIRMATION BUTTON -->
+        <button class=" flex items-center justify-center text-blueOne font-arvo font-bold tracking-wide gap-x-1 text-xl w-full bg-goldOne reservation-confirmation h-[13vh]" >
+         RÉSERVER
+         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 16 16"><path fill="currentColor" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.042-.018a.75.75 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06"/></svg>
+        </button>
+
+    </footer>
+
+    <!-- total amount plus reserve Now menu  -->
+    <div class="absolute h-full w-full hidden  bg-white md:w-[50%] space-y-7 px-10 py-7 md:h-[85%] bottom-50 md:top-2/3 rounded-xl left-1/2 -translate-x-1/2 -translate-y-1/2 z-50" id="reservation-details">
+        <!-- Current session info -->
+        <div class="w-full space-y-2 flex flex-col text-blueOne font-arvo items-center justify-center">
+            <h1 class="font-bold text-xl">Mardi 7 Mai</h1>
+            <h2 class="font-bold text-lg">19:45</h2>
+            <p class="font-light text-sm">VF</p>
+        </div>
+        <!-- current movie info -->
+        <div class="w-full flex text-blueOne  shadow-lg font-arvo justify-between">
+            <div class="flex flex-col gap-y-3 px-4 py-5">
+                <h1 class="font-bold text-3xl">Blade Runner</h1>
+                <div class="flex items-center space-x-4 justify-between">
+                    <p>Durée: 1h31</p>
+                    <p class="bg-blueOne/20 px-1">Fin prévue à 21h36</p>
+                </div>
+            </div>
+            <!-- movie picture and place -->
+            <div class="flex items-center space-x-4">
+                <div class="flex space-y-1 items-center justify-center flex-col">
+                    <h1 class="font-bold text-xl">1 Place</h1>
+                    <h1 class="font-bold text-blueOne/60 text-xl">4K</h1>
+                </div>
+                <div class="h-full w-24 ">
+                    <img src="../images/films/blade-runner.png" alt="Movie picture" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+
+        <!-- general cinema and place info -->
+        <div class="w-full flex text-blueOne  shadow-lg font-arvo justify-between">
+            <div class="flex flex-col gap-y-3 px-4 py-5">
+                <h1 class="font-bold text-3xl">Cinéphoria Les Halles</h1>
+                <div class="flex items-center space-x-4 justify-between">
+                    <p>Paris 75001</p>
+                </div>
+            </div>
+            <!-- movie picture and place -->
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center justify-center flex-col p-2 mr-6 border rounded-sm bg-goldOne">
+                    <h1 class="text-xl">Salle</h1>
+                    <h1 class="font-bold text-xl">8</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- total session amount -->
+        <div class="w-full flex text-blueOne font-arvo justify-center">
+                <h1 class="font-bold text-2xl">TOTAL A RÉGLER : 15 €</h1>
+        </div>
+
+        <!-- go to payment button -->
+        <div class="w-full flex text-white font-arvo justify-center">
+            <button class=" bg-blueOne w-[80%] h-14 rounded-md space-x-4 flex items-center justify-center py-8" id="go-payment">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><path fill="currentColor" d="m490.18 181.4l-44.13-44.13a20 20 0 0 0-27-1a30.81 30.81 0 0 1-41.68-1.6a30.81 30.81 0 0 1-1.6-41.67a20 20 0 0 0-1-27L330.6 21.82a19.91 19.91 0 0 0-28.13 0l-70.35 70.34a39.9 39.9 0 0 0-9.57 15.5a7.71 7.71 0 0 1-4.83 4.83a39.8 39.8 0 0 0-15.5 9.58l-180.4 180.4a19.91 19.91 0 0 0 0 28.13L66 374.73a20 20 0 0 0 27 1a30.69 30.69 0 0 1 43.28 43.28a20 20 0 0 0 1 27l44.13 44.13a19.91 19.91 0 0 0 28.13 0l180.4-180.4a39.8 39.8 0 0 0 9.58-15.49a7.69 7.69 0 0 1 4.84-4.84a39.84 39.84 0 0 0 15.49-9.57l70.34-70.35a19.91 19.91 0 0 0-.01-28.09m-228.37-29.65a16 16 0 0 1-22.63 0l-11.51-11.51a16 16 0 0 1 22.63-22.62l11.51 11.5a16 16 0 0 1 0 22.63m44 44a16 16 0 0 1-22.62 0l-11-11a16 16 0 1 1 22.63-22.63l11 11a16 16 0 0 1 .01 22.66Zm44 44a16 16 0 0 1-22.63 0l-11-11a16 16 0 0 1 22.63-22.62l11 11a16 16 0 0 1 .05 22.67Zm44.43 44.54a16 16 0 0 1-22.63 0l-11.44-11.5a16 16 0 1 1 22.68-22.57l11.45 11.49a16 16 0 0 1-.01 22.63Z"/></svg>
+                <h1 class="font-bold text-2xl text-white">Réserver maintenant</h1>
+            </button>
+        </div>
+
+    </div>
+
+</body>
+    
+</html>

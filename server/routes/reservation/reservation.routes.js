@@ -19,4 +19,16 @@ reservationRoutes.get('/choisir-place',(req, res) =>{
     });
 });
 
+reservationRoutes.get('/login',(req, res) =>{
+    res.render('reservation/auth-page', {
+        title: "Connectez-vous ou créer un compte."
+    });
+});
+
+reservationRoutes.get('/choisir-place',(req, res) =>{
+    res.render('reservation/choose-seat', {
+        title: "choisissez des places pour votre scéance."
+    });
+});
+
 module.exports = reservationRoutes
