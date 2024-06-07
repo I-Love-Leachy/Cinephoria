@@ -10,9 +10,11 @@ document.addEventListener("DOMContentLoaded", function() {
             setActiveLink("/accueil");
             break;
         case "/films":
+        case "/films/disponibiliter":
             setActiveLink("/films");
             break;
         case "/reservation":
+        case "/reservation/choisir-sceance":
             setActiveLink("/reservation");
             break;
         case "/contact":
