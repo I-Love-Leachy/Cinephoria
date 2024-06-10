@@ -43,14 +43,12 @@ async function getSeatsById(req, res) {
 async function postSeats(req, res) {
   try {
     const {
-      cinema_id,
       name,
       quality,
     } = req.body;
 
     // Validate the request body fields
     if (
-      !cinema_id ||
       !name ||
       !quality
     ) {
@@ -60,15 +58,14 @@ async function postSeats(req, res) {
     }
 
     const query =
-      "INSERT INTO seats (cinema_id, name, quality) VALUES ($1, $2, $3) RETURNING *";
+      "INSERT INTO seats (name, quality) VALUES ($1, $2) RETURNING *";
     const result = await DB.query(query, [
-      cinema_id,
       name,
       quality,
     ]);
 
     // Send the newly created seat as response
-    res.status(201).json(result.rows[0]);
+    return res.status(201).json(result.rows[0]);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal server error!" });
@@ -81,15 +78,13 @@ async function updateSeatsById(req, res) {
   try {
     const id = req.params.id;
     const {
-      cinema_id,
       name,
       quality,
     } = req.body;
 
     const query =
-      "UPDATE seats SET cinema_id = $1, name = $2, quality = $3 WHERE seat_id = $4";
+      "UPDATE seats SET name = $1, quality = $2 WHERE seat_id = $3";
     const result = await DB.query(query, [
-      cinema_id,
       name,
       quality,
       id,

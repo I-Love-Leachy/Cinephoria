@@ -2,6 +2,9 @@ const express = require('express');
 const seatsRoutes = express.Router();
 const {getSeats, getSeatsById, deleteSeatsById, postSeats, updateSeatsById} = require('../../controllers/seats/seats.controller');
 
+// Validator
+const { postSeatsValidator, updateSeatsValidator, validateSeats } = require('../../middlewares/validator/seats.validator');
+
 
 // get all seats
 seatsRoutes.get('/seats', getSeats);
@@ -13,9 +16,9 @@ seatsRoutes.get('/seats/:id', getSeatsById);
 seatsRoutes.delete('/seats/:id',  deleteSeatsById);
 
 // post seats
-seatsRoutes.post('/seats', postSeats);
+seatsRoutes.post('/seats', postSeatsValidator(), updateSeatsValidator(), validateSeats, postSeats);
 
 // update seats
-seatsRoutes.put('/seats/:id', updateSeatsById);
+seatsRoutes.put('/seats/:id', postSeatsValidator(), updateSeatsValidator(), validateSeats, updateSeatsById);
 
 module.exports = seatsRoutes;
