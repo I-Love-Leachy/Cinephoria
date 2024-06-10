@@ -43,7 +43,7 @@ async function postIncident(req, res) {
       room_id,
       seat_id,
       user_id,
-      report_by,
+      description,
       report_date,
     } = req.body;
 
@@ -52,7 +52,7 @@ async function postIncident(req, res) {
       !room_id ||
       !seat_id ||
       !user_id ||
-      !report_by ||
+      !description ||
       !report_date
     ) {
       return res
@@ -61,12 +61,12 @@ async function postIncident(req, res) {
     }
 
     const query =
-      "INSERT INTO incident (room_id, seat_id, user_id, report_by, report_date) VALUES ($1, $2, $3, $4, $5) RETURNING *";
+      "INSERT INTO incident (room_id, seat_id, user_id, description, report_date) VALUES ($1, $2, $3, $4, $5) RETURNING *";
     const result = await DB.query(query, [
       room_id,
       seat_id,
       user_id,
-      report_by,
+      description,
       report_date,
     ]);
 
@@ -86,7 +86,7 @@ async function updateIncidentById(req, res) {
       room_id,
       seat_id,
       user_id,
-      report_by,
+      description,
       report_date,
     } = req.body;
 
@@ -95,7 +95,7 @@ async function updateIncidentById(req, res) {
       !room_id ||
       !seat_id ||
       !user_id ||
-      !report_by ||
+      !description ||
       !report_date
     ) {
       return res
@@ -104,12 +104,12 @@ async function updateIncidentById(req, res) {
     }
 
     const query =
-      "UPDATE incident SET room_id = $1, seat_id = $2, user_id = $3, report_by = $4, report_date = $5 WHERE incident_id = $6 RETURNING *";
+      "UPDATE incident SET room_id = $1, seat_id = $2, user_id = $3, description = $4, report_date = $5 WHERE incident_id = $6 RETURNING *";
     const result = await DB.query(query, [
       room_id,
       seat_id,
       user_id,
-      report_by,
+      description,
       report_date,
       id,
     ]);
