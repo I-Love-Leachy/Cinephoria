@@ -1,6 +1,7 @@
 const express = require('express');
 const moviesRoutes = express.Router();
 const {getMovies, getMovieById, deleteMovieById, postMovie, updateMovieById} = require('../../controllers/movies/movies.controller');
+
 // Validator
 const { postMovieValidator, validateMovie } = require('../../middlewares/validator/movies.validator');
 
