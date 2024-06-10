@@ -41,11 +41,9 @@ async function getReviewsById(req, res) {
 
 // Note: Bug to fix (unable to post)
 // Function to create a new reviews
-async function postReviews(req, res) {
+async function postReviews(req, res) { 
   try {
     const {
-        user_id,
-        movie_id,
         rating,
         comment,
         status,
@@ -55,8 +53,6 @@ async function postReviews(req, res) {
 
     // Validate the request body fields
     if (
-      !user_id ||
-      !movie_id ||
       !rating ||
       !comment ||
       !status ||
@@ -68,10 +64,8 @@ async function postReviews(req, res) {
     }
 
     const query =
-      "INSERT INTO reviews (user_id, movie_id, rating, comment, status, created_at VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
+      "INSERT INTO reviews (rating, comment, status, created_at) VALUES ($1, $2, $3, $4) RETURNING *";
     const result = await DB.query(query, [
-        user_id,
-        movie_id,
         rating,
         comment,
         status,
@@ -79,7 +73,7 @@ async function postReviews(req, res) {
     ]);
 
     // Send the newly created reviews as response
-    res.status(201).json(result.rows[0]);
+    return res.status(201).json(result.rows[0]);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal server error!" });
@@ -92,8 +86,6 @@ async function updateReviewsById(req, res) {
   try {
     const id = req.params.id;
     const {
-      user_id,
-      movie_id,
       rating,
       comment,
       status,
@@ -101,10 +93,8 @@ async function updateReviewsById(req, res) {
     } = req.body;
 
     const query =
-      "UPDATE reviews SET user_id = $1, movie_id = $2, rating = $3, comment = $4, status = $5, created_at = $6 WHERE review_id = $7";
+      "UPDATE reviews SET rating = $1, comment = $2, status = $3, created_at = $4 WHERE review_id = $5";
     const result = await DB.query(query, [
-      user_id,
-      movie_id,
       rating,
       comment,
       status,
