@@ -43,9 +43,6 @@ async function getShowtimesById(req, res) {
 async function postShowtimes(req, res) {
   try {
     const {
-      movie_id,
-      cinema_id,
-      room_id,
       day,
       start_time,
       end_time,
@@ -55,9 +52,6 @@ async function postShowtimes(req, res) {
 
     // Validate the request body fields
     if (
-      !movie_id ||
-      !cinema_id ||
-      !room_id ||
       !day ||
       !start_time ||
       !end_time ||
@@ -72,9 +66,6 @@ async function postShowtimes(req, res) {
     const query =
       "INSERT INTO showtimes (movie_id, cinema_id, room_id, day, start_time, end_time, price, qr) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *";
     const result = await DB.query(query, [
-      movie_id,
-      cinema_id,
-      room_id,
       day,
       start_time,
       end_time,
@@ -95,9 +86,6 @@ async function updateShowtimesById(req, res) {
   try {
     const id = req.params.id;
     const {
-      movie_id,
-      cinema_id,
-      room_id,
       day,
       start_time,
       end_time,
@@ -106,11 +94,8 @@ async function updateShowtimesById(req, res) {
     } = req.body;
 
     const query =
-      "UPDATE showtimes SET movie_id = $1, cinema_id = $2, room_id = $3, day = $4, start_time = $5, end_time = $6, price = $7, qr = $8 WHERE showtimes_id = $9";
+      "UPDATE showtimes SET day = $1, start_time = $2, end_time = $3, price = $4, qr = $5 WHERE showtimes_id = $6";
     const result = await DB.query(query, [
-      movie_id,
-      cinema_id,
-      room_id,
       day,
       start_time,
       end_time,
