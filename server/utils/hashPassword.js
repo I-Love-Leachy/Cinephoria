@@ -10,4 +10,15 @@ async function hashPassword(password) {
     }
 }
 
-module.exports = hashPassword;
+async function compareHashedPassword(password, hashedPassword) {
+    try {
+        const comparePassword = await bcrypt.compare(password, hashedPassword);
+        console.log(comparePassword);
+        return comparePassword; 
+      } catch (err) {
+        console.log(err);
+        throw new Error('Comparing password failed');
+      }
+}
+
+module.exports = {hashPassword, compareHashedPassword};

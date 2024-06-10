@@ -11,8 +11,15 @@ const registerRoutes = require('./routes/components/register.routes');
 
 
 //Api routes
-const usersRoutes = require('./routes/users/users.routes');
-
+const usersRoutes = require('./api/users/users.routes');
+const moviesRoutes = require('./api/movies/movies.routes');
+const cinemasRoutes = require('./api/cinemas/cinemas.routes');
+const incidentRoutes = require('./api/incident/incident.routes');
+const reservationApiRoutes = require('./api/reservation/reservation.routes');
+const reviewsRoutes = require('./api/reviews/reviews.routes');
+const roomsRoutes = require('./api/rooms/rooms.routes');
+const seatsRoutes = require('./api/seats/seats.routes');
+const showtimesRoutes = require('./api/showtimes/showtimes.routes');
 
 const app = express();
 app.use(morgan("dev"));
@@ -24,7 +31,7 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '..', 'client', 'views'));
 
-// Application's routes
+//Application's routes
 app.get('/',(req, res) =>{
     res.redirect('/accueil');
 });
@@ -42,8 +49,17 @@ app.get('/login',(req, res) =>{
 
 //API routes
 app.use('/api/v1', usersRoutes);
+app.use('/api/v1', moviesRoutes);
+app.use('/api/v1', cinemasRoutes);
+app.use('/api/v1', incidentRoutes);
+app.use('/api/v1', reservationApiRoutes);
+app.use('/api/v1', reviewsRoutes);
+app.use('/api/v1', roomsRoutes);
+app.use('/api/v1', seatsRoutes);
+app.use('/api/v1', showtimesRoutes);
 
-//form components routes 
+
+//Form components routes 
 app.use('/components/login-form.ejs', loginRoutes);
 app.use('/components/register-form.ejs', registerRoutes);
 

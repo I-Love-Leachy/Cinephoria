@@ -6,6 +6,7 @@ filmsRoutes.get('/',(req, res) =>{
         title: "Films à l'affiche."
     });
 });
+
 filmsRoutes.get('/disponibiliter',(req, res) =>{
     res.render('film/movie-availability', {
         title: "Films à l'affiche."
@@ -13,4 +14,4 @@ filmsRoutes.get('/disponibiliter',(req, res) =>{
 });
 
 
-module.exports = filmsRoutes
+module.exports = filmsRoutes;
