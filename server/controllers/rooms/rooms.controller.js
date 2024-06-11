@@ -9,7 +9,7 @@ async function getRooms(req, res) {
 
      // Check if any rooms are found
     if (results.rows.length <= 0) {
-      res.status(404).json("No rooms found !");
+      res.status(404).json({message: "No rooms found !"});
       return;
     }
     // Send the found rooms as response
@@ -42,6 +42,7 @@ async function getRoomsById(req, res) {
 // Function to create a new room
 async function postRooms(req, res) {
   try {
+    const cinema_id = 1;
     const {
       name,
       quality,
@@ -49,6 +50,7 @@ async function postRooms(req, res) {
 
     // Validate the request body fields
     if (
+      !cinema_id ||
       !name ||
       !quality
     ) {
@@ -58,8 +60,9 @@ async function postRooms(req, res) {
     }
 
     const query =
-      "INSERT INTO rooms (name, quality) VALUES ($1, $2) RETURNING *";
+      "INSERT INTO rooms ( cinema_id, name, quality) VALUES ($1, $2, $3) RETURNING *";
     const result = await DB.query(query, [
+      cinema_id,
       name,
       quality,
     ]);
@@ -77,14 +80,16 @@ async function updateRoomsById(req, res) {
   try {
     const id = req.params.id;
     const {
+      cinema_id,
       name,
       quality,
     } = req.body;
     
 
     const query =
-      "UPDATE rooms SET name = $1, quality = $2 WHERE room_id = $3";
+      "UPDATE rooms SET cinema_id= $1, name = $2, quality = $3 WHERE room_id = $4";
     const result = await DB.query(query, [
+      cinema_id,
       name,
       quality,
       id,
