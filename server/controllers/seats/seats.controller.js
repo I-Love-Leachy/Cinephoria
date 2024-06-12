@@ -28,7 +28,7 @@ async function getSeatsById(req, res) {
     const results = await DB.query(query, [id]);
     // Check if the seat with the given ID is found
     if (results.rows.length <= 0) {
-      res.status(404).json("No seat id found !");
+      res.status(404).json({message:"No seat id found !"});
       return;
     }
     // Send the found seat as response
@@ -43,14 +43,16 @@ async function getSeatsById(req, res) {
 async function postSeats(req, res) {
   try {
     const {
-      name,
-      quality,
+      room_id,
+      seat_label,
+      accessibility
     } = req.body;
 
     // Validate the request body fields
     if (
-      !name ||
-      !quality
+      !room_id ||
+      !seat_label ||
+      !accessibility
     ) {
       return res
         .status(400)
@@ -58,14 +60,15 @@ async function postSeats(req, res) {
     }
 
     const query =
-      "INSERT INTO seats (name, quality) VALUES ($1, $2) RETURNING *";
+      "INSERT INTO seats (room_id, seat_label, accessibility) VALUES ($1, $2, $3) RETURNING *";
     const result = await DB.query(query, [
-      name,
-      quality,
+      room_id,
+      seat_label,
+      accessibility
     ]);
 
     // Send the newly created seat as response
-    return res.status(201).json(result.rows[0]);
+    res.status(201).json(result.rows[0]);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal server error!" });
@@ -78,15 +81,17 @@ async function updateSeatsById(req, res) {
   try {
     const id = req.params.id;
     const {
-      name,
-      quality,
+      room_id,
+      seat_label,
+      accessibility
     } = req.body;
 
     const query =
-      "UPDATE seats SET name = $1, quality = $2 WHERE seat_id = $3";
+      "UPDATE seats SET room_id = $1, seat_label = $2, accessibility = $3 WHERE seat_id = $4";
     const result = await DB.query(query, [
-      name,
-      quality,
+      room_id,
+      seat_label,
+      accessibility,
       id,
     ]);
     // Send a success message as response
@@ -108,9 +113,9 @@ async function deleteSeatsById(req, res) {
       const query = "DELETE FROM seats WHERE seat_id = $1";
       await DB.query(query, [id]);
       // Send a success message as response
-      return res.status(200).json("seat deleted successfully");
+      return res.status(200).json({message:"seat deleted successfully"});
     } else {
-      return res.status(404).json("No seat found !");
+      return res.status(404).json({message:"No seat found !"});
     }
   } catch (err) {
     console.log(err);
