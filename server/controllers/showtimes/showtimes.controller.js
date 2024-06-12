@@ -9,7 +9,7 @@ async function getShowtimes(req, res) {
 
      // Check if any showtimes are found
     if (results.rows.length <= 0) {
-      res.status(404).json("No showtimes found !");
+      res.status(404).json({message:"No showtimes found !"});
       return;
     }
     // Send the found showtimes as response
@@ -28,7 +28,7 @@ async function getShowtimesById(req, res) {
     const results = await DB.query(query, [id]);
     // Check if the showtimes with the given ID is found
     if (results.rows.length <= 0) {
-      res.status(404).json("No showtimes id found !");
+      res.status(404).json({message:"No showtimes id found !"});
       return;
     }
     // Send the found showtimes as response
@@ -43,6 +43,9 @@ async function getShowtimesById(req, res) {
 async function postShowtimes(req, res) {
   try {
     const {
+      movie_id,
+      cinema_id,
+      room_id,
       day,
       start_time,
       end_time,
@@ -52,6 +55,9 @@ async function postShowtimes(req, res) {
 
     // Validate the request body fields
     if (
+      !movie_id ||
+      !cinema_id ||
+      !room_id ||
       !day ||
       !start_time ||
       !end_time ||
@@ -66,6 +72,9 @@ async function postShowtimes(req, res) {
     const query =
       "INSERT INTO showtimes (movie_id, cinema_id, room_id, day, start_time, end_time, price, qr) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *";
     const result = await DB.query(query, [
+      movie_id,
+      cinema_id,
+      room_id,
       day,
       start_time,
       end_time,
@@ -86,6 +95,9 @@ async function updateShowtimesById(req, res) {
   try {
     const id = req.params.id;
     const {
+      movie_id,
+      cinema_id,
+      room_id,
       day,
       start_time,
       end_time,
@@ -94,8 +106,11 @@ async function updateShowtimesById(req, res) {
     } = req.body;
 
     const query =
-      "UPDATE showtimes SET day = $1, start_time = $2, end_time = $3, price = $4, qr = $5 WHERE showtimes_id = $6";
+      "UPDATE showtimes SET movie_id = $1, cinema_id = $2, room_id = $3, day = $4, start_time = $5, end_time = $6, price = $7, qr = $8 WHERE showtimes_id = $9";
     const result = await DB.query(query, [
+      movie_id,
+      cinema_id,
+      room_id,
       day,
       start_time,
       end_time,
@@ -122,9 +137,9 @@ async function deleteShowtimesById(req, res) {
       const query = "DELETE FROM showtimes WHERE showtimes_id = $1";
       await DB.query(query, [id]);
       // Send a success message as response
-      return res.status(200).json("showtimes deleted successfully");
+      return res.status(200).json({message:"showtimes deleted successfully"});
     } else {
-      return res.status(404).json("No showtimes found !");
+      return res.status(404).json({message:"No showtimes found !"});
     }
   } catch (err) {
     console.log(err);
