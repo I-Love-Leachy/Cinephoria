@@ -136,6 +136,4 @@ describe("TEST Delete /rooms/:id", () => {
     });
 });
 
-
-
 });
