@@ -3,6 +3,9 @@ const {
   hashPassword,
   compareHashedPassword,
 } = require("../../utils/hashPassword");
+const transporter = require('../../config/nodeMailer.config');
+require('dotenv').config({path: '../../../.env'});
+
 
 async function getUsers(req, res) {
   try {
@@ -55,7 +58,23 @@ async function postUser(req, res) {
       role,
     ]);
 
-    return res.status(201).json(result.rows[0]);
+  const mailOption = {
+    from: process.env.USER_EMAIL,
+    to: email,
+    subject: 'Bienvenue à Cinéphoria',
+    text: `Bonjour ${first_name} ${last_name},\n\nVotre compte Cinéphoria a été créé avec succès à cette adresse mail ${email} vous pouvez dès à présent réserver une place pour un scéance directement en ligne.`
+  }
+
+  transporter.sendMail(mailOption, (error, info) => {
+    if(error){
+      console.log('Error sending email', error)
+    } else{
+      console.log('Email sent', info.response)
+    }
+  })
+
+  return res.status(201).json(result.rows[0]);
+  
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal server error!" });
