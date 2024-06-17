@@ -7,4 +7,10 @@ userDashboardRoutes.get('/users', (req, res) => {
     });
 });
 
+userDashboardRoutes.get('/users/reviews', (req, res) => {
+    res.render('layouts/dashboard/users/users-reviews', {
+        title: 'Laisser un avis.'
+    });
+});
+
 module.exports = userDashboardRoutes;
