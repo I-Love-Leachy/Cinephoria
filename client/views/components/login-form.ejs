@@ -6,7 +6,7 @@
     <title></title>
 </head>
 <body>
-    <form class="font-arvo px-10 w-full  " action="" method="">
+    <form class="font-arvo px-10 w-full " action="/api/v1/auth" method="POST">
 
         <div class="flex flex-col">
             <div class="">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="text-blueOne flex items-center font-semibold text-xs mb-16">
-            <input class="bg-whiteOne m-0 placeholder:text-blueOne mr-1" type="checkbox" id="remember" name="remember" required>
+            <input class="bg-whiteOne m-0 placeholder:text-blueOne mr-1" type="checkbox" id="remember" name="remember">
             <label for="remember"></label> SE SOUVENIR DE MOI
         </div>
         
@@ -30,7 +30,9 @@
             <button class="bg-redOne text-white py-2 px-4 w-52 rounded-sm hover:scale-105 hover:bg-red-500 duration-200 font-bold">JE ME CONNECTE</button>
         </div>
         <p class="text-xxs text-center font-extrabold text-blueOne opacity-90 mt-2 mb-4">*Champs obligatoires</p>
-        <p class="text-xs text-center font-extrabold text-blueOne mt-2 mb-6">MOT DE PASSE OUBLIÉ ?</p>
+        <a href="/reset/forgot-password" class="cursor-pointer">
+            <p class="text-xs text-center font-extrabold text-blueOne mt-2 mb-6">MOT DE PASSE OUBLIÉ ?</p>
+        </a>
     </form>
 </body>
 </html>

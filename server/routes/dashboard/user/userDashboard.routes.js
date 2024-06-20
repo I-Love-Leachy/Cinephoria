@@ -1,16 +1,46 @@
 const express = require('express');
 const userDashboardRoutes = express.Router();
 
-userDashboardRoutes.get('/users', (req, res) => {
+
+const {
+    checkAuthenticated,
+    checkRole,
+  } = require("../../../middlewares/autorisation/autorisation");
+
+  const { enrichUserWithInfo } = require("../../../middlewares/enrichUserWithInfo")
+
+userDashboardRoutes.get('/user', (req, res) => {
     res.render('layouts/dashboard/users/users', {
         title: 'Bienvenue Jean.'
     });
 });
 
-userDashboardRoutes.get('/users/reviews', (req, res) => {
-    res.render('layouts/dashboard/users/users-reviews', {
-        title: 'Laisser un avis.'
+//users dashboard get review form routes
+userDashboardRoutes.get(
+  '/user/reviews-form',
+  checkAuthenticated,
+  checkRole("user"),
+  enrichUserWithInfo,
+  (req, res) => {
+    res.render('layouts/dashboard/users/reviewForm', {
+      title: `Laisser un avis.`,
+      currentPath: req.path
     });
-});
+  }
+);
+
+// user reset password routes
+userDashboardRoutes.get(
+    "/user/reset-pass",
+    checkAuthenticated,
+    checkRole("user"),
+    (req, res) => {
+      const userId = req.user.sub;
+      res.render("layouts/dashboard/users/userResetPass", {
+        title: "Réinitialiser votre mot de passe..",
+        id: userId,
+      });
+    }
+  );
 
 module.exports = userDashboardRoutes;

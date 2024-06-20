@@ -33,7 +33,7 @@ async function getUserById(req, res) {
       res.status(400).send("No user found !");
       return;
     }
-    res.status(200).send(result.rows[0]);
+    return result.rows[0];
   } catch (err) {
     console.log(err);
     res.status(500).send("Internal server error !");
@@ -101,6 +101,7 @@ async function forgotPassword(req, res) {
     const result = await DB.query(updateQuery, [hashedPassword, email]);
 
     sendEmail(email, 'Reset Password Request', `Bonjours,\n\nVotre mot de passe temporaire est: ${temporaryPassword}\nPour des raison de sécuriter veuillez vous connectez et changer votre mot de passe au plus vite.\n\nMerci!` );
+    res.status(200).json({ message: 'Un mot de passe temporaire a été envoyé à votre adresse e-mail.' });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal server error!" });

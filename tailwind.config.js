@@ -7,7 +7,7 @@ module.exports = {
         blueOne: "#102C57",
         goldOne: "#E3B04B",
         redOne: '#C10E0E',
-        whiteOne: '#FEFAF6',
+        whiteOne: '#FFF2E5',
         creamOne: '#EADBC8',
         beigeOne: '#DAC0A3'
       },

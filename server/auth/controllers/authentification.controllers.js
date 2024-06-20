@@ -33,6 +33,20 @@ async function authUser(req, res){
             maxAge: 1*60*60*1000,
         });
 
+        if (user.must_change_password) {
+            if (user.role === "user") {
+              return res.redirect('/dashboard/user/reset-pass');
+            }
+            if (user.role === "admin") {
+              return res.redirect('/dashboard/admin/reset-pass');
+            }
+            if (user.role === "employee") {
+              return res.redirect('/dashboard/employee/reset-pass');
+            }
+          };
+
+          console.log("User logged in, token:", token);
+
         switch (user.role) {
             case 'admin':
                 return res.redirect('/dashboard/admin');
