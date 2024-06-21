@@ -907,6 +907,9 @@ video {
 .h-screen{
   height: 100vh;
 }
+.h-\[30\%\]{
+  height: 30%;
+}
 .max-h-\[30vh\]{
   max-height: 30vh;
 }
@@ -1572,6 +1575,9 @@ video {
 .pl-4{
   padding-left: 1rem;
 }
+.pb-1{
+  padding-bottom: 0.25rem;
+}
 .text-center{
   text-align: center;
 }
@@ -2144,8 +2150,21 @@ video {
   animation: bg-fill 1.5s forwards;
 }
 
+.hover\:border:hover{
+  border-width: 1px;
+}
+
 .hover\:border-b-4:hover{
   border-bottom-width: 4px;
+}
+
+.hover\:border-solid:hover{
+  border-style: solid;
+}
+
+.hover\:border-goldOne:hover{
+  --tw-border-opacity: 1;
+  border-color: rgb(227 176 75 / var(--tw-border-opacity));
 }
 
 .hover\:border-b-goldOne:hover{
@@ -2443,6 +2462,10 @@ video {
     width: 55%;
   }
 
+  .md\:w-\[35\%\]{
+    width: 35%;
+  }
+
   .md\:max-w-2xl{
     max-width: 42rem;
   }
@@ -2585,6 +2608,14 @@ video {
 
   .md\:pt-40{
     padding-top: 10rem;
+  }
+
+  .md\:pb-20{
+    padding-bottom: 5rem;
+  }
+
+  .md\:pt-14{
+    padding-top: 3.5rem;
   }
 
   .md\:text-3xl{

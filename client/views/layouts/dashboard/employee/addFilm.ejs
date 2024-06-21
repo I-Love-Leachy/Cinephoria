@@ -62,6 +62,19 @@
     
                 <button class="mx-auto bg-redOne font-arvo text-white font-bold text-lg px-10 py-2 mt-2 flex hover:scale-95 duration-200 ease-in-out items-center justifify-center">poster</button>
     
+                <!-- hidden alert pop up -->
+                <div class="absolute   z-50  animate-open-menu hidden  flex-col items-center justify-around bg-blueOne/75 w-[50vw] h-[100vh] rounded-lg px-10 py-48 " id="alert">
+                    <p class="text-center font-arvo text-white font-bold text-3xl">VOULEZ-VOUS VRAIMENT MODIFIER LA SCÉANCE  ?</p>
+                    <div class="flex items-center justify-center space-x-10">
+                        <button type="submit" id="submit-form" class="bg-green-500 w-36 h-14 text-white font-arvo font-bold flex items-center justify-center hover:scale-95 duration-200 hover:bg-green-400">
+                            OUI
+                        </button>
+                        <button  id="close-alert" class="bg-redOne w-36 h-14 text-white font-arvo font-bold flex items-center justify-center hover:scale-95 duration-200 hover:bg-red-500">
+                            NON
+                        </button>
+                    </div>
+                </div>
+                
             </form>
     
         </section>
