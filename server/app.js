@@ -6,7 +6,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const configurePassportJWT = require('./config/passport.jwt.config');
-
+const { checkUser } = require('./middlewares/enrichUserWithInfo');
 
 const accueilRoutes = require('./routes/accueil/accueil.routes');
 const filmsRoutes = require('./routes/film/films.routes');
@@ -16,6 +16,7 @@ const loginRoutes = require('./routes/components/login.routes');
 const registerRoutes = require('./routes/components/register.routes');
 const userDashboardRoutes = require('./routes/dashboard/user/userDashboard.routes');
 const resetPasswordRoutes = require('./routes/resetPassword/resetPass.routes');
+const employeeDashboardRoutes = require('./routes/dashboard/employee/employeeDashboard.routes');
 
 //Api routes
 const usersRoutes = require('./api/users/users.routes');
@@ -54,6 +55,8 @@ app.use(session({
 }))
 configurePassportJWT(passport);
 
+app.use(checkUser);
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '..', 'client', 'views'));
 
@@ -77,6 +80,7 @@ app.use('/reset', resetPasswordRoutes);
 
 //Dashboard's routes
 app.use('/dashboard', userDashboardRoutes);
+app.use('/dashboard', employeeDashboardRoutes);
 
 //API routes
 app.use('/api/v1', usersRoutes);

@@ -57,3 +57,5 @@ function checkUser(req, res, next) {
 
 
 module.exports = { enrichUserWithInfo, checkUser };
+
+
