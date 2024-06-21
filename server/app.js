@@ -80,7 +80,7 @@ app.use('/reset', resetPasswordRoutes);
 
 //Dashboard's routes
 app.use('/dashboard', userDashboardRoutes);
-app.use('/dashboard', employeeDashboardRoutes);
+app.use('/dashboard/employee', employeeDashboardRoutes);
 
 //API routes
 app.use('/api/v1', usersRoutes);
