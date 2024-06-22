@@ -15,7 +15,7 @@ const contactRoutes = require('./routes/contact/contact.routes');
 const loginRoutes = require('./routes/components/login.routes');
 const registerRoutes = require('./routes/components/register.routes');
 const userDashboardRoutes = require('./routes/dashboard/user/userDashboard.routes');
-
+const resetPasswordRoutes = require('./routes/resetPassword/resetPass.routes');
 
 //Api routes
 const usersRoutes = require('./api/users/users.routes');
@@ -30,6 +30,7 @@ const showtimesRoutes = require('./api/showtimes/showtimes.routes');
 const resetPassApiRoutes = require('./api/resetPassword/resetPassApi.routes');
 
 
+
 //Login & Logout Apis
 const authRouter = require('./auth/login.api');
 const logoutRouter = require('./auth/logout.api');
@@ -39,6 +40,7 @@ app.use(morgan("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
+app.use('/dashboard', express.static(path.join(__dirname, '..', 'client', 'public')));
 app.use(express.json());
 
 app.use(passport.initialize());
@@ -71,6 +73,7 @@ app.get('/login',(req, res) =>{
     });
 });
 
+app.use('/reset', resetPasswordRoutes);
 
 //Dashboard's routes
 app.use('/dashboard', userDashboardRoutes);
