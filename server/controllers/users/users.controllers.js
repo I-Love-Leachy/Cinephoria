@@ -74,6 +74,41 @@ async function postUser(req, res) {
   }
 }
 
+//Create employee account
+async function postUser(req, res) {
+  try {
+    const { first_name, last_name, email, password, username } = req.body;
+
+    if (!first_name || !last_name || !email || !password || !username) {
+      return res.status(400).json({ error: "You must enter all fields!" });
+    }
+
+    const hashedPassword = await hashPassword(password);
+
+    const query =
+      "INSERT INTO users (first_name, last_name, email, password, role, username, must_change_password) VALUES ($1, $2, $3, $4, 'employee', $5, 'false') RETURNING *";
+    const result = await DB.query(query, [
+      first_name,
+      last_name,
+      email,
+      hashedPassword,
+      username,
+    ]);
+
+    sendEmail(
+      email, 
+      "Bienvenue à Cinéphoria.",
+      `Bonjour ${first_name} ${last_name},\n\nVotre compte Cinéphoria a été créé avec succès à cette adresse mail ${email} vous pouvez dès à réserver une place pour un scéance directement en ligne.`
+    );
+    
+    return res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "Internal server error!" });
+  }
+}
+
+
 function generateTemporaryPassword() {
   return crypto.randomBytes(8).toString('hex');
 }
