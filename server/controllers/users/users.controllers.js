@@ -5,6 +5,8 @@ const {
 } = require("../../utils/hashPassword");
 const transporter = require('../../config/nodeMailer.config');
 require('dotenv').config({path: '../../../.env'});
+const crypto = require('crypto');
+const sendEmail = require("../../services/sendEmail.services");
 
 
 async function getUsers(req, res) {
@@ -38,43 +40,94 @@ async function getUserById(req, res) {
   }
 }
 
+//create user account for register
 async function postUser(req, res) {
   try {
-    const { first_name, last_name, email, password, role } = req.body;
+    const { first_name, last_name, email, password, username } = req.body;
 
-    if (!first_name || !last_name || !email || !password || !role) {
+    if (!first_name || !last_name || !email || !password || !username) {
       return res.status(400).json({ error: "You must enter all fields!" });
     }
 
     const hashedPassword = await hashPassword(password);
 
     const query =
-      "INSERT INTO users (first_name, last_name, email, password, role) VALUES ($1, $2, $3, $4, $5) RETURNING *";
+      "INSERT INTO users (first_name, last_name, email, password, role, username, must_change_password) VALUES ($1, $2, $3, $4, 'user', $5, 'false') RETURNING *";
     const result = await DB.query(query, [
       first_name,
       last_name,
       email,
       hashedPassword,
-      role,
+      username,
     ]);
 
-  const mailOption = {
-    from: process.env.USER_EMAIL,
-    to: email,
-    subject: 'Bienvenue à Cinéphoria',
-    text: `Bonjour ${first_name} ${last_name},\n\nVotre compte Cinéphoria a été créé avec succès à cette adresse mail ${email} vous pouvez dès à présent réserver une place pour un scéance directement en ligne.`
+    sendEmail(
+      email, 
+      "Bienvenue à Cinéphoria.",
+      `Bonjour ${first_name} ${last_name},\n\nVotre compte Cinéphoria a été créé avec succès à cette adresse mail ${email} vous pouvez dès à réserver une place pour un scéance directement en ligne.`
+    );
+    
+    return res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "Internal server error!" });
   }
+}
 
-  transporter.sendMail(mailOption, (error, info) => {
-    if(error){
-      console.log('Error sending email', error)
-    } else{
-      console.log('Email sent', info.response)
+function generateTemporaryPassword() {
+  return crypto.randomBytes(8).toString('hex');
+}
+
+//Forgot pass resend new pass by email 
+async function forgotPassword(req, res) {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ error: "Email is required!" });
     }
-  })
 
-  return res.status(201).json(result.rows[0]);
-  
+    // Check if user exists
+    const userQuery = "SELECT * FROM users WHERE email = $1";
+    const userResult = await DB.query(userQuery, [email]);
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ error: "No user found with this email!" });
+    }
+
+    const temporaryPassword = generateTemporaryPassword();
+    const hashedPassword = await hashPassword(temporaryPassword);
+
+    // Update user password in the database
+    const updateQuery = "UPDATE users SET password = $1, must_change_password = true WHERE email = $2 RETURNING *";
+    const result = await DB.query(updateQuery, [hashedPassword, email]);
+
+    sendEmail(email, 'Reset Password Request', `Bonjours,\n\nVotre mot de passe temporaire est: ${temporaryPassword}\nPour des raison de sécuriter veuillez vous connectez et changer votre mot de passe au plus vite.\n\nMerci!` );
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "Internal server error!" });
+  }
+}
+
+//change with new password
+async function changePassword(req, res) {
+  try {
+    const { userId, newPassword, confirmPassword } = req.body;
+    if (!userId || !newPassword || !confirmPassword) {
+      return res
+        .status(400)
+        .json({ error: "User ID and new password are required!" });
+    }
+
+    const hashedPassword = await hashPassword(newPassword);
+
+    const updateQuery =
+      "UPDATE users SET password = $1, must_change_password = false WHERE user_id = $2 RETURNING *";
+    const result = await DB.query(updateQuery, [hashedPassword, userId]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    return res.status(200).json({ message: "Password updated successfully!" });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal server error!" });
@@ -167,4 +220,7 @@ module.exports = {
   deleteUserById,
   postUser,
   updateUserById,
+  generateTemporaryPassword,
+  forgotPassword,
+  changePassword
 };
