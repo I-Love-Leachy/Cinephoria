@@ -8,6 +8,7 @@ const reservationRoutes = require('./routes/reservation/reservation.routes');
 const contactRoutes = require('./routes/contact/contact.routes');
 const loginRoutes = require('./routes/components/login.routes');
 const registerRoutes = require('./routes/components/register.routes');
+const userDashboardRoutes = require('./routes/dashboard/user/userDashboard.routes');
 
 
 //Api routes
@@ -46,6 +47,10 @@ app.get('/login',(req, res) =>{
         title: "Connectez-vous à votre compte."
     });
 });
+
+
+//Dashboard's routes
+app.use('/dashboard', userDashboardRoutes);
 
 //API routes
 app.use('/api/v1', usersRoutes);
