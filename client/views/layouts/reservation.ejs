@@ -22,14 +22,13 @@
   </head>
   <body class="relative min-h-screen pb-20 overflow-x-hidden" id="top">
     <header class="relative">
-      <!-- navbar section -->
+      <!-- Include the navigation bar -->
       <%- include('../components/nav-bar') %>
 
-      <!-- Slider main container -->
+       <!-- Slider container -->
       <div class="swiper main-slider h-[60vh]">
-        <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
-          <!-- Slides -->
+          <!-- Slide 1 -->
           <div class="swiper-slide">
             <img
               src="images/siege-cinema.jpg"
@@ -37,6 +36,7 @@
               class="object-cover w-full h-full"
             />
           </div>
+          <!-- Slide 2 -->
           <div class="swiper-slide">
             <img
               src="images/ocean-cinema.jpg"
@@ -48,15 +48,15 @@
       </div>
     </header>
 
-    <!-- main content -->
+    <!-- Main content -->
     <main class="flex-grow pt-6">
       <div id="bottom"></div>
-      <!-- DESKTOP search theater and movies filter  -->
+      <!-- Desktop theater and movie filters -->
       <section class="w-full hidden mt-10 md:block">
         <div class="container gap-y-7 w-fit mx-auto flex flex-col">
           <div class="container flex space-x-4 mx-auto">
+            <!-- Theater filter button -->
             <div class="flex relative">
-
               <a href="#top">
                 <button class="theater-filter">
                   <div class="flex items-center justify-between cursor-pointer border border-gray-400/70 h-20 w-[80vw] bg-whiteOne px-4 pl-16 hover:bg-gradient-to-r from-whiteOne to-blueOne/15 bg-[length:200%_100%] hover:animate-bg-fill-animation">
@@ -77,10 +77,9 @@
                 <p class="text-white font-arvo rotate-12 font-bold">Où ?</p>
               </div>
             </div>
-
             
 
-            <!-- filter movies -->
+            <!-- Movie filter button -->
             <a href="#top" class=" flex items-center">
               <button class="movies-filter">
                 <svg
@@ -96,16 +95,12 @@
                   />
                 </svg>
               </button>
-            </a>
-
-            
-           
-          </div>
-
-          
+            </a>                
+          </div>        
         </div>
 
-          <div class="container ml-32 mt-8 w-fit">
+          <!-- Search movie button -->
+          <div class="container ml-48 mt-8 w-fit">
             <a href="#top">
             <button
             class="flex items-center justify-between space-x-4 open-search-movies"
@@ -130,12 +125,11 @@
         </div>
       </section>
 
-      <!-- MOBILE search theater and movies filter  -->
+      <!-- Mobile theater and movie filters -->
       <section class="w-full flex flex-col mt-10 md:hidden">
         <div class="container gap-y-5 flex flex-col px-3 w-fit mx-auto">
-          <!-- filter theater input -->
           <div class="container space-x-4 flex w-fit mx-auto">
-            
+             <!-- Theater filter button -->
             <a href="#top">
                 <div class="flex">
                 <button  class="theater-filter">
@@ -163,7 +157,7 @@
               </a>
              
 
-            <!-- filter movies -->
+            <!-- Movie filter button -->
             <a href="#top" class="flex items-center">
               <button  class="movies-filter">
                 <svg
@@ -180,39 +174,60 @@
                 </svg>
               </button>
             </a>
-            
           </div>
 
-          
+          <!-- Search movie button -->
+          <div class="container ml-2 mt-8 w-fit">
+            <a href="#top">
+            <button
+            class="flex items-center justify-between space-x-4 open-search-movies"
+            >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="text-blueOne"
+                width="1.5em"
+                height="1.5em"
+                viewBox="0 0 24 24"
+            >
+                <path
+                fill="currentColor"
+                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"
+                />
+            </svg>
+            <p class="text-blueOne font-arvo font-bold text-sm">
+                RECHERCHER UN FILM
+            </p>
+            </button>
+            </a>
+          </div>         
         </div>
-
       </section>
 
-        <!-- search movies menu -->
+        <!-- Include search movies menu -->
         <section>
           <%- include('../components/search-movies-menu') %>
         </section>
 
 
-      <!-- filter menue section -->
+      <!-- Include filter menu -->
       <section>
         <%- include('../components/filter-menu') %>
       </section>
 
-      <!-- current  theater movies -->
+      <!-- Display current theater movies -->
       <section  class="mt-16">
-        <!-- latest movies carousel -->
+        <!-- Latest movies carousel -->
         <div >
         <%- include('../components/latest-movies') %>
         </div>
       </section>
 
 
-      <!-- search theater dropdown  -->
+      <!-- Include search theater dropdown -->
       <%- include('../components/searchTheaterMenu') %>
     </main>
 
-    <!-- footer section -->
+    <!-- Include footer -->
     <footer class="mt-36"><%- include('../components/footer') %></footer>
   </body>
 </html>

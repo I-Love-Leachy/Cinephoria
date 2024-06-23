@@ -6,27 +6,27 @@
     <title><%= title %></title>
     <link rel="icon" href="/images/logo-blanc.png" type="image/x-icon">
     <link type="text/css" rel="stylesheet" href="css/output.css" />
+    <link rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="text/javascript" defer src="js/main.js"></script>
     <script type="text/javascript" defer src="js/swipper.js"></script>
-    <link rel="stylesheet" href="css/style.css">
   </head>
 
   <body class="relative min-h-screen pb-20">
 
     <header class="relative">
-      <!-- navbar section -->
+      <!-- Include navigation bar -->
       <%- include('../components/nav-bar') %>
 
-      <!-- Slider main container -->
+      <!-- Main image slider -->
       <div class="swiper main-slider h-[60vh]">
-        <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
-          <!-- Slides -->
+          <!-- Slide 1 -->
           <div class="swiper-slide">
             <img src="/images/siege-cinema.jpg" alt="photo header" class="object-cover w-full h-full">
           </div>
+          <!-- Slide 2 -->
           <div class="swiper-slide">
             <img src="/images/ocean-cinema.jpg" alt="photo header" class="object-cover w-full h-full">
           </div> 
@@ -34,11 +34,12 @@
       </div>
     </header>
 
-   <!-- main content -->
-   <main class="flex-grow">
+
+    <main class="flex-grow">
 
     <section class="font-arvo text-blueOne font-bold">
-      <div class="md:flex md:flex-row md:justify-between md:mx-28 md:my-16 md:items-center flex flex-col mt-10 mb-10">
+        <!-- Latest movies section header -->
+      <div class="md:flex md:flex-row md:justify-between md:mx-28 md:my-16 md:items-center flex flex-col mt-10 mb-10 ml-14">
         <p class="text-3xl mb-10 md:mb-0">
           NOUVEAUTÉS
         </p>
@@ -52,14 +53,15 @@
         </a>
       </div>
 
-      <!-- latest movies carousel -->
+        <!-- Latest movies carousel -->
       <div class="mb-36 md:mb-14"><%- include('../components/latest-movies') %></div>
     </section>
-  </main>
+    </main>
     
+    <!-- Include footer -->
     <footer>
-      <!-- footer section -->
       <%- include('../components/footer') %>
     </footer>
+
   </body>
 </html>

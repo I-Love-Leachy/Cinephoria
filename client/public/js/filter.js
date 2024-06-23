@@ -1,3 +1,4 @@
+
 const filterApp = () => {
   const currentPage = window.location.pathname
 
@@ -7,7 +8,6 @@ const filterApp = () => {
   const franceCinemaMenu = document.getElementById("france-cinema-list");
   const belgiumCinemaMenu = document.getElementById("belgium-cinema-list");
 
-  
   const openTheaterMenueBtn = document.querySelectorAll('.theater-filter');
   const theaterMenu = document.getElementById("theater-menu");
   const closeTheaterMenuBtn = document.getElementById("close-search-theater-menu");
@@ -19,10 +19,6 @@ const filterApp = () => {
   const openSearchMoviesMenuBtn = document.querySelectorAll(".open-search-movies");
   const searchMoviesMenu = document.getElementById("search-movie");
   const closeSearchMoviesMenuBtn = document.getElementById("close-search-movie");
-
-  const openSearchStatusMenuBtn = document.querySelectorAll(".open-search-status");
-  const searchStatusMenu = document.getElementById("search-status");
-  const closeSearchStatusMenuBtn = document.getElementById("close-search-status");
   
   const toggleFranceCinemaMenu = () => {
     franceCinemaMenu.classList.toggle("hidden");
@@ -64,22 +60,22 @@ const filterApp = () => {
     searchMoviesMenu.classList.toggle("flex");
   };
 
-  const openSearchStatusMenu = () => {
-    searchStatusMenu.classList.toggle("hidden");
-    searchStatusMenu.classList.toggle("flex");
-  };
+  // set up style for users dashboard
+  if (window.location.pathname === "/dashboard/users/reviews") {
+    searchMoviesMenu.classList.remove('w-full');
+    searchMoviesMenu.classList.add('w-[85vw]');
+    searchMoviesMenu.classList.add('right-0');
 
-  const closeSearchStatusMenu = () => {
-    searchStatusMenu.classList.toggle("hidden");
-    searchStatusMenu.classList.toggle("flex");
-  };
+    theaterMenu.classList.remove('w-full');
+    theaterMenu.classList.add('w-[85vw]');
+    theaterMenu.classList.add('right-0');
+  }
 
   quickaccess1Btn.addEventListener("click", toggleFranceCinemaMenu);
   quickaccess2Btn.addEventListener("click", toggleBelgiumCinemaMenu);
   closeTheaterMenuBtn.addEventListener("click", closeTheaterMenu);
   closeFilterBtn.addEventListener("click", closeFilterMenue);
   closeSearchMoviesMenuBtn.addEventListener("click", closeSearchMoviesMenu);
-  closeSearchStatusMenuBtn.addEventListener("click", closeSearchStatusMenu);
   
 
   openTheaterMenueBtn.forEach(btn => {
@@ -93,10 +89,6 @@ const filterApp = () => {
   
   openSearchMoviesMenuBtn.forEach(btn => {
     btn.addEventListener('click', openSearchMoviesMenu)
-  });
-
-  openSearchStatusMenuBtn.forEach(btn => {
-    btn.addEventListener('click', openSearchStatusMenu)
   });
 
 };
