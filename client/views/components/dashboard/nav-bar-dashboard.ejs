@@ -18,7 +18,18 @@
         <li class="nav"><a href="/films">FILMS</a></li>
         <li class="nav"><a href="/reservation">RÉSERVATION</a></li>
         <li class="nav"><a href="/contact">CONTACT</a></li>
-        <li class="nav"><a href="/login">MON ESPACE</a></li>
+        <li class="nav">
+          <% if (user && user.role === 'employee') { %>
+            <a href="/login">INTRANET</a>
+          <% } else if(user && user.role === 'user') {%>
+            <a href="/login">MON ESPACE</a>
+            <% } else if(user && user.role === 'admin') {%>
+              <a href="/login">ADMINISTRATION</a>
+            <% }
+          %>
+    
+
+        </li>
       </ul>
     </nav>
 
