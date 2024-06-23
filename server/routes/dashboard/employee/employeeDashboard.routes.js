@@ -1,26 +1,59 @@
 const express = require('express');
 const employeeDashboardRoutes = express.Router();
+const {
+    checkAuthenticated,
+    checkRole,
+  } = require("../../../middlewares/autorisation/autorisation");
+  const {
+    enrichUserWithInfo
+  } = require('../../../middlewares/enrichUserWithInfo')
 
-//Employee dashboard 
-employeeDashboardRoutes.get('/films', (req, res) => {
-    res.render('layouts/dashboard/employee/employee', {
-        title: 'Bienvenue Emily.' 
-    });
-});
 
-//Employee add film
-employeeDashboardRoutes.get('/films/add', (req, res) => {
-    res.render('layouts/dashboard/employee/addFilm', {
-        title: 'Ajouter un film.' 
-    });
-});
+//employee dashboard homePage routes
+employeeDashboardRoutes.get(
+    "/films",
+    checkAuthenticated,
+    checkRole("employee"),
+    enrichUserWithInfo,
+    (req, res) => {
+      const user = req.user.details;
+      res.render("layouts/dashboard/employee/employee", {
+        title: `Bienvenue ${user.first_name}.`,
+      });
+    }
+);
+
+
+//employee dashboard films routes
+employeeDashboardRoutes.get(
+    "/films/add",
+    checkAuthenticated,
+    checkRole("employee"),
+    enrichUserWithInfo,
+    (req, res) => {
+      const user = req.user.details;
+      res.render("layouts/dashboard/employee/addFilm", {
+        title: `Bienvenue ${user.first_name}.`,
+      });
+    }
+);
+
 
 //Employee update film
-employeeDashboardRoutes.get('/films/update', (req, res) => {
-    res.render('layouts/dashboard/employee/updateFilm', {
-        title: 'Modifier un film.' 
-    });
-});
+employeeDashboardRoutes.get(
+    "/films/update",
+    checkAuthenticated,
+    checkRole("employee"),
+    enrichUserWithInfo,
+    (req, res) => {
+      const user = req.user.details;
+      res.render("layouts/dashboard/employee/updateFilm", {
+        title: `Bienvenue ${user.first_name}.`,
+      });
+    }
+  );
+
+
 
 //Employee update film sub page
 employeeDashboardRoutes.get('/films/select-update', (req, res) => {
@@ -29,12 +62,20 @@ employeeDashboardRoutes.get('/films/select-update', (req, res) => {
     });
 });
 
-//Employee delete film
-employeeDashboardRoutes.get('/films/delete', (req, res) => {
-    res.render('layouts/dashboard/employee/deleteFilm', {
-        title: 'Supprimer un film.' 
-    });
-});
+
+//employee dashboard delete films routes
+employeeDashboardRoutes.get(
+    "/films/delete",
+    checkAuthenticated,
+    checkRole("employee"),
+    enrichUserWithInfo,
+    (req, res) => {
+      const user = req.user.details;
+      res.render("layouts/dashboard/employee/deleteFilm", {
+        title: `Bienvenue ${user.first_name}.`,
+      });
+    }
+);
 
 
 

@@ -2450,6 +2450,10 @@ video {
     margin-top: 2.5rem;
   }
 
+  .md\:mb-24{
+    margin-bottom: 6rem;
+  }
+
   .md\:block{
     display: block;
   }
