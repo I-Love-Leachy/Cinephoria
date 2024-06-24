@@ -54,20 +54,22 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (globalPath.startsWith("/reservation")) {
       setActiveLink("/reservation");
       
-      // Dashboard Employee
-    } else if (globalPath.startsWith("/dashboard/employee/films")) {
-      setActiveLink("/dashboard/employee");
-      sideBarSetActiveLink("/dashboard/employee/films");
-    }  else if (globalPath.startsWith("/dashboard/employee/rooms")) {
-      setActiveLink("/dashboard/employee");
-      sideBarSetActiveLink("/dashboard/employee/rooms");
-    } else if (globalPath.startsWith("/dashboard/employee/showtimes")) {
-      setActiveLink("/dashboard/employee");
-      sideBarSetActiveLink("/dashboard/employee/showtimes");
-    } else if (globalPath.startsWith("/dashboard/employee/reviews")) {
-      setActiveLink("/dashboard/employee");
-      sideBarSetActiveLink("/dashboard/employee/reviews");
-    } 
-    
+      //dahsboard employee active link
+  } else if (globalPath.startsWith("/dashboard/employee/films")) {
+    setActiveLink("/dashboard/employee");
+    sideBarSetActiveLink("/dashboard/employee/films");
 
+  } else if (globalPath.startsWith("/dashboard/employee/rooms")) {
+    sideBarSetActiveLink("/dashboard/employee/rooms");
+
+  } else if (globalPath.startsWith("/dashboard/employee/reviews")) {
+    sideBarSetActiveLink("/dashboard/employee/reviews");
+
+  } else if (globalPath.startsWith("/dashboard/employee/showtimes")) {
+    sideBarSetActiveLink("/dashboard/employee/showtimes");
+
+  } else if (globalPath.startsWith("/reservation")) {
+    setActiveLink("/reservation");
+  }
+    
   });
