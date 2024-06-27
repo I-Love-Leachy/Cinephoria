@@ -14,6 +14,14 @@ module.exports = {
       fontFamily: {
         "arvo": ["Arvo", "serif"]
       },
+      brightness: {
+        25: '.25',
+        50: '.50',
+        75: '.75',
+        90: '.90',
+        95: '.95',
+        100: '1',
+      },
       keyframes: {
         'open-menu': {
           '0%': { transform: 'scaleY(0)' },
