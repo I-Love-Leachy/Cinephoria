@@ -4,15 +4,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        blueOne: "#102C57",
-        goldOne: "#E3B04B",
+        blueOne: '#102C57',
+        goldOne: '#E3B04B',
         redOne: '#C10E0E',
         whiteOne: '#FFF2E5',
         creamOne: '#EADBC8',
         beigeOne: '#DAC0A3'
       },
       fontFamily: {
-        "arvo": ["Arvo", "serif"]
+        'arvo': ['Arvo', 'serif'],
+        'arvo-bold': ['Arvo-Bold', 'serif'],
+        'arvo-italic': ['Arvo-Italic', 'serif'],
+        'arvo-bolditalic': ['Arvo-BoldItalic', 'serif']
       },
       brightness: {
         25: '.25',

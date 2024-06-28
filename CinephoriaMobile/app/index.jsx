@@ -12,7 +12,7 @@ export default function App() {
     <ImageBackground
         source={require('../assets/images/bg.jpg')}
         resizeMode="cover"
-        className="flex-1 h-full brightness-25"
+        className="flex-1 h-full"
       >
     <SafeAreaView className="h-full" style={{backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
       
