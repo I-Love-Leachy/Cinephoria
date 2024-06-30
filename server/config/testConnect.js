@@ -31,13 +31,13 @@ async function addCinema(name, location, country, imageFiles) {
 }
 
 const cinemaDetails = {
-  name: "Cinéphoria Liège",
-  location: "Palace Liège, Rue Pont d'Avroy 21, 4000 Liège, Belgique",
+  name: "Cinéphoria Charleroi",
+  location: "Grand'Rue 141/143, 6000 Charleroi, Belgique",
   country: "France",
   images: [
     {
       originalname: "image1.jpg",
-      buffer: fs.readFileSync(path.join(__dirname, "../../client/public/images/cinema/liege.webp")),
+      buffer: fs.readFileSync(path.join(__dirname, "../../client/public/images/cinema/charleroi.webp")),
     },
   ],
 };

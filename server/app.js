@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const configurePassportJWT = require('./config/passport.jwt.config');
 const { checkUser } = require('./middlewares/enrichUserWithInfo');
+const methodOverride = require('method-override');
+const flash = require('connect-flash');
+
 
 const accueilRoutes = require('./routes/accueil/accueil.routes');
 const filmsRoutes = require('./routes/film/films.routes');
@@ -18,6 +21,7 @@ const userDashboardRoutes = require('./routes/dashboard/user/userDashboard.route
 const resetPasswordRoutes = require('./routes/resetPassword/resetPass.routes');
 const employeeDashboardRoutes = require('./routes/dashboard/employee/employeeDashboard.routes');
 const adminDashboardRoutes = require('./routes/dashboard/admin/adminDashboard.routes');
+
 
 //Api routes
 const usersRoutes = require('./api/users/users.routes');
@@ -32,15 +36,20 @@ const showtimesRoutes = require('./api/showtimes/showtimes.routes');
 const resetPassApiRoutes = require('./api/resetPassword/resetPassApi.routes');
 
 
+
 //Login & Logout Apis
 const authRouter = require('./auth/login.api');
 const logoutRouter = require('./auth/logout.api');
 
 const app = express();
+app.use(methodOverride('_method'));
+app.use(flash());
 app.use(morgan("dev"));
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use('/dashboard', express.static(path.join(__dirname, '..', 'client', 'public')));
 app.use(express.json());
 
