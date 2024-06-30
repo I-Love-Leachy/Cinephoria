@@ -17,6 +17,7 @@ const registerRoutes = require('./routes/components/register.routes');
 const userDashboardRoutes = require('./routes/dashboard/user/userDashboard.routes');
 const resetPasswordRoutes = require('./routes/resetPassword/resetPass.routes');
 const employeeDashboardRoutes = require('./routes/dashboard/employee/employeeDashboard.routes');
+const adminDashboardRoutes = require('./routes/dashboard/admin/adminDashboard.routes');
 
 //Api routes
 const usersRoutes = require('./api/users/users.routes');
@@ -83,6 +84,8 @@ app.get('/dashboard/employee', (req, res) => {
 })
 app.use('/dashboard', userDashboardRoutes);
 app.use('/dashboard/employee', employeeDashboardRoutes);
+app.use('/dashboard/admin', adminDashboardRoutes);
+
 
 //API routes
 app.use('/api/v1', usersRoutes);

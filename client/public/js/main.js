@@ -1,4 +1,3 @@
-
 const initApp = () => {
 
   const hamburgerBtn = document.getElementById("hamburger-button");
