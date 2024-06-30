@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     //Dashboard active link
-    if (globalPath.startsWith("/dashboard/users")) {
-      setActiveLink("/dashboard/users");
-      sideBarSetActiveLink("/dashboard/users");
+    if (globalPath.startsWith("/dashboard/user")) {
+      setActiveLink("/dashboard/user");
+      sideBarSetActiveLink("/dashboard/user");
     } else if (globalPath.startsWith("/dashboard/admin/films")) {
       setActiveLink("/dashboard/admin");
       sideBarSetActiveLink("/dashboard/admin/films");
@@ -53,6 +53,21 @@ document.addEventListener("DOMContentLoaded", function () {
       sideBarSetActiveLink("/dashboard/admin");
     } else if (globalPath.startsWith("/reservation")) {
       setActiveLink("/reservation");
+      
+      // Dashboard Employee
+    } else if (globalPath.startsWith("/dashboard/employee/films")) {
+      setActiveLink("/dashboard/employee");
+      sideBarSetActiveLink("/dashboard/employee/films");
+    }  else if (globalPath.startsWith("/dashboard/employee/rooms")) {
+      setActiveLink("/dashboard/employee");
+      sideBarSetActiveLink("/dashboard/employee/rooms");
+    } else if (globalPath.startsWith("/dashboard/employee/showtimes")) {
+      setActiveLink("/dashboard/employee");
+      sideBarSetActiveLink("/dashboard/employee/showtimes");
+    } else if (globalPath.startsWith("/dashboard/employee/reviews")) {
+      setActiveLink("/dashboard/employee");
+      sideBarSetActiveLink("/dashboard/employee/reviews");
     } 
+    
 
   });

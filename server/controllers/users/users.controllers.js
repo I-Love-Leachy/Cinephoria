@@ -75,7 +75,7 @@ async function postUser(req, res) {
 }
 
 //Create employee account
-async function postUser(req, res) {
+async function postEmployee(req, res) {
   try {
     const { first_name, last_name, email, password, username } = req.body;
 
@@ -98,7 +98,7 @@ async function postUser(req, res) {
     sendEmail(
       email, 
       "Bienvenue à Cinéphoria.",
-      `Bonjour ${first_name} ${last_name},\n\nVotre compte Cinéphoria a été créé avec succès à cette adresse mail ${email} vous pouvez dès à réserver une place pour un scéance directement en ligne.`
+      `Bonjour ${first_name} ${last_name},\n\nVotre compte employer Cinéphoria a été créé avec succès à cette adresse mail ${email} vous pouvez dès à présent vous rapprocher de l'administrateur pour obtenir votre mot de passe.`
     );
     
     return res.status(201).json(result.rows[0]);
@@ -258,5 +258,6 @@ module.exports = {
   updateUserById,
   generateTemporaryPassword,
   forgotPassword,
-  changePassword
+  changePassword,
+  postEmployee
 };

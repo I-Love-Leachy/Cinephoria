@@ -31,7 +31,6 @@ const showtimesRoutes = require('./api/showtimes/showtimes.routes');
 const resetPassApiRoutes = require('./api/resetPassword/resetPassApi.routes');
 
 
-
 //Login & Logout Apis
 const authRouter = require('./auth/login.api');
 const logoutRouter = require('./auth/logout.api');
@@ -79,6 +78,9 @@ app.get('/login',(req, res) =>{
 app.use('/reset', resetPasswordRoutes);
 
 //Dashboard's routes
+app.get('/dashboard/employee', (req, res) => {
+    res.redirect('/dashboard/employee/films');
+})
 app.use('/dashboard', userDashboardRoutes);
 app.use('/dashboard/employee', employeeDashboardRoutes);
 
