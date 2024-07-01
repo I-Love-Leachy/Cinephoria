@@ -34,6 +34,7 @@ const roomsRoutes = require('./api/rooms/rooms.routes');
 const seatsRoutes = require('./api/seats/seats.routes');
 const showtimesRoutes = require('./api/showtimes/showtimes.routes');
 const resetPassApiRoutes = require('./api/resetPassword/resetPassApi.routes');
+const assignRouter = require('./api/assign/assignRouter.routes');
 
 
 
@@ -68,7 +69,11 @@ app.use(checkUser);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '..', 'client', 'views'));
-
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+  });
 //Application's routes
 app.get('/',(req, res) =>{
     res.redirect('/accueil');
@@ -107,6 +112,7 @@ app.use('/api/v1', roomsRoutes);
 app.use('/api/v1', seatsRoutes);
 app.use('/api/v1', showtimesRoutes);
 app.use('/api/v1', resetPassApiRoutes);
+app.use("/api/v1", assignRouter);
 
 //Login & Logout Api
 app.use('/api/v1', authRouter);

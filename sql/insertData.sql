@@ -33,9 +33,9 @@ INSERT INTO reviews (review_id, user_id, movie_id, rating, comment, status, crea
 (2, 2, 2, 4, 'Great action scenes.', false, CURRENT_TIMESTAMP);
 
 -- Inserting data into showtimes table
-INSERT INTO showtimes (showtimes_id, movie_id, cinema_id, room_id, day, start_time, end_time, price, qr) VALUES
-(1, 1, 1, 1, '2024-06-07', '14:00', '16:30', 10, 'QR1'),
-(2, 2, 1, 2, '2024-06-07', '17:00', '19:30', 12, 'QR2');
+INSERT INTO showtimes (showtimes_id, movie_id, cinema_id, room_id, day, start_time, end_time, price) VALUES
+(1, 1, 1, 1, '2024-06-07', '14:00', '16:30', 10),
+(2, 2, 1, 2, '2024-06-07', '17:00', '19:30', 12);
 
 -- Inserting data into reservations table
 INSERT INTO reservations (reservation_id, user_id, cinema_id, showtimes_id, seats_reserved, status) VALUES

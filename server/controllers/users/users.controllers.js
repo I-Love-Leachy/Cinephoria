@@ -1,13 +1,12 @@
 const DB = require("../../config/postgres.config");
+const crypto = require("crypto");
 const {
   hashPassword,
   compareHashedPassword,
 } = require("../../utils/hashPassword");
-const transporter = require('../../config/nodeMailer.config');
-require('dotenv').config({path: '../../../.env'});
-const crypto = require('crypto');
+const transporter = require("../../config/nodeMailer.config");
+require("dotenv").config({ path: "../../../.env" });
 const sendEmail = require("../../services/sendEmail.services");
-
 
 async function getUsers(req, res) {
   try {
@@ -17,7 +16,7 @@ async function getUsers(req, res) {
       res.status(400).send("No Users found !");
       return;
     }
-    return res.status(200).send(results.rows);
+    return results.rows;
   } catch (err) {
     console.log(err);
     res.status(500).send("Internal server error !");
@@ -30,8 +29,7 @@ async function getUserById(req, res) {
     const query = "SELECT * FROM users WHERE user_id = $1";
     const result = await DB.query(query, [id]);
     if (result.rows.length <= 0) {
-      res.status(400).send("No user found !");
-      return;
+      throw new Error("No user found with this Id.");
     }
     return result.rows[0];
   } catch (err) {
@@ -62,11 +60,11 @@ async function postUser(req, res) {
     ]);
 
     sendEmail(
-      email, 
-      "Bienvenue à Cinéphoria.",
+      email,
+      "Bienvenue à Cinéphoria",
       `Bonjour ${first_name} ${last_name},\n\nVotre compte Cinéphoria a été créé avec succès à cette adresse mail ${email} vous pouvez dès à réserver une place pour un scéance directement en ligne.`
     );
-    
+
     return res.status(201).json(result.rows[0]);
   } catch (err) {
     console.log(err);
@@ -96,24 +94,24 @@ async function postEmployee(req, res) {
     ]);
 
     sendEmail(
-      email, 
+      email,
       "Bienvenue à Cinéphoria.",
-      `Bonjour ${first_name} ${last_name},\n\nVotre compte employer Cinéphoria a été créé avec succès à cette adresse mail ${email} vous pouvez dès à présent vous rapprocher de l'administrateur pour obtenir votre mot de passe.`
+      `Bonjour ${first_name} ${last_name},\n\nVotre compte employé Cinéphoria a été créé avec succès à cette adresse mail ${email} vous pouvez dès à présent vous rapprocher de l'administrateur pour obtenir votre mot de passe.`
     );
-    
-    return res.status(201).json(result.rows[0]);
+
+    return res.status(201).json({ success: true });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal server error!" });
   }
 }
 
-
+//generate a new password if forgot
 function generateTemporaryPassword() {
-  return crypto.randomBytes(8).toString('hex');
+  return crypto.randomBytes(8).toString("hex");
 }
 
-//Forgot pass resend new pass by email 
+//Forgot pass resend new pass by email
 async function forgotPassword(req, res) {
   try {
     const { email } = req.body;
@@ -132,11 +130,15 @@ async function forgotPassword(req, res) {
     const hashedPassword = await hashPassword(temporaryPassword);
 
     // Update user password in the database
-    const updateQuery = "UPDATE users SET password = $1, must_change_password = true WHERE email = $2 RETURNING *";
+    const updateQuery =
+      "UPDATE users SET password = $1, must_change_password = true WHERE email = $2 RETURNING *";
     const result = await DB.query(updateQuery, [hashedPassword, email]);
 
-    sendEmail(email, 'Reset Password Request', `Bonjours,\n\nVotre mot de passe temporaire est: ${temporaryPassword}\nPour des raison de sécuriter veuillez vous connectez et changer votre mot de passe au plus vite.\n\nMerci!` );
-    res.status(200).json({ message: 'Un mot de passe temporaire a été envoyé à votre adresse e-mail.' });
+    sendEmail(
+      email,
+      "Reset Password Request",
+      `Bonjours,\n\nVotre mot de passe temporaire est: ${temporaryPassword}\nPour des raison de sécuriter veuillez vous connectez et changer votre mot de passe au plus vite.\n\nMerci!`
+    );
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal server error!" });
@@ -170,82 +172,98 @@ async function changePassword(req, res) {
   }
 }
 
+//update users credential
 async function updateUserById(req, res) {
   try {
     const id = req.params.id;
-    const { first_name, last_name, email, password, role } = req.body;
+    const { first_name, last_name, email, password, username } = req.body;
 
     const verificationQuery = "SELECT * FROM users WHERE user_id = $1";
     const data = await DB.query(verificationQuery, [id]);
 
     if (data.rows.length === 0) {
-      return res.status(404).json({message: "User not found"});
+      req.flash("error_msg", "User not found");
+      return res.redirect("/dashboard/admin/employees");
     }
 
     const user = data.rows[0];
 
-    const isSameFirstName = first_name === user.first_name;
-    const isSameLastName = last_name === user.last_name;
-    const isSameEmail = email === user.email;
-    const isSamePassword = await compareHashedPassword(password, user.password);
-    const isSameRole = role === user.role;
+    const updatedFirstName = first_name || user.first_name;
+    const updatedLastName = last_name || user.last_name;
+    const updatedEmail = email || user.email;
+    const updatedUsername = username || user.username;
 
-    if (
-      isSameFirstName &&
-      isSameLastName &&
-      isSameEmail &&
-      isSamePassword &&
-      isSameRole
-    ) {
-      return res.status(400).json({message: "You must update with different data."});
-    }
-
-    let hashedPassword;
-    if (!isSamePassword) {
-      hashedPassword = await hashPassword(password);
+    let updatedPassword;
+    if (password) {
+      updatedPassword = await hashPassword(password);
     } else {
-      hashedPassword = user.password;
+      updatedPassword = user.password;
     }
 
     const query =
-      "UPDATE users SET first_name = $1, last_name = $2, email = $3, password = $4, role = $5 WHERE user_id = $6 RETURNING *";
-    const result = await DB.query(query, [
-      first_name,
-      last_name,
-      email,
-      hashedPassword,
-      role,
+      "UPDATE users SET first_name = $1, last_name = $2, email = $3, password = $4, username = $5 WHERE user_id = $6 RETURNING *";
+    await DB.query(query, [
+      updatedFirstName,
+      updatedLastName,
+      updatedEmail,
+      updatedPassword,
+      updatedUsername,
       id,
     ]);
 
-    return res.status(200).json(result.rows[0]);
+    req.flash(
+      "success_msg",
+      `L'utilisateur ${updatedFirstName} ${updatedLastName} a bien été mis à jour.`
+    );
+    return res.redirect("/dashboard/admin/employees");
   } catch (err) {
     console.log(err);
-    return res.status(500).json({error:"Internal server error!"});
+    req.flash("error_msg", "Internal server error!");
+    return res.redirect("/dashboard/admin/employees");
   }
 }
 
+//delete User
 async function deleteUserById(req, res) {
   try {
     const id = req.params.id;
     if (!id) {
+      console.log("Invalid user ID");
       return res.status(400).json({ error: "Invalid user ID!" });
     }
+
+    console.log(`Deleting user with ID: ${id}`);
+
     const foundUserQuery = "SELECT * FROM users WHERE user_id = $1";
     const user = await DB.query(foundUserQuery, [id]);
-    console.log(`User found: ${user.rows.length !== 0}`); 
 
     if (user.rows.length !== 0) {
-      const query = "DELETE FROM users WHERE user_id = $1";
-      await DB.query(query, [id]);
-      res.status(200).json({ message: "User deleted successfully!" });
-    } else { 
+      console.log("User found:", user.rows[0]);
+
+      const deleteCinemaEmployeesQuery =
+        "DELETE FROM cinema_employees WHERE user_id = $1";
+      await DB.query(deleteCinemaEmployeesQuery, [id]);
+
+      console.log(
+        `Associated records in cinema_employees for user ID: ${id} have been deleted`
+      );
+
+      // Supprimer l'utilisateur de la table users
+      const deleteUserQuery = "DELETE FROM users WHERE user_id = $1";
+      await DB.query(deleteUserQuery, [id]);
+
+      console.log(`User with ID: ${id} has been deleted`);
+
+      req.flash("success_msg", "L'utilisateur a bien été supprimé.");
+      return res.redirect("/dashboard/admin/employees");
+    } else {
+      console.log("No User found with this provided ID");
       return res
         .status(404)
         .json({ error: "No User found with this provided ID!" });
     }
   } catch (err) {
-    console.log("Error during deletion:", err); 
+    console.log("Error during deletion:", err);
     res.status(500).json({ error: "Internal server error!" });
   }
 }
@@ -256,8 +274,7 @@ module.exports = {
   deleteUserById,
   postUser,
   updateUserById,
-  generateTemporaryPassword,
   forgotPassword,
   changePassword,
-  postEmployee
+  postEmployee,
 };
