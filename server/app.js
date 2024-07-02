@@ -43,6 +43,18 @@ const authRouter = require('./auth/login.api');
 const logoutRouter = require('./auth/logout.api');
 
 const app = express();
+
+// Middleware pour gérer les types MIME des fichiers CSS et JS
+app.use((req, res, next) => {
+    if (req.url.endsWith('.css')) {
+        res.type('text/css');
+    } else if (req.url.endsWith('.js')) {
+        res.type('text/javascript');
+    }
+    next();
+});
+
+
 app.use(methodOverride('_method'));
 app.use(flash());
 app.use(morgan("dev"));

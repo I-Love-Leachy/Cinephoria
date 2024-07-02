@@ -1,152 +1,297 @@
-const express = require('express');
+const express = require("express");
 const employeeDashboardRoutes = express.Router();
 const {
-    checkAuthenticated,
-    checkRole,
-  } = require("../../../middlewares/autorisation/autorisation");
-  const {
-    enrichUserWithInfo
-  } = require('../../../middlewares/enrichUserWithInfo')
+  checkAuthenticated,
+  checkRole,
+} = require("../../../middlewares/autorisation/autorisation");
+const {
+  enrichUserWithInfo
+} = require('../../../middlewares/enrichUserWithInfo');
 
+const {
+  getMovieById
+} = require('../../../controllers/movies/movies.controller');
+
+const {
+  getRooms
+} = require('../../../controllers/rooms/rooms.controller')
+
+const {
+  getCinemas
+} = require('../../../controllers/cinemas/cinemas.controller')
 
 //employee dashboard homePage routes
 employeeDashboardRoutes.get(
-    "/films",
-    checkAuthenticated,
-    checkRole("employee"),
-    enrichUserWithInfo,
-    (req, res) => {
-      const user = req.user.details;
-      res.render("layouts/dashboard/employee/employee", {
-        title: `Bienvenue ${user.first_name}.`,
-      });
-    }
+  "/films",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  (req, res) => {
+    const user = req.user.details;
+    res.render("layouts/dashboard/employee/employee", {
+      title: `Bienvenue ${user.first_name}.`,
+    });
+  }
 );
-
 
 //employee dashboard films routes
 employeeDashboardRoutes.get(
-    "/films/add",
-    checkAuthenticated,
-    checkRole("employee"),
-    enrichUserWithInfo,
-    (req, res) => {
-      const user = req.user.details;
-      res.render("layouts/dashboard/employee/addFilm", {
-        title: `Bienvenue ${user.first_name}.`,
-      });
-    }
+  "/films/add",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  (req, res) => {
+    const user = req.user.details;
+    res.render("layouts/dashboard/employee/addFilm", {
+      title: `Bienvenue ${user.first_name}.`,
+    });
+  }
 );
 
-
-//Employee update film
+//employee dashboard add films routes
 employeeDashboardRoutes.get(
-    "/films/update",
-    checkAuthenticated,
-    checkRole("employee"),
-    enrichUserWithInfo,
-    (req, res) => {
-      const user = req.user.details;
-      res.render("layouts/dashboard/employee/updateFilm", {
-        title: `Bienvenue ${user.first_name}.`,
-      });
-    }
-  );
-
-
-
-//Employee update film sub page
-employeeDashboardRoutes.get('/films/select-update', (req, res) => {
-    res.render('layouts/dashboard/employee/selectUpdate', {
-        title: 'Modifier un film.' 
+  "/films/update",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  (req, res) => {
+    const user = req.user.details;
+    res.render("layouts/dashboard/employee/updateFilm", {
+      title: `Bienvenue ${user.first_name}.`,
     });
-});
+  }
+);
 
+//employee dashboard update films layouts routes
+employeeDashboardRoutes.get(
+  "/films/update/:id",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  async (req, res) => {
+    const movie = await getMovieById(req, res);
+    res.render("layouts/dashboard/employee/update", {
+      title: `Modifier le film.`,
+      movie : movie
+    });
+    
+  }
+);
 
 //employee dashboard delete films routes
 employeeDashboardRoutes.get(
-    "/films/delete",
-    checkAuthenticated,
-    checkRole("employee"),
-    enrichUserWithInfo,
-    (req, res) => {
-      const user = req.user.details;
-      res.render("layouts/dashboard/employee/deleteFilm", {
-        title: `Bienvenue ${user.first_name}.`,
-      });
-    }
+  "/films/delete",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  (req, res) => {
+    const user = req.user.details;
+    res.render("layouts/dashboard/employee/deleteFilm", {
+      title: `Bienvenue ${user.first_name}.`,
+    });
+  }
+);
+
+//employee dashboard reviews routes
+employeeDashboardRoutes.get(
+  "/reviews",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  (req, res) => {
+    const user = req.user.details;
+    res.render("layouts/dashboard/employee/reviews", {
+      title: `Bienvenue ${user.first_name}.`,
+    });
+  }
 );
 
 
 
-
-//Employee Rooms
-employeeDashboardRoutes.get('/rooms', (req, res) => {
-    res.render('layouts/dashboard/employee/rooms', {
-        title: 'Ajouter une salle.' 
+//employee dashboard rooms layouts routes
+employeeDashboardRoutes.get(
+  "/rooms",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  (req, res) => {
+    res.render("layouts/dashboard/employee/rooms", {
+      title: `Modifier ou ajouter des salle dans vos cinémas.`,
     });
-});
+  }
+);
 
-//Employee Add Rooms
-employeeDashboardRoutes.get('/rooms/add', (req, res) => {
-    res.render('layouts/dashboard/employee/roomsAdd', {
-        title: 'Ajouter une salle.' 
+//employee dashboard add rooms layouts routes
+employeeDashboardRoutes.get(
+  "/rooms/add",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  async (req, res) => {
+    try {
+      const cinemas = await getCinemas(req, res)
+      res.render("layouts/dashboard/employee/addRooms", {
+        title: `Ajouter une salle à votre cinéma.`,
+        cinemas: cinemas
+      });
+    } catch (err) {
+      console.log(err)
+      const cinemas = await getCinemas(req, res)
+      res.render("layouts/dashboard/employee/addRooms", {
+        title: `Ajouter une salle à votre cinéma.`,
+        cinemas: cinemas || []
+      });
+    }
+  }
+);
+
+//employee dashboard  update rooms layouts routes
+employeeDashboardRoutes.get(
+  "/rooms/update",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  async (req, res) => {
+    const cinemas = await getCinemas(req, res);
+    const rooms = await getRooms(req, res);
+    res.render("layouts/dashboard/employee/updateRooms", {
+      title: `Séléctionner une salle et à modifier la salle dans votre cinéma.`,
+      cinemas: cinemas,
+      rooms: rooms
     });
-});
+  }
+);
 
-//Employee Update Rooms
-employeeDashboardRoutes.get('/rooms/update', (req, res) => {
-    res.render('layouts/dashboard/employee/roomsUpdate', {
-        title: 'Modifier une salle.' 
+//employee dashboard  delete rooms layouts routes
+employeeDashboardRoutes.get(
+  "/rooms/delete",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  async (req, res) => {
+    const cinemas = await getCinemas(req, res);
+    const rooms = await getRooms(req, res);
+    try {
+      res.render("layouts/dashboard/employee/deleteRooms", {
+        title: `Séléctionner une salle à supprimer dans votre cinéma.`,
+        cinemas: cinemas,
+        rooms: rooms
+      });
+    } catch (err) {
+      console.log(err)
+      res.render("layouts/dashboard/employee/deleteRooms", {
+        title: `Séléctionner une salle à supprimer dans votre cinéma.`,
+        cinemas: cinemas || [],
+        rooms: rooms || []
+      });
+    }
+  }
+);
+
+//employee dashboard  showtimes layouts routes
+employeeDashboardRoutes.get(
+  "/showtimes",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  (req, res) => {
+    res.render("layouts/dashboard/employee/showtimes", {
+      title: `Modifier ou ajouter des scéances dans vos cinémas.`,
     });
-});
+  }
+);
 
-//Employee Delete Rooms
-employeeDashboardRoutes.get('/rooms/delete', (req, res) => {
-    res.render('layouts/dashboard/employee/roomsDelete', {
-        title: 'Supprimer une salle.' 
-    });
-});
+//employee dashboard showtimes select movie layouts routes
+employeeDashboardRoutes.get(
+  "/showtimes/add",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  async (req, res) => {
+    try {
+      const cinemas = await getCinemas(req, res);
+      const rooms = await getRooms(req, res);
+      res.render("layouts/dashboard/employee/addShowtimes", {
+        title: `Choisir quel films projeter.`,
+        cinemas: cinemas,
+        rooms: rooms
+      });
+    } catch (err) {
+      console.log(err)
+      res.render("layouts/dashboard/employee/addShowtimes", {
+        title: `Choisir quel films projeter.`,
+        cinemas: cinemas || [],
+        rooms: rooms || []
+      });
+    }
+ 
+  }
+);
 
+//admin dashboard add showtimes  layouts routes
+// employeeDashboardRoutes.get(
+//   "/showtimes/ad",
+//   checkAuthenticated,
+//   checkRole("admin"),
+//   enrichUserWithInfo,
+//   (req, res) => {
+//     res.render("dashboard/admin/addShowtimes", {
+//       title: `Ajouter une scéance à projeter.`,
+//     });
+//   }
+// );
 
+//admin dashboard update showtimes  layouts routes
+employeeDashboardRoutes.get(
+  "/showtimes/update",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  async (req, res) => {
+    try {
+      const cinemas = await getCinemas(req, res);
+      const rooms = await getRooms(req, res);
+      res.render("layouts/dashboard/employee/updateShowtimes", {
+        title: `Modifier une séance.`,
+        cinemas: cinemas,
+        rooms: rooms
+      });
+    } catch (err) {
+      console.log(err)
+      res.render("layouts/dashboard/employee/updateShowtimes", {
+        title: `Modifier une séance.`,
+        cinemas: cinemas || [],
+        rooms: rooms || []
+      });
+    }
+   
+  }
+);
 
-
-//Employee Showtimes
-employeeDashboardRoutes.get('/showtimes', (req, res) => {
-    res.render('layouts/dashboard/employee/showtimes', {
-        title: 'Ajouter une séance.' 
-    });
-});
-
-//Employee Add Showtimes
-employeeDashboardRoutes.get('/showtimes/add', (req, res) => {
-    res.render('layouts/dashboard/employee/showtimesAdd', {
-        title: 'Ajouter une séance.' 
-    });
-});
-
-//Employee Update Showtimes
-employeeDashboardRoutes.get('/showtimes/update', (req, res) => {
-    res.render('layouts/dashboard/employee/showtimesUpdate', {
-        title: 'Modifier une séance.' 
-    });
-});
-
-//Employee Delete Showtimes
-employeeDashboardRoutes.get('/showtimes/delete', (req, res) => {
-    res.render('layouts/dashboard/employee/showtimesDelete', {
-        title: 'Supprimer une séance.' 
-    });
-});
-
-
-//Employee Reviews
-employeeDashboardRoutes.get('/reviews', (req, res) => {
-    res.render('layouts/dashboard/employee/reviews', {
-        title: 'Ajouter un avis.' 
-    });
-});
-
-
+//employee dashboard update showtimes  layouts routes
+employeeDashboardRoutes.get(
+  "/showtimes/delete",
+  checkAuthenticated,
+  checkRole("employee"),
+  enrichUserWithInfo,
+  async (req, res) => {
+    try {
+      const cinemas = await getCinemas(req, res);
+      const rooms = await getRooms(req, res);
+      res.render("layouts/dashboard/employee/deleteShowtimes", {
+      title: `Supprimer une scéance.`,
+      cinemas: cinemas,
+      rooms: rooms
+      });
+    } catch (err) {
+      console.log(err)
+      res.render("layouts/dashboard/employee/updateShowtimes", {
+        title: `Supprimer une séance.`,
+        cinemas: cinemas || [],
+        rooms: rooms || []
+      });
+    }
+  }
+);
 
 module.exports = employeeDashboardRoutes;

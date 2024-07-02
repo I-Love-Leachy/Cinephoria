@@ -1,6 +1,6 @@
 const currentPage = window.location.pathname;
 
-if (currentPage === "/dashboard/admin/rooms/add" ) {
+if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/employee/rooms/add") {
   document.addEventListener("DOMContentLoaded", () => {
     const selectTheaterBtn = document.getElementById("select-theater");
     const openTheaterMenu = document.getElementById("theater-menu");
@@ -180,11 +180,11 @@ if (currentPage === "/dashboard/admin/rooms/add" ) {
       alertMenu.classList.toggle("flex");
     });
   });
-} else if (currentPage === "/dashboard/admin/rooms/update") {
+} else if (currentPage === "/dashboard/admin/rooms/update" || currentPage === "/dashboard/employee/rooms/update") {
   document.addEventListener("DOMContentLoaded", () => {
-    if (currentPage === "/dashboard/admin/rooms/add") {
+    if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/employee/rooms/add") {
 
-    } else if (currentPage === "/dashboard/admin/rooms/update") {
+    } else if (currentPage === "/dashboard/admin/rooms/update" || currentPage === "/dashboard/employee/rooms/update") {
       const selectTheaterBtn = document.getElementById("select-theater");
       const openTheaterMenu = document.getElementById("theater-menu");
       const theaterListItems = document.querySelectorAll("#theater-list li");
@@ -446,9 +446,9 @@ if (currentPage === "/dashboard/admin/rooms/add" ) {
       });
     }
   });
-} else if (currentPage === "/dashboard/admin/rooms/delete") {
+} else if (currentPage === "/dashboard/admin/rooms/delete" || currentPage === "/dashboard/employee/rooms/delete") {
   document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.pathname === "/dashboard/admin/rooms/delete") {
+    if (window.location.pathname === "/dashboard/admin/rooms/delete" || window.location.pathname === "/dashboard/employee/rooms/delete") {
       const selectTheaterBtn = document.getElementById("select-theater");
       const openTheaterMenu = document.getElementById("theater-menu");
       const theaterListItems = document.querySelectorAll("#theater-list li");
