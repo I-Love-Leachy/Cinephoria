@@ -1652,9 +1652,6 @@ video {
 .pb-1{
   padding-bottom: 0.25rem;
 }
-.pb-10{
-  padding-bottom: 2.5rem;
-}
 .pb-12{
   padding-bottom: 3rem;
 }
@@ -2489,14 +2486,6 @@ video {
 
   .md\:mb-5{
     margin-bottom: 1.25rem;
-  }
-
-  .md\:mb-6{
-    margin-bottom: 1.5rem;
-  }
-
-  .md\:mb-9{
-    margin-bottom: 2.25rem;
   }
 
   .md\:ml-0{
