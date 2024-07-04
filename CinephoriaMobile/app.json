@@ -18,7 +18,8 @@
       "adaptiveIcon": {
 
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package" : "com.cvr.cinephoria"
     },
     "web": {
       "bundler": "metro",
