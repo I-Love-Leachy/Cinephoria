@@ -3,6 +3,8 @@ import React from 'react'
 
 import images from '../constants/images'
 
+import icons from '../constants/icons'
+
 const MovieCard = () => {
   return (
     <View className="flex-col items-center mb-14 bg-deepBlue">
@@ -14,8 +16,8 @@ const MovieCard = () => {
                 </View>
             </View>
 
-            <View className="w-full h-60">
-                    <Image source={images.fallGuyBan} className="w-full h-full" resizeMode="cover"/>
+            <View className="absolute right-4 top-4">
+                    <Image source={icons.qr} className="w-8 h-8" />
             </View>
         </View>
 
@@ -23,7 +25,7 @@ const MovieCard = () => {
 
             <View className="flex-row mt-3 items-start">
                 <View className="justify-start items-center flex-row flex-1">
-                    <Text className="text-lg font-semibold text-white">BLADE RUNNER • 1h31 • Science-fiction </Text>
+                    <Text className="text-lg font-bold text-white">FALL GUY • 1h31 • Science-fiction </Text>
                 </View>
             </View>
 
@@ -41,7 +43,7 @@ const MovieCard = () => {
 
             <View className="flex-row items-start mt-2 mb-4">
                 <View className="justify-start items-center flex-row flex-1">
-                    <Text className="text-lg font-semibold text-white">Siège • B15</Text>
+                    <Text className="text-lg font-semibold text-white">SIEGE • B15</Text>
                         <View className="bg-goldOne w-20 h-7 rounded-sm ml-52">
                             <Text className="text-lg font-semibold text-white text-center my-auto mx-auto">SALLE  8 </Text>
                         </View>

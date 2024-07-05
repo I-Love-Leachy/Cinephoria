@@ -14,7 +14,7 @@ module.exports = {
       },
       fontFamily: {
         'arvo': ['Arvo', 'serif'],
-        'arvo-bold': ['Arvo-Bold', 'serif'],
+        'arvoBold': ['Arvo-Bold', 'serif'],
         'arvo-italic': ['Arvo-Italic', 'serif'],
         'arvo-bolditalic': ['Arvo-BoldItalic', 'serif']
       },

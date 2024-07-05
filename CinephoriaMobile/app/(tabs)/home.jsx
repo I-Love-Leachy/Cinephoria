@@ -31,9 +31,9 @@ const Home = () => {
           )}
           ListHeaderComponent={() => (
             <View className="my-10 px-4 space-y-6">
-              <View className="justify-between items-start flex-row mb-6">
+              <View className="mt-10 mb-6">
                   <View>
-                    <Text className="font-medium text-sm text-white">
+                    <Text className="font-medium text-sm text-white text-center text-xl font-arvo">
                       Séances à venir
                     </Text>
                   </View>
