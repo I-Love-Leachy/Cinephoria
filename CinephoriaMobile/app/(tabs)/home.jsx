@@ -1,6 +1,9 @@
 import { View, Text, SafeAreaView, FlatList, ImageBackground, RefreshControl } from 'react-native'
 import React, { useState } from 'react'
+
 import EmptyState from '../../components/EmptyState'
+import MovieCard from '../../components/MovieCard'
+
 
 const Home = () => {
   const [data,setData] = useState([]);
@@ -24,7 +27,7 @@ const Home = () => {
           data={[{ id: 1}, { id: 2}, { id: 3}]}
           keyExtractor={(item) => item.$id}
           renderItem={( {item} ) => (
-            <Text className="text-3xl text-white">{item.id}</Text>
+            <MovieCard movie={item} />
           )}
           ListHeaderComponent={() => (
             <View className="my-10 px-4 space-y-6">
