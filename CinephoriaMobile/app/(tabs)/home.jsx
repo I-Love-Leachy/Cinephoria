@@ -1,8 +1,10 @@
-import { View, Text, SafeAreaView, FlatList, ImageBackground, RefreshControl } from 'react-native'
+import { View, Text, SafeAreaView, FlatList, ImageBackground, RefreshControl, Image } from 'react-native'
 import React, { useState } from 'react'
 
 import EmptyState from '../../components/EmptyState'
 import MovieCard from '../../components/MovieCard'
+
+import icons from '../../constants/icons'
 
 
 const Home = () => {
@@ -31,9 +33,10 @@ const Home = () => {
           )}
           ListHeaderComponent={() => (
             <View className="my-10 px-4 space-y-6">
-              <View className="mt-10 mb-6">
+              <View className="mb-6">
+                <Image source={icons.exit} className="w-8 h-8 mb-5" />
                   <View>
-                    <Text className="font-medium text-sm text-white text-center text-xl font-arvo">
+                    <Text className="font-medium text-white text-center text-xl font-arvo">
                       Séances à venir
                     </Text>
                   </View>
