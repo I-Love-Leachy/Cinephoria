@@ -1,7 +1,8 @@
-// app/auth/sign-in.jsx
-import { View, Text, SafeAreaView, ScrollView, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView, ImageBackground, Image, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
-import { router } from 'expo-router';
+import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 import images from '../../constants/images';
 import FormField from '../../components/FormField';
@@ -14,15 +15,55 @@ const SignIn = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
-  const submit = () => {
-    // Ajoutez ici la logique de validation et d'authentification
-    // Exemple simplifié: si les identifiants sont valides, naviguer vers la page d'accueil
-    if (form.email === 'user@example.com' && form.password === 'password') {
-      router.push('home');
-    } else {
-      // Gérer les erreurs d'authentification ici
-      console.log('Identifiants incorrects');
+  const submit = async () => {
+    setIsSubmitting(true);
+    console.log('Attempting to submit form with:', form);
+
+    try {
+      const serverUrl = 'http://192.168.1.21:3000/api/v1/auth'; // Remplacez par l'adresse IP de votre machine
+      console.log('Sending request to', serverUrl);
+      
+      const response = await axios.post(serverUrl, {
+        email: form.email,
+        password: form.password
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-React-Native-Request': 'true'
+        }
+      });
+
+      const data = response.data;
+      console.log('Response data:', data);
+
+      if (data.accessToken) {
+        // Enregistrer le token dans AsyncStorage
+        await AsyncStorage.setItem('token', data.accessToken);
+        console.log('Token saved:', data.accessToken);
+        if (data.redirectUrl) {
+          router.push(data.redirectUrl); 
+        } else {
+          router.push('home');
+        }
+      } else {
+        Alert.alert('Error', 'Token not received');
+      }
+    } catch (error) {
+      console.error('Error during sign-in', error);
+      if (error.response) {
+        console.log('Error response data:', error.response.data);
+        Alert.alert('Error', error.response.data.message || 'Something went wrong');
+      } else if (error.request) {
+        console.log('Error request:', error.request);
+        Alert.alert('Error', 'Network error: No response received');
+      } else {
+        console.log('Error message:', error.message);
+        Alert.alert('Error', error.message || 'Something went wrong');
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -54,6 +95,7 @@ const SignIn = () => {
               otherStyles="mt-4"
               value={form.password}
               handleChangeText={(e) => setForm({ ...form, password: e })}
+              secureTextEntry
             />
 
             <TouchableOpacity onPress={submit}>
