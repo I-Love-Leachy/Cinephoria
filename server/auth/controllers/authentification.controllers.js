@@ -71,11 +71,7 @@ async function authUser(req, res) {
 
             console.log("User logged in, token:", token);
 
-            return res.status(200).json({
-                message: 'user logged in.',
-                accessToken: token,
-                redirectUrl: redirectUrl
-            });
+            return res.redirect(redirectUrl)
         }
     } catch (error) {
         console.log(error);

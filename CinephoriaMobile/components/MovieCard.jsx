@@ -1,11 +1,30 @@
-import { View, Text, Image, Modal, Pressable, Button, ImageBackground } from 'react-native'
-import {React, useState} from 'react'
-
-import images from '../constants/images'
-import icons from '../constants/icons'
+import { View, Text, Image, Modal, Pressable, Button, ImageBackground, ActivityIndicator } from 'react-native';
+import {React, useState} from 'react';
+import QRCode from 'react-native-qrcode-svg';
+import images from '../constants/images';
+import icons from '../constants/icons';
 
 const MovieCard = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [qrCodeValue, setQrCodeValue] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const handlePress = async () => {
+        setLoading(true);
+        try {
+            // Remplacez l'URL ci-dessous par l'URL de votre API
+            const response = await fetch('https://www.google.com');
+            const data = await response.json();
+            // Suppose que data contient les informations de réservation nécessaires
+            const reservationInfo = data.reservationId; // Ajustez en fonction de votre API
+            setQrCodeValue(`https://yourexternalpage.com/reservation/${reservationInfo}`);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+            setIsModalVisible(true);
+        }
+    };
   return (
     <View className="flex-col items-center mb-14 bg-deepBlue">
 
@@ -17,9 +36,7 @@ const MovieCard = () => {
             </View>
 
             <Pressable 
-            onPress={() => {
-                setIsModalVisible(true);
-              }}>
+            onPress={handlePress}>
                 <View className="absolute right-4 top-4">
                         <Image source={icons.qr} className="w-8 h-8" />
                 </View>
@@ -67,7 +84,19 @@ const MovieCard = () => {
             >
                 <View className="flex-1" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                     <View>
-                        <Image source={icons.qr} className="w-80 h-80 mb-20 mx-auto mt-52" />
+                        {loading ? (
+                            <ActivityIndicator size="large" color="#E3B04B" />
+                        ) : (
+                            qrCodeValue && (
+                                <QRCode
+                                    value={qrCodeValue}
+                                    size={200}
+                                    backgroundColor="white"
+                                    color="black"
+                                    style={{ marginBottom: 20 }}
+                                />
+                            )
+                        )}
                         <Button 
                         title="FERMER"
                         color="#E3B04B"

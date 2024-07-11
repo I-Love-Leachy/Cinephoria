@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="css/style.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script type="text/javascript"src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="js/filterCinemas.js" defer></script>
     <script type="text/javascript" src="js/main.js" defer></script>
     <script type="text/javascript" src="js/swipper.js" defer></script>
     <script type="text/javascript" src="js/filter.js" defer></script>
 
   </head>
   <body class="relative min-h-screen pb-20 overflow-x-hidden" id="top">
-
     <header class="relative space-y-16">
-      <!-- Include navigation bar -->
+      <!-- navbar section -->
       <%- include('../components/nav-bar') %>
 
-      <!-- Desktop filter for theater and movies -->
+      <!-- DESKTOP search theater and movies filter  -->
       <section class="w-full hidden mt-10 md:block">
         <div class="container gap-y-7 w-fit mx-auto flex flex-col">
           <div class="container flex space-x-4 mx-auto">
@@ -47,7 +47,7 @@
               </div>
             </div>
 
-            <!-- Movie filter button -->
+            <!-- filter movies -->
             <a href="#top" class=" flex items-center">
               <button class="movies-filter">
                 <svg
@@ -70,22 +70,22 @@
           
         </div>
       </section>
-
-      <!-- Image slider -->
+ 
+      <!-- Slider main container -->
       <div class="swiper main-slider h-[60vh]">
+        <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
-          <!-- Slide 1 -->
+          <!-- Slides -->
           <div class="swiper-slide">
             <img
-              src="images/siege-cinema.jpg"
+              src="/images/ocean-cinema.jpg"
               alt="photo header"
               class="object-cover w-full h-full"
             />
           </div>
-          <!-- Slide 2 -->
           <div class="swiper-slide">
             <img
-              src="images/ocean-cinema.jpg"
+              src="/images/siege-cinema.jpg"
               alt="photo header"
               class="object-cover w-full h-full"
             />
@@ -94,14 +94,15 @@
       </div>
     </header>
 
-
+    <!-- main content -->
     <main class="flex-grow pt-6">
       <div id="bottom"></div>
       
-      <!-- Mobile filter for theater and movies -->
+
+        <!-- MOBILE search theater and movies filter  -->
         <section class="w-full flex flex-col mt-10 md:hidden">
             <div class="container gap-y-5 flex flex-col px-3 w-fit mx-auto">
-            <!-- Theater filter button -->
+            <!-- filter theater input -->
             <div class="container space-x-4 flex w-fit mx-auto">
                 
                 <a href="#top">
@@ -131,7 +132,7 @@
                 </a>
                 
 
-                 <!-- Movie filter button -->
+                <!-- filter movies -->
                 <a href="#top" class="flex items-center">
                 <button  class="movies-filter">
                     <svg
@@ -151,7 +152,6 @@
                 
             </div>
 
-            <!-- Movie search button -->
             <div class="container w-fit mt-5 md:mt-0">
                 <a href="#top">
                 <button
@@ -179,17 +179,17 @@
         
         </section>
 
-        <!-- Include search movies menu -->
+        <!-- search movies menu -->
         <section>
             <%- include('../components/search-movies-menu') %>
         </section>
 
-        <!-- Include filter menu -->
+        <!-- filter menue section -->
         <section>
             <%- include('../components/filter-menu') %>
         </section>
 
-        <!-- Section for current theater movies -->
+        <!-- current  theater movies -->
         <section  class="mt-16">
 
             <div class="container hidden w-full px-16 md:block">
@@ -221,32 +221,50 @@
             <p class="text-3xl mx-28 my-16 font-arvo text-blueOne font-bold">
                 NOUVEAUTÉS
             </p>
-    
-             <!-- Include latest movies carousel -->
-            <div >
-                <%- include('../components/latest-movies') %>
+
+            <div id="movies-container">
+              <% if (cinemaId) { %>
+                  <!-- Include current showtimes -->
+                  <%- include('../components/current-showtimes') %>
+              <% } else { %>
+                      <!-- latest movies carousel -->
+                  <div id="latest-movies-container">
+                    <%- include('../components/latest-movies') %>
+                  </div>
+              <% } %>
             </div>
+    
+        
         </section>
 
-        <!-- Section for now playing movies -->
-        <section class="bg-whiteOne py-1 md:pb-14 mt-16 pb-40">
+        <!-- Now playing movies -->
+        <section class="bg-whiteOne py-1 md:pb-14 pb-40 mt-16">
 
             <p class="text-3xl mx-28 my-16 font-arvo text-blueOne font-bold">
                 A L'AFFICHE
             </p>
 
-            <div >
-                <%- include('../components/now-playing-movies') %>
+            <div id="movies-container">
+              <% if (cinemaId) { %>
+                  <!-- Include current showtimes -->
+                  <%- include('../components/current-showtimes') %>
+              <% } else { %>
+                  <!-- Include latest movies -->
+                  <div >
+                    <%- include('../components/now-playing-movies') %>
+                  </div>
+              <% } %>
             </div>
+
 
         </section>
 
 
-        <!-- Include search theater dropdown -->
-        <%- include('../components/searchTheaterMenu') %>
+      <!-- search theater dropdown  -->
+      <%- include('../components/searchTheaterMenu') %>
     </main>
 
-      <!-- Include footer section -->
-      <footer><%- include('../components/footer') %></footer>
+    <!-- footer section -->
+    <footer class=""><%- include('../components/footer') %></footer>
   </body>
 </html>
