@@ -66,11 +66,47 @@ const {
     }
   });
 
-filmsRoutes.get('/disponibiliter',(req, res) =>{
-    res.render('film/movie-availability', {
-        title: "Films à l'affiche."
-    });
-});
+  filmsRoutes.get("/disponibiliter/:id", async (req, res) => {
+    const filmId = req.params.id;
+  
+    try {
+      const movie = await getMovieById(req, res);
+      const cinemas = await getCinemas(req, res);
+      const showtimes = await getShowtimesByFilm(filmId);
+      const reviews = await getReviewsByMovieId(req, res) || [];
+      const rating = await getMoviesAverageRating(filmId);
+      console.log(rating);
+  
+      if (!movie || !cinemas || !showtimes) {
+        throw new Error("Data fetch error");
+      }
+  
+      const confirmedReviews = reviews.filter(review => review.status === true);
+      const decReviews = decodeData(confirmedReviews);
+  
+      const frenchCinemas = cinemas.filter(cinema => cinema.country.toLowerCase() === 'france');
+      const cinemaShowtimes = frenchCinemas.map(cinema => {
+        const cinemaShowtime = showtimes.find(show => show.cinema_id === cinema.cinema_id);
+        return {
+          ...cinema,
+          showtimes: cinemaShowtime ? cinemaShowtime.showtimes : null
+        };
+      });
+  
+      const decMovies = decodeData(movie);
+      res.render("film/movie-availability", {
+        title: "Les derniers films disponible.",
+        movie: decMovies,
+        cinemas: cinemaShowtimes,
+        filmId: filmId,
+        reviews: decReviews,
+        rating: rating
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: "Internal server error!" });
+    }
+  });
 
 
 module.exports = filmsRoutes;

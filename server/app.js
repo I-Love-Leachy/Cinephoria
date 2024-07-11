@@ -22,6 +22,9 @@ const resetPasswordRoutes = require('./routes/resetPassword/resetPass.routes');
 const employeeDashboardRoutes = require('./routes/dashboard/employee/employeeDashboard.routes');
 const adminDashboardRoutes = require('./routes/dashboard/admin/adminDashboard.routes');
 
+//components routes
+const theater = require('./routes/components/theater.routes')
+
 // API routes
 const usersRoutes = require('./api/users/users.routes');
 const moviesRoutes = require('./api/movies/movies.routes');
@@ -62,6 +65,11 @@ app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use('/dashboard', express.static(path.join(__dirname, '..', 'client', 'public')));
 app.use(express.json());
+
+//form components routes
+app.use("/", loginRoutes);
+app.use("/", registerRoutes);
+app.use("/", theater);
 
 app.use(passport.initialize());
 app.use(cookieParser());

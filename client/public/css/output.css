@@ -858,6 +858,9 @@ video {
 .mt-\[75\.5px\]{
   margin-top: 75.5px;
 }
+.mt-3{
+  margin-top: 0.75rem;
+}
 .block{
   display: block;
 }
@@ -1099,6 +1102,9 @@ video {
 }
 .w-full{
   width: 100%;
+}
+.w-\[75vw\]{
+  width: 75vw;
 }
 .min-w-\[15vw\]{
   min-width: 15vw;
@@ -1578,6 +1584,9 @@ video {
 }
 .p-7{
   padding: 1.75rem;
+}
+.p-4{
+  padding: 1rem;
 }
 .px-1{
   padding-left: 0.25rem;
@@ -2652,6 +2661,10 @@ video {
 
   .md\:w-\[85vw\]{
     width: 85vw;
+  }
+
+  .md\:w-\[100\%\]{
+    width: 100%;
   }
 
   .md\:max-w-2xl{
