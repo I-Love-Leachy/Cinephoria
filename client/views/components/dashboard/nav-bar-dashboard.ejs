@@ -10,26 +10,23 @@
   <body class="">
     
     <!-- desktop version -->
-    <nav class="absolute right-0 lg:w-[85vw] md:w-[70vw] hidden overflow-hidden md:block ml-8">
+    <nav class="w-[80vw] absolute right-0 hidden bg-white z-30 md:block ml-8">
       <ul
-        class="flex mt-8 mb-4 max-w-full mx-2 lg:ml-24 md:mx-20 lg:mx-12 xl:mx-16 justify-around text-blueOne font-arvo font-bold text-sm md:text-lg lg:text-xl xl:text-2xl items-center md:space-x-2 text-nowrap"
+        class="flex mt-8 mb-4 max-w-full mx-2 sm:mx-4 md:mx-8 lg:mx-12 xl:mx-16 justify-around text-blueOne font-arvo font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl items-center md:space-x-2"
       >
         <li class="nav"><a href="/accueil">ACCUEIL</a></li>
         <li class="nav"><a href="/films">FILMS</a></li>
         <li class="nav"><a href="/reservation">RÉSERVATION</a></li>
         <li class="nav"><a href="/contact">CONTACT</a></li>
-        <li class="nav">
-          <% if (user && user.role === 'employee') { %>
-            <a href="/login">INTRANET</a>
-          <% } else if(user && user.role === 'user') {%>
-            <a href="/login">MON ESPACE</a>
-            <% } else if(user && user.role === 'admin') {%>
-              <a href="/login">ADMINISTRATION</a>
-            <% }
-          %>
-    
-
-        </li>
+        <% if (user && user.role === 'user') { %>
+          <li class="nav"><a href="/dashboard/user">MON ESPACE</a></li>
+        <% } else if (user && user.role === 'employee') { %>
+        <li class="nav"><a href="/dashboard/employee">INTRANET</a></li>
+        <% } else if (user && user.role === 'admin') { %>
+        <li class="nav"><a href="/dashboard/admin">ADMINISTRATION</a></li>
+        <% } else { %>
+        <li class="nav"><a href="/login">CONNEXION</a></li>
+        <% } %>
       </ul>
     </nav>
 

@@ -195,8 +195,11 @@ reservationRoutes.get(
     const showtimes = await getJoinInfoShowtimesById(req, res);
     const decShowtimes = decodeData(showtimes);
     const roomId = decShowtimes.room_id;
+    console.log(roomId);
     const seats  = await getSeatsByRoomId(roomId)
+    console.log(seats);
     const seatsCount = await getSeatCountByRoomId(roomId);
+    console.log(seatsCount);
     const reservedSeats = await getReservedSeats(decShowtimes.showtimes_id);
     res.render("reservation/choose-seat", {
       title: "choisissez des places pour votre scéance.",

@@ -21,6 +21,7 @@ const userDashboardRoutes = require('./routes/dashboard/user/userDashboard.route
 const resetPasswordRoutes = require('./routes/resetPassword/resetPass.routes');
 const employeeDashboardRoutes = require('./routes/dashboard/employee/employeeDashboard.routes');
 const adminDashboardRoutes = require('./routes/dashboard/admin/adminDashboard.routes');
+const loginRoute = require('./routes/login/loginRoute.routes');
 
 //components routes
 const theater = require('./routes/components/theater.routes')
@@ -46,16 +47,6 @@ const app = express();
 
 // Utilisation de CORS pour autoriser les requêtes provenant de toutes les origines
 app.use(cors());
-
-// Middleware pour gérer les types MIME des fichiers CSS et JS
-app.use((req, res, next) => {
-    if (req.url.endsWith('.css')) {
-        res.type('text/css');
-    } else if (req.url.endsWith('.js')) {
-        res.type('text/javascript');
-    }
-    next();
-});
 
 app.use(methodOverride('_method'));
 app.use(flash());
@@ -97,11 +88,7 @@ app.use('/films', filmsRoutes);
 app.use('/reservation', reservationRoutes);
 app.use('/contact', contactRoutes);
 
-app.get('/login', (req, res) => {
-    res.render('auth/login', {
-        title: "Connectez-vous à votre compte."
-    });
-});
+app.use("/login", loginRoute);
 
 app.use('/reset', resetPasswordRoutes);
 
@@ -134,6 +121,7 @@ app.use('/api/v1', logoutRouter);
 app.use("/", loginRoutes);
 app.use("/", registerRoutes);
 app.use("/", theater);
+
 
 // Form components routes 
 app.use('/components/login-form.ejs', loginRoutes);

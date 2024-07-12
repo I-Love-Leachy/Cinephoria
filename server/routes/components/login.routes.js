@@ -1,8 +1,9 @@
-const express = require('express');
+const express = require("express");
 const loginRoutes = express.Router();
 
-loginRoutes.get('/', (req, res) => {
-    res.render('components/login-form');
+loginRoutes.get("/", (req, res) => {
+  const redirectUrl = req.query.redirect || '';
+  res.render("components/login-form", { redirectUrl });
 });
 
 module.exports = loginRoutes;
