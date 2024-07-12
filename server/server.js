@@ -4,6 +4,7 @@ const app = require('../server/app.js');
 const PORT = 3000;
 const mongoose = require('mongoose');
 const connectDB = require('./config/mongodb.config.js');
+require('./task/dataTransfertTask.js');
 
 const server = http.createServer(app);
 
