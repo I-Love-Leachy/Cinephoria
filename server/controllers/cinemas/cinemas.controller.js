@@ -5,10 +5,16 @@ async function getCinemas(req, res) {
     const query = "SELECT * FROM cinemas";
     const results = await DB.query(query);
     if (results.rows.length <= 0) {
-      res.status(400).json({ message: "No cinemas found !" });
-      return;
+      return res.status(400).json({ message: "No cinemas found!" });
     }
-    return results.rows;
+    
+    const isElectronRequest = req.headers['x-electron-request'] === 'true';
+    
+    if (isElectronRequest) {
+      return res.status(200).json(results.rows);
+    } else {
+      return results.rows
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal server error!" });
@@ -24,7 +30,7 @@ async function getCinemaById(req, res) {
       res.status(400).json({ message: "No cinema found !" });
       return;
     }
-    res.status(200).json(result.rows[0]);
+    return result.rows[0];
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal server error!" });

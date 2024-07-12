@@ -21,7 +21,9 @@
       </div>
 
       <form id="filter-form" action="" method="GET" class="container flex flex-col min-h-screen">
-        <input type="hidden" name="cinemaId" id="cinemaId" value="<%= cinemaId %>">
+        <% if (cinemaId && cinemaId.length > 0 ) { %>
+          <input type="hidden" name="cinemaId" id="cinemaId" value="<%= cinemaId %>">
+        <% } %>
         <!-- Vos filtres ici -->
         <!-- movies genre filter -->
         <div class="flex">

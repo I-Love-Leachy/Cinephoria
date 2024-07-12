@@ -18,19 +18,6 @@ async function getMovies(req, res) {
   }
 }
 
-async function getMoviesAverageRating(movieId) {
-  try {
-    const query = 'SELECT AVG(rating) as average_rating FROM reviews WHERE movie_id = $1';
-    const result = await DB.query(query, [movieId]);
-    const averageRating = result.rows[0].average_rating;
-
-    return averageRating ? parseFloat(averageRating) : 0;
-  } catch (err) {
-    console.log(err);
-    throw new Error('Internal server error!');
-  }
-}
-
 // Get all recent wednesday movies
 async function getLastWedMovies(req, res) {
   try {
@@ -53,7 +40,7 @@ async function getLastWedMovies(req, res) {
 
 async function getMovieById(req, res) {
   try {
-    const { id } = req.params;
+    const id  = req.params.id;
     const query = "SELECT * FROM movies WHERE movie_id = $1";
     const result = await DB.query(query, [id]);
     if (result.rows.length === 0) {
@@ -65,6 +52,19 @@ async function getMovieById(req, res) {
   } catch (err) {
     console.error("Error fetching movie by ID:", err);
     res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+async function getMoviesAverageRating(movieId) {
+  try {
+    const query = 'SELECT AVG(rating) as average_rating FROM reviews WHERE movie_id = $1';
+    const result = await DB.query(query, [movieId]);
+    const averageRating = result.rows[0].average_rating;
+
+    return averageRating ? parseFloat(averageRating) : 0;
+  } catch (err) {
+    console.log(err);
+    throw new Error('Internal server error!');
   }
 }
 
@@ -148,58 +148,6 @@ async function postMovie(req, res) {
     }
     console.log(err);
     res.status(500).json({ error: "Internal server error!" });
-  }
-}
-
-// Function to get showtimes by film
-async function getShowtimesByFilm(filmId) {
-  try {
-    const query = `
-      SELECT s.showtimes_id, s.day, s.start_time, s.end_time, s.price,
-             m.movie_id, m.title, m.poster, m.description, m.genre, m.release_date,
-             c.cinema_id, c.name AS cinema_name, c.location AS cinema_location, 
-             c.country AS cinema_country, c.images AS cinema_images,
-             r.quality AS room_quality, r.name AS room_name
-      FROM showtimes s
-      JOIN movies m ON s.movie_id = m.movie_id
-      JOIN cinemas c ON s.cinema_id = c.cinema_id
-      JOIN rooms r ON s.room_id = r.room_id
-      WHERE m.movie_id = $1
-      ORDER BY s.day DESC;
-    `;
-    const result = await DB.query(query, [filmId]);
-
-    // Ajout de logs pour vérifier les données récupérées
-    console.log('Showtimes récupérées:', JSON.stringify(result.rows, null, 2));
-
-    // Organiser les séances par cinéma
-    const showtimesByCinema = {};
-    result.rows.forEach(row => {
-      if (!showtimesByCinema[row.cinema_id]) {
-        showtimesByCinema[row.cinema_id] = {
-          cinema_id: row.cinema_id,
-          cinema_name: row.cinema_name,
-          cinema_location: row.cinema_location,
-          cinema_country: row.cinema_country,
-          cinema_images: row.cinema_images,
-          showtimes: []
-        };
-      }
-      showtimesByCinema[row.cinema_id].showtimes.push({
-        showtimes_id: row.showtimes_id,
-        day: row.day,
-        start_time: row.start_time,
-        end_time: row.end_time,
-        price: row.price,
-        quality: row.room_quality,
-        room_name: row.room_name 
-      });
-    });
-
-    return Object.values(showtimesByCinema);
-  } catch (err) {
-    console.log("Internal server error", err);
-    throw err;
   }
 }
 
@@ -345,11 +293,10 @@ async function deleteMovieById(req, res) {
 
 module.exports = {
   getMovies,
+  getMoviesAverageRating,
   getMovieById,
   postMovie,
   deleteMovieById,
   updateMovieById,
-  getLastWedMovies,
-  getMoviesAverageRating, 
-  getShowtimesByFilm
+  getLastWedMovies
 };

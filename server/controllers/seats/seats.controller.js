@@ -39,6 +39,90 @@ async function getSeatsById(req, res) {
   }
 }
 
+async function getSeatsByRoomId(roomId) {
+  const query = "SELECT * FROM seats WHERE room_id = $1";
+  const parameter = [roomId];
+  const result = await DB.query(query, parameter); 
+  return result.rows;
+}
+
+async function getSeatsByRoomIdApi(req, res) {
+  const id = req.params.id
+  const query = "SELECT * FROM seats WHERE room_id = $1";
+  const parameter = [id];
+  const results = await DB.query(query, parameter); 
+  return res.status(200).json(results.rows);
+}
+
+async function getRoomsSeatsByCinemaId(req, res) {
+  const id = req.params.id;
+  const query = `
+  SELECT 
+    s.seat_id, s.seat_label, s.accessibility,
+    r.room_id, r.name AS room_name, r.quality,
+    c.cinema_id, c.name AS cinema_name
+  FROM
+    seats s
+  JOIN 
+    rooms r ON s.room_id = r.room_id
+  JOIN
+    cinemas c ON r.cinema_id = c.cinema_id
+  WHERE
+    c.cinema_id = $1 
+  `;
+  const parameter = [id];
+  try {
+    const result = await DB.query(query, parameter);
+    const isElectronRequest = req.headers['x-electron-request'] === 'true';
+    if (isElectronRequest) {
+      return res.status(200).json(result.rows);
+    } else {
+      return result.rows;
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération des salles et sièges par ID de cinéma :", error);
+    return res.status(500).json({ error: "Erreur interne du serveur" });
+  }
+}
+
+async function getSeatCountByRoomId(roomId) {
+  try {
+    const query = `
+        SELECT COUNT(*) AS total_seats
+        FROM seats
+        WHERE room_id = $1;
+    `;
+    const parameter = [roomId];
+    const result = await DB.query(query, parameter);
+    const totalSeats = result.rows[0].total_seats;
+
+    return  totalSeats;
+} catch (error) {
+    console.error(error);
+}
+}
+
+async function getReservedSeats(showtimesId) {
+  try {
+      const query = `
+          SELECT seats_reserved 
+          FROM reservations 
+          WHERE showtimes_id = $1 AND status = false;`;
+      const result = await DB.query(query, [showtimesId]);
+      let reservedSeats = [];
+      result.rows.forEach(row => {
+          reservedSeats = reservedSeats.concat(row.seats_reserved);
+      });
+      console.log("Sièges réservés depuis la base de données :", reservedSeats); 
+      return reservedSeats;
+  } catch (error) {
+      console.error(error);
+      return [];
+  }
+}
+
+
+
 // Function to create a new seat
 async function postSeats(req, res) {
   try {
@@ -73,8 +157,7 @@ async function postSeats(req, res) {
     console.log(err);
     res.status(500).json({ error: "Internal server error!" });
   }
-}
-
+};
 
 // Function to update a seat by ID
 async function updateSeatsById(req, res) {
@@ -94,7 +177,7 @@ async function updateSeatsById(req, res) {
       accessibility,
       id,
     ]);
-    // Send a success message as response
+ 
     return res.status(200).json({ message: "Seat updated successfully" });
   } catch (err) {
     console.log(err);
@@ -127,6 +210,11 @@ async function deleteSeatsById(req, res) {
 module.exports = {
     getSeats,
     getSeatsById,
+    getSeatsByRoomIdApi,
+    getReservedSeats,
+    getRoomsSeatsByCinemaId,
+    getSeatCountByRoomId,
+    getSeatsByRoomId,
     postSeats,
     deleteSeatsById,
     updateSeatsById,
