@@ -35,9 +35,7 @@ async function getAllReviewsInfo(req, res) {
     `;
     const results = await DB.query(query);
 
-     // Check if any reviews are found
     if (results.rows.length <= 0) {
-      res.status(404).json({message:"No reviews found !"});
       return [];
     }
     return results.rows
@@ -105,7 +103,7 @@ async function postReviews(req, res) {
     const insertResult = await DB.query(insertQuery, [user_id, movie_id, rating, comment]);
 
     req.flash('success_msg', 'Votre avis a été soumis avec succès !');
-    res.redirect(`/dashboard/users/reviews-form/${movie_id}`);
+    res.redirect(`layouts/dashboard/users/reviews-form/${movie_id}`);
   } catch (err) {
     console.log(err);
     req.flash('error_msg', 'Erreur interne du serveur !');

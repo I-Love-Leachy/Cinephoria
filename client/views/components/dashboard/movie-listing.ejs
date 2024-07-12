@@ -4,55 +4,32 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title></title>
-        <script type="text/javascript" defer src="../js/activeLink.js"></script>
+        <script type="text/javascript" defer src="/js/activeLink.js"></script>
         <link rel="stylesheet" href="../css/style.css">
       </head>
 
 <body">
 
     <!-- Movie Listings -->
-    <main class="container grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-2 gap-14 md:gap-20 w-fit h-fit md:mb-14 mb-32">
+    <main class="container grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-14 md:gap-20 w-fit h-fit ">
 
-        <div class="flex items-center justify-center flex-col w-60 pb-3 space-y-2 cursor-pointer hover:scale-95 duration-200">
-            <img src="/images/films/fall-guy.jpg" alt="Image 1" class="max-w-full h-auto">
-            <h1 class="font-arvo text-blueOne text-lg font-bold tracking-wide">
-                Fall Guy
-            </h1>
-            <p class="font-arvo text-blueOne font-thin text-sm tracking-wide">
-            Réservation faite le : 01/10/2023
-            </p>
-        </div>
-
-        <div class="flex items-center justify-center flex-col w-60 pb-3 space-y-2 cursor-pointer hover:scale-95 duration-200">
-            <img src="/images/films/fall-guy.jpg" alt="Image 1" class="max-w-full h-auto">
-            <h1 class="font-arvo text-blueOne text-lg font-bold tracking-wide">
-                Fall Guy
-            </h1>
-            <p class="font-arvo text-blueOne font-thin text-sm tracking-wide">
-            Réservation faite le : 01/10/2023
-            </p>
-        </div>
-
-        <div class="flex items-center justify-center flex-col w-60 pb-3 space-y-2 cursor-pointer hover:scale-95 duration-200">
-            <img src="/images/films/fall-guy.jpg" alt="Image 1" class="max-w-full h-auto">
-            <h1 class="font-arvo text-blueOne text-lg font-bold tracking-wide">
-                Fall Guy
-            </h1>
-            <p class="font-arvo text-blueOne font-thin text-sm tracking-wide">
-            Réservation faite le : 01/10/2023
-            </p>
-        </div>
-
-        <div class="flex items-center justify-center flex-col w-60 pb-3 space-y-2 cursor-pointer hover:scale-95 duration-200">
-            <img src="/images/films/fall-guy.jpg" alt="Image 1" class="max-w-full h-auto">
-            <h1 class="font-arvo text-blueOne text-lg font-bold tracking-wide">
-                Fall Guy
-            </h1>
-            <p class="font-arvo text-blueOne font-thin text-sm tracking-wide">
-            Réservation faite le : 01/10/2023
-            </p>
-        </div>   
-       
+        <% if (reservations && reservations.length > 0) { %>
+         <% reservations.forEach(reservation => { %>
+            <!-- movie card -->
+            <a >
+                <div class="flex flex-col cursor-pointer items-center justify-center w-60 pb-3 h-fit space-y-2  ">
+                    <img src="/uploads/<%= reservation.movie_poster %>" alt="Image 1" class="w-[40vw] h-[45vh] object-cover movie-card" data-movie-id=<%= reservation.movie_id %> data-reservation-id=<%= reservation.reservation_id %>>
+                    <h1 class="font-arvo text-blueOne text-lg font-bold tracking-wide">
+                        <%= reservation.movie_title %>
+                    </h1>
+                    <p class="font-arvo text-blueOne font-thin text-sm tracking-wide">
+                    Réservation faite le : <%= new Date(reservation.reserved_at).toLocaleDateString("fr-FR", {year: "numeric", month:"2-digit", day:"2-digit"}) %>
+                    </p>
+                </div>
+            </a>
+         <% }) %>
+        <% } %>
+     
     </main>
     
 </body>

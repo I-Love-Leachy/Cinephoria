@@ -96,7 +96,7 @@ app.use('/reset', resetPasswordRoutes);
 app.get('/dashboard/employee', (req, res) => {
     res.redirect('/dashboard/employee/films');
 });
-app.use('/dashboard', userDashboardRoutes);
+app.use('/dashboard/user', userDashboardRoutes);
 app.use('/dashboard/employee', employeeDashboardRoutes);
 app.use('/dashboard/admin', adminDashboardRoutes);
 

@@ -8,9 +8,6 @@ const postReservationValidator = () => {
         .withMessage('Le siège est obligatoire.')
         .escape()
         .trim(),
-    body("status")
-        .notEmpty()
-        .isBoolean()
   ];
 };
 
