@@ -22,7 +22,7 @@ const SignIn = () => {
     console.log('Attempting to submit form with:', form);
 
     try {
-      const serverUrl = 'http://192.168.1.21:3000/api/v1/auth'; // Remplacez par l'adresse IP de votre machine
+      const serverUrl = 'http://192.168.1.21:3000/api/v1/auth';
       console.log('Sending request to', serverUrl);
       
       const response = await axios.post(serverUrl, {
@@ -40,8 +40,11 @@ const SignIn = () => {
 
       if (data.accessToken) {
         // Enregistrer le token dans AsyncStorage
+        const id = JSON.stringify(data.id)
         await AsyncStorage.setItem('token', data.accessToken);
+        await AsyncStorage.setItem('user-id', id);
         console.log('Token saved:', data.accessToken);
+        console.log('Id saved:', data.id);
         if (data.redirectUrl) {
           router.push(data.redirectUrl); 
         } else {

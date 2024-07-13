@@ -19,7 +19,8 @@
 
         "backgroundColor": "#ffffff"
       },
-      "package" : "com.cvr.cinephoria"
+      "package" : "com.cvr.cinephoria",
+      "favicon":"./assets/images/logo.png"
     },
     "web": {
       "bundler": "metro",
