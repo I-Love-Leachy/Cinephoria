@@ -9,7 +9,7 @@ contextBridge.exposeInMainWorld('api', {
   loginSuccess: () => ipcRenderer.send('login-success'),
   logout: async function () {
     try {
-      const response = await fetch("http://localhost:3030/api/v1/logout", {
+      const response = await fetch("http://localhost:3000/api/v1/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
