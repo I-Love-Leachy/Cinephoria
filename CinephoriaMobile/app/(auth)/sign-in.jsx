@@ -9,6 +9,7 @@ import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
 
 const SignIn = () => {
+  // Initializing state variables for form inputs and submission status
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -17,6 +18,7 @@ const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
+  // Function to handle form submission
   const submit = async () => {
     setIsSubmitting(true);
     console.log('Attempting to submit form with:', form);
@@ -24,7 +26,7 @@ const SignIn = () => {
     try {
       const serverUrl = 'http://192.168.1.21:3000/api/v1/auth';
       console.log('Sending request to', serverUrl);
-      
+      // Sending POST request to the server with email and password
       const response = await axios.post(serverUrl, {
         email: form.email,
         password: form.password
@@ -39,12 +41,14 @@ const SignIn = () => {
       console.log('Response data:', data);
 
       if (data.accessToken) {
-        // Enregistrer le token dans AsyncStorage
+        // Storing the received token and user ID in AsyncStorage
         const id = JSON.stringify(data.id)
         await AsyncStorage.setItem('token', data.accessToken);
         await AsyncStorage.setItem('user-id', id);
         console.log('Token saved:', data.accessToken);
         console.log('Id saved:', data.id);
+
+        // Navigating to the appropriate page based on the response
         if (data.redirectUrl) {
           router.push(data.redirectUrl); 
         } else {

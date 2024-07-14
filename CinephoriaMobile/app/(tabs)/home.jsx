@@ -15,6 +15,7 @@ const Home = () => {
   const [token, setToken] = useState(null);
   const router = useRouter();
 
+  // useEffect hook to retrieve the token from AsyncStorage when the component mounts
   useEffect(() => {
     const getToken = async () => {
       try {
@@ -32,6 +33,7 @@ const Home = () => {
     getToken();
   }, []);
 
+  // Function to fetch data from the server using the retrieved token
   const fetchData = async (token) => {
     setIsLoading(true);
     try {
