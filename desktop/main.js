@@ -34,7 +34,7 @@ function createWindow() {
   } 
 }
 
-// Écoute les événements de connexion et de déconnexion
+// Listens for login-success event
 ipcMain.on('login-success', () => {
   loggedIn = true;
   mainWindow.loadFile(path.join(__dirname, 'views/employeeDashboard.html'));

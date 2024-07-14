@@ -9,13 +9,13 @@ import MovieCard from '../../components/MovieCard';
 import icons from '../../constants/icons';
 
 const Home = () => {
-
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [token, setToken] = useState(null);
   const router = useRouter();
 
+  // useEffect hook to retrieve the token from AsyncStorage when the component mounts
   useEffect(() => {
     const getToken = async () => {
       try {
@@ -33,16 +33,18 @@ const Home = () => {
     getToken();
   }, []);
 
+  // Function to fetch data from the server using the retrieved token
   const fetchData = async (token) => {
     setIsLoading(true);
     try {
-      const response = await axios.get('http://192.168.1.21:3000/api/v1/movies', {
+      const userId = JSON.parse(await AsyncStorage.getItem('user-id'));
+      const response = await axios.get(`http://192.168.1.21:3000/api/v1/reservation/user/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
       console.log('Data fetched:', response.data);
-      setData(response.data);
+      setData(response.data.Data);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -61,10 +63,11 @@ const Home = () => {
   const logout = async () => {
     try {
       await AsyncStorage.removeItem('token');
-      const token = await AsyncStorage.getItem('token'); 
+      await AsyncStorage.removeItem('user-id');
+      const token = await AsyncStorage.getItem('token') && await AsyncStorage.getItem('user-id'); 
       console.log('Token after logout:', token); 
       setToken(null);
-      router.push('/(auth)/sign-in'); // Redirige vers la page de connexion
+      router.push('/(auth)/sign-in'); 
     } catch (error) {
       console.error('Error during logout:', error);
     }
@@ -79,9 +82,9 @@ const Home = () => {
       <SafeAreaView className="h-full" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         <FlatList
           data={data}
-          keyExtractor={(item) => item.id?.toString() || item._id?.toString()} // Assurez-vous d'utiliser une propriété unique
+          keyExtractor={(item) => item.reservation_id.toString()}
           renderItem={({ item }) => (
-            <MovieCard movie={item} />
+            <MovieCard movie={item} /> 
           )}
           ListHeaderComponent={() => (
             <View className="my-10 px-4 space-y-6">
@@ -105,9 +108,6 @@ const Home = () => {
           )}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         />
-
-        
-
       </SafeAreaView>
     </ImageBackground>
   );

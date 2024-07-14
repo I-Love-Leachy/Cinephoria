@@ -4,7 +4,9 @@ CREATE TABLE users (
     last_name VARCHAR(250) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     password VARCHAR(150) NOT NULL,
-    role VARCHAR(50) NOT NULL CHECK (role IN ('admin', 'user', 'employee'))
+    role VARCHAR(50) NOT NULL CHECK (role IN ('admin', 'user', 'employee')),
+    must_change_password BOOLEAN,
+    username VARCHAR(250)
 );
 
 CREATE TABLE movies (
@@ -19,7 +21,8 @@ CREATE TABLE movies (
     favorite BOOLEAN DEFAULT false,
     description VARCHAR(500) NOT NULL,
     casting VARCHAR(500) NOT NULL,
-    release_date DATE NOT NULL
+    release_date DATE NOT NULL,
+    added_date TIMESTAMP WITHOUT TIME ZONE
 );
 
 CREATE TABLE cinemas (
@@ -77,11 +80,13 @@ CREATE TABLE reservations (
     user_id INT NOT NULL,
     cinema_id INT NOT NULL,
     showtimes_id INT NOT NULL,
-    seats_reserved VARCHAR(50) NOT NULL,
+    seats_reserved JSONB NOT NULL,
     status BOOLEAN NOT NULL,
+    reserved_at TIMESTAMP WITH TIME ZONE,
+    token VARCHAR(64) NOT NULL, 
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (cinema_id) REFERENCES cinemas(cinema_id),
-    FOREIGN KEY (showtimes_id) REFERENCES showtimes(showtimes_id)
+    FOREIGN KEY (showtimes_id) REFERENCES showtimes(showtimes_id),
 );
 
 CREATE TABLE incident (

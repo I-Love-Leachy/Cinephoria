@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
           const roomsArray = data.rooms;
   
-          // Vider la liste des salles avant d'ajouter de nouvelles salles
+          // Clear the list of theaters before adding new ones
           roomsList.innerHTML = "";
   
           roomsArray.forEach((room) => {

@@ -24,7 +24,7 @@
         <% if (cinemaId && cinemaId.length > 0 ) { %>
           <input type="hidden" name="cinemaId" id="cinemaId" value="<%= cinemaId %>">
         <% } %>
-        <!-- Vos filtres ici -->
+
         <!-- movies genre filter -->
         <div class="flex">
           <div class="h-fit flex flex-col space-y-4">
@@ -92,7 +92,7 @@
             </ul>
           </div>
 
-          <!-- movies qualité filter -->
+          <!-- movies quality filter -->
           <div class="h-fit flex flex-col space-y-4">
             <p class="font-arvo text-2xl text-white text-nowrap">QUALITÉ</p>
             <ul class="list-none w-fit md:w-[15vw]" id="quality-filter">

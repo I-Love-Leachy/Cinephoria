@@ -11,6 +11,9 @@ module.exports = {
         creamOne: '#EADBC8',
         beigeOne: '#DAC0A3'
       },
+      backgroundImage: {
+        'bg-img': "url('/images/siege-cinema.jpg')"
+      },
       fontFamily: {
         "arvo": ["Arvo", "serif"]
       },
