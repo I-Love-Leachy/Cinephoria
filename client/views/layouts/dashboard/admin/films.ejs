@@ -9,6 +9,7 @@
     <link type="text/css" rel="stylesheet" href="/css/output.css" />
     <link rel="stylesheet" href="/css/style.css">
     <script type="text/javascript" defer src="../js/activeLink.js"></script>
+    <script defer src="../js/admin/addMovies.js"></script>
 </head>
 
 <body class=" min-h-screen relative ">
@@ -24,7 +25,11 @@
     </aside>
 
 <!-- Cinema and Date Filters -->
-<main class="flex text-blueOne flex-col items-center gap-y-7 justify-center w-[85vw] lg:ml-auto md:ml-52 ml-8 md:pt-32 md:mb-32 mb-40 " id=" main-container" id="main-container">
+<main class="flex flex-col items-center gap-y-7 justify-center w-[85vw] lg:ml-auto md:ml-52 ml-8 md:pt-32 md:mb-32 mb-40" id=" main-container" id="main-container">
+
+    <div class="w-fit h-fit z-50 flex -top-20 left-1/2 transform -translate-x-1/2 items-center justify-center hidden" id="confirmation-message">
+        <p class="font-arvo text-green-500 font-bold text-sm" id="confirmation-text"></p>
+    </div>
     
     <section class="container flex gap-y-10 flex-col md:gap-y-10 mt-10">
 

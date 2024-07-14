@@ -1377,11 +1377,6 @@ video {
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
-.space-y-80 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(20rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(20rem * var(--tw-space-y-reverse));
-}
 .overflow-hidden{
   overflow: hidden;
 }
@@ -1725,9 +1720,6 @@ video {
 }
 .pt-\[400px\]{
   padding-top: 400px;
-}
-.pb-10{
-  padding-bottom: 2.5rem;
 }
 .text-left{
   text-align: left;
@@ -2522,14 +2514,6 @@ video {
 
   .md\:mt-10{
     margin-top: 2.5rem;
-  }
-
-  .md\:mb-6{
-    margin-bottom: 1.5rem;
-  }
-
-  .md\:mb-9{
-    margin-bottom: 2.25rem;
   }
 
   .md\:block{

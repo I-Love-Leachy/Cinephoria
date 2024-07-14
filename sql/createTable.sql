@@ -67,7 +67,6 @@ CREATE TABLE showtimes (
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
     price INT NOT NULL,
-    qr TEXT UNIQUE NOT NULL,
     FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
     FOREIGN KEY (cinema_id) REFERENCES cinemas(cinema_id),
     FOREIGN KEY (room_id) REFERENCES rooms(room_id)
@@ -94,6 +93,14 @@ CREATE TABLE incident (
     report_date DATE,
     FOREIGN KEY (room_id) REFERENCES rooms(room_id),
     FOREIGN KEY (seat_id) REFERENCES seats(seat_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE cinema_employees (
+    cinema_employee_id SERIAL PRIMARY KEY,
+    cinema_id INT NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (cinema_id) REFERENCES cinemas(cinema_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
