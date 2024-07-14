@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "CinephoriaMobile",
+    "slug": "CinephoriaMobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icons/home.png",
+    "scheme": "CinephoriaMobile",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/logo.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
