@@ -1,0 +1,24 @@
+{
+  "name": "desktop",
+  "productName": "Cinephoria",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .", 
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss build -i views/css/styles.css -o views/css/output.css",
+    "watch:css": "tailwindcss build -i views/css/styles.css -o views/css/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "electron": "^31.2.0",
+    "toastify-js": "^1.12.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}
