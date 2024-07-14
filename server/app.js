@@ -22,6 +22,7 @@ const resetPasswordRoutes = require('./routes/resetPassword/resetPass.routes');
 const employeeDashboardRoutes = require('./routes/dashboard/employee/employeeDashboard.routes');
 const adminDashboardRoutes = require('./routes/dashboard/admin/adminDashboard.routes');
 const loginRoute = require('./routes/login/loginRoute.routes');
+const ticketRoutes = require('./routes/ticket/ticket.routes');
 
 //components routes
 const theater = require('./routes/components/theater.routes')
@@ -87,6 +88,7 @@ app.use('/accueil', accueilRoutes);
 app.use('/films', filmsRoutes);
 app.use('/reservation', reservationRoutes);
 app.use('/contact', contactRoutes);
+app.use("/ticket", ticketRoutes);
 
 app.use("/login", loginRoute);
 

@@ -1,5 +1,6 @@
 // Import the database configuration
 const DB = require("../../config/postgres.config");
+const crypto = require('crypto');
 
 async function getReservation(req, res) {
   try {
@@ -161,7 +162,7 @@ async function postReservation(req, res) {
     const checkQuery = `
       SELECT seats_reserved
       FROM reservations
-      WHERE showtimes_id = $1 AND seats_reserved::jsonb @> $2::jsonb
+      WHERE showtimes_id = $1 AND seats_reserved @> $2::jsonb
     `;
     const checkResult = await DB.query(checkQuery, [showtimes_id, seats_reserved_json]);
     if (checkResult.rows.length > 0) {
@@ -169,18 +170,19 @@ async function postReservation(req, res) {
       return res.status(400).json({ error: "One or more seats are already reserved!" });
     }
 
-    // Insérer la nouvelle réservation
+    // Insérer la nouvelle réservation et générer un token
+    const token = crypto.randomBytes(16).toString('hex');
     const insertQuery = `
-      INSERT INTO reservations (user_id, cinema_id, showtimes_id, seats_reserved, status, reserved_at)
-      VALUES ($1, $2, $3, $4::jsonb, false, NOW())
+      INSERT INTO reservations (user_id, cinema_id, showtimes_id, seats_reserved, status, reserved_at, token)
+      VALUES ($1, $2, $3, $4::jsonb, false, NOW(), $5)
       RETURNING *
     `;
-    const result = await DB.query(insertQuery, [user_id, cinema_id, showtimes_id, seats_reserved_json]);
+    const result = await DB.query(insertQuery, [user_id, cinema_id, showtimes_id, seats_reserved_json, token]);
 
     // Commit la transaction
     await DB.query('COMMIT');
 
-    res.status(201).json(result.rows[0]);
+    res.status(201).json({ ...result.rows[0], token });
   } catch (err) {
     await DB.query('ROLLBACK');
     console.log(err);
@@ -259,9 +261,9 @@ async function getReservationByUserIdMobile(req, res) {
       r.user_id, 
       r.cinema_id, 
       r.showtimes_id, 
-      r.seats_reserved, 
       r.status, 
       r.reserved_at,
+      r.token,
       s.day AS showtime_day, 
       s.start_time, 
       s.end_time, 
@@ -273,7 +275,8 @@ async function getReservationByUserIdMobile(req, res) {
       m.release_date AS movie_release_date,
       c.name AS cinema_name, 
       c.location AS cinema_location,
-      rm.name AS room_name 
+      rm.name AS room_name,
+      array_agg(seat.seat_label) AS seats_reserved
     FROM 
       public.reservations r
     JOIN 
@@ -284,17 +287,85 @@ async function getReservationByUserIdMobile(req, res) {
       public.movies m ON s.movie_id = m.movie_id
     JOIN 
       public.cinemas c ON r.cinema_id = c.cinema_id
+    JOIN 
+      LATERAL (
+        SELECT seat_label 
+        FROM public.seats 
+        WHERE seat_id = ANY (array(select jsonb_array_elements_text(r.seats_reserved)::integer))
+      ) AS seat ON true
     WHERE 
-      r.user_id = $1;
+      r.user_id = $1
+    GROUP BY
+      r.reservation_id, s.day, s.start_time, s.end_time, m.movie_id, m.title, m.poster, m.description, m.genre, m.release_date, c.name, c.location, rm.name;
   `;
     const results = await DB.query(query, [userId]);
+    // Check if any reservations are found
+    if (results.rows.length <= 0) {
+      res.status(404).json({ message: "No reservations found for the current user." });
+      return;
+    }
+    // Send the found reservations as response
+    res.status(200).json({ message: "Reservations found", Data: results.rows });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json("Internal server error!");
+  }
+}
+
+//Get reservation by user id mobile version API 
+async function getFullReservationInfoById(req, res) {//get it by params
+  const reservationId = req.params.reservationId;
+  try {
+    const query = `
+    SELECT 
+      r.reservation_id, 
+      r.user_id, 
+      r.cinema_id, 
+      r.showtimes_id, 
+      r.seats_reserved, 
+      r.status, 
+      r.reserved_at,
+      s.day AS showtime_day, 
+      s.start_time, 
+      s.end_time, 
+      m.movie_id, 
+      m.title AS movie_title, 
+      m.poster AS movie_poster, 
+      m.description AS movie_description, 
+      m.duration AS movie_duration,
+      m.genre AS movie_genre, 
+      m.release_date AS movie_release_date,
+      c.name AS cinema_name, 
+      c.location AS cinema_location,
+      rm.name AS room_name,
+      rm.quality AS film_quality,
+      array_agg(seat.accessibility) AS seat_accessibility 
+    FROM 
+      public.reservations r
+    JOIN 
+      public.showtimes s ON r.showtimes_id = s.showtimes_id
+    JOIN 
+      public.rooms rm ON s.room_id = rm.room_id
+    JOIN 
+      public.movies m ON s.movie_id = m.movie_id
+    JOIN 
+      public.cinemas c ON r.cinema_id = c.cinema_id
+    JOIN 
+      public.seats seat ON rm.room_id = seat.room_id 
+    WHERE 
+      r.reservation_id = $1
+    GROUP BY
+      r.reservation_id, s.day, s.start_time, s.end_time, m.movie_id, m.title, m.poster, m.description, m.genre, m.release_date, m.duration, c.name, c.location, rm.name, rm.quality;
+
+  `;
+    const results = await DB.query(query, [reservationId]);
     // Check if the reservation with the given ID is found
     if (results.rows.length <= 0) {
       res.status(404).json({message: "No reservation found for the current user."});
       return [];
     }
     // Send the found reservation as response
-    return res.status(200).json({message: "Réservations found", Data: results.rows});
+    return  results.rows;
   } catch (err) {
     console.log(err);
     res.status(500).json("Internal server error !");
@@ -310,5 +381,6 @@ module.exports = {
   postReservation,
   deleteReservationById,
   updateReservationById,
-  getReservationByUserIdMobile
+  getReservationByUserIdMobile,
+  getFullReservationInfoById
 };
