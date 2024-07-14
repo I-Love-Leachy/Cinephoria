@@ -117,7 +117,7 @@
 }
 
 /* Javascript class Colors */
-.chair .booked{
+.chair .free{
   background: gray  !important;
 }
 
@@ -125,6 +125,12 @@
   background: greenyellow  !important;
   color: black !important;
 }
+
+.chair .booked{
+  background: #fd6565 !important;
+  color: black !important;
+}
+
 
 .details{
   width: 100%;
@@ -228,7 +234,6 @@ background: greenyellow
   pointer-events: auto; 
   z-index: 100; }
 
-
 #movie {
   z-index: 100;
   position: fixed; 
@@ -242,4 +247,62 @@ background: greenyellow
   font-size: 0.875rem;
   display: none;
   text-wrap: nowrap;
+}
+
+.top-div {
+    width: 70%;
+    background-color: rgb(227 176 75);
+    position: relative;
+}
+
+.top-div {
+    height: 100%;
+    border-radius: 55px;
+}
+
+.top-div::before,
+.top-div::after{
+  content: '';
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background-color: white;
+  border-radius: 100%;
+  transform: translateY(-50%);
+}
+
+.top-div::before {
+  top: 50%;
+  left: -60px;
+}
+
+.top-div::after {
+  top: 50%;
+  right: -60px;
+}
+
+.selected-day {
+  border-bottom: 4px solid #DAA520
+}
+
+.session-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#availability-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+#availability-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+#reservation-button-container {
+  display: none;
+  align-self: flex-start;
 }

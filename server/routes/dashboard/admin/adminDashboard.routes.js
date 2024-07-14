@@ -25,17 +25,65 @@ const {
   getRooms
 } = require('../../../controllers/rooms/rooms.controller');
 
+const Reservation = require("../../../models/reservationStats.mongo");
+const DB = require("../../../config/postgres.config");
+
 //admin dashboard homePage routes
 adminDashboardRoutes.get(
   "/",
   checkAuthenticated,
   checkRole("admin"),
   enrichUserWithInfo,
-  (req, res) => {
-    const user = req.user.details;
-    res.render("layouts/dashboard/admin/admin", {
-      title: `Bienvenue ${user.first_name}.`,
-    });
+  async (req, res) => {
+    try {
+      const user = req.user.details;
+      const reservations = await Reservation.find({}).lean();
+
+      console.log('Fetched reservations:', reservations);
+
+      const movieIds = [...new Set(reservations.map(res => res.movieId))];
+      const movieQuery = `SELECT movie_id, title FROM movies WHERE movie_id = ANY($1::int[])`;
+      const { rows: movies } = await DB.query(movieQuery, [movieIds]);
+      const movieMap = movies.reduce((acc, movie) => {
+        acc[movie.movie_id] = movie.title;
+        return acc;
+      }, {});
+
+      const aggregatedReservations = reservations.reduce((acc, cur) => {
+        if (!acc[cur.movieId]) {
+          acc[cur.movieId] = {
+            movieId: cur.movieId,
+            title: movieMap[cur.movieId],
+            count: 0
+          };
+        }
+        acc[cur.movieId].count += cur.count;
+        return acc;
+      }, {});
+
+      const totalReservations = reservations.reduce((acc, cur) => acc + cur.count, 0);
+      const today = new Date().toISOString().split('T')[0];
+      console.log('Today\'s date:', today);
+      const newReservations = reservations.filter(res => {
+        const reservationDate = res.date.toISOString().split('T')[0];
+        console.log('Reservation date:', reservationDate);
+        return reservationDate === today;
+      }).reduce((acc, cur) => acc + cur.count, 0);
+
+      console.log('Total reservations:', totalReservations);
+      console.log('New reservations:', newReservations);
+
+      res.render("layouts/dashboard/admin/admin", {
+        title: `Bienvenue ${user.first_name}.`,
+        user,
+        reservations: Object.values(aggregatedReservations),
+        totalReservations,
+        newReservations,
+      });
+    } catch (err) {
+      console.error('Error fetching reservations from MongoDB or movies from PostgreSQL:', err);
+      res.status(500).send('Internal server error');
+    }
   }
 );
 

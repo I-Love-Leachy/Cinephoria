@@ -18,7 +18,13 @@ const {
 
 const {
   getCinemas
-} = require('../../../controllers/cinemas/cinemas.controller')
+} = require('../../../controllers/cinemas/cinemas.controller');
+
+const {
+  getAllReviewsInfo
+} = require('../../../controllers/reviews/reviews.controller');
+
+const decodeData = require('../../../services/decodeData.services')
 
 //employee dashboard homePage routes
 employeeDashboardRoutes.get(
@@ -98,10 +104,14 @@ employeeDashboardRoutes.get(
   checkAuthenticated,
   checkRole("employee"),
   enrichUserWithInfo,
-  (req, res) => {
+  async (req, res) => {
     const user = req.user.details;
+    const reviews = await getAllReviewsInfo(req, res);
+    const pendingReviews = reviews.filter(review => review.status === false);
+    const decReviews = decodeData(pendingReviews)
     res.render("layouts/dashboard/employee/reviews", {
       title: `Bienvenue ${user.first_name}.`,
+      reviews: decReviews
     });
   }
 );

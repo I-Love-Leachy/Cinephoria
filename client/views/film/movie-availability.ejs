@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
-    <link rel="icon" href="../images/logo-blanc.png" />
-    <link type="text/css" rel="stylesheet" href="../css/output.css" />
+    <link rel="icon" href="/images/logo-blanc.png" />
+    <link type="text/css" rel="stylesheet" href="/css/output.css" />
     <link
       type="text/css"
       rel="stylesheet"
@@ -15,11 +15,11 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
     ></script>
-    <script type="text/javascript" defer src="../js/main.js"></script>
-    <script type="text/javascript" defer src="../js/swipper.js"></script>
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/form-switcher.js" defer></script>
-    <script src="../js/activeLink.js" defer></script>
+    <script type="text/javascript" defer src="/js/main.js"></script>
+    <script type="text/javascript" defer src="/js/swipper.js"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/activeLink.js" defer></script>
+    <script defer src="/js/moviesAvailability.js"></script>
   </head>
   <body class="relative min-h-screen pb-20">
     <header class="relative">
@@ -34,14 +34,14 @@
             <!-- Slides -->
             <div class="swiper-slide">
               <img
-                src="../images/ocean-cinema.jpg"
+                src="/images/ocean-cinema.jpg"
                 alt="photo header"
                 class="object-cover w-full h-full"
               />
             </div>
             <div class="swiper-slide">
               <img
-                src="../images/siege-cinema.jpg"
+                src="/images/siege-cinema.jpg"
                 alt="photo header"
                 class="object-cover w-full h-full"
               />
@@ -60,50 +60,79 @@
       </div>
     </a>
 
-    <!-- main content -->
-    <main class="flex-grow">
-      <!-- movie description section -->
-      <section>
-        <%- include('../components/movie-details') %>
-      </section>
+       <!-- main content -->
+       <main class="flex-grow">
+        <!-- movie description section -->
+        <section>
+          <%- include('../components/movie-details') %>
+        </section>
 
-      
-      <section class="w-full  flex flex-col mt-28">
-
-        <div class="container  mx-auto w-[50vw]">
-          <h1 class="font-arvo text-blueOne font-semibold text-3xl md:ml-10">
-            CINEMAS
-          </h1>
+        <div class="w-fit mx-auto">
+          <h1 class="font-arvo text-blueOne font-bold text-lg">Avis</h1>
         </div>
 
-        <!-- choose country section -->
-        <div class="container flex items-center justify-center space-x-16  mt-14 mx-auto w-[50vw]">
-            <a href="/login" id="login-link" class="form-link active">
-                <h2 class="text-fill  text-blueOne font-extrabold  text-center tracking-wider">FRANCE</h2>
-            </a>
-            <a href="/register" id="register-link" class="form-link">
-                <h2 class="text-fill  text-blueOne font-extrabold  text-center tracking-wider">BELGIQUE</h2>
-            </a>
-        </div>
-
-        <!-- Current days projection -->
-        <div class="w-full  bg-gray-200/60 h-[10vh] mt-1">
-          <div class="mx-auto flex flex-col justify-end h-full w-[50vw]">
-            <h1 class="font-arvo text-redOne font-semibold md:text-xl text-sm h-fit py-4 md:ml-10">
-              DIM. 05 MAI
-            </h1>
-            <hr class="w-24 md:w-32 h-1 rounded-xl bg-redOne md:ml-10">
+        <% if (reviews && reviews.length > 0) { %>
+         <!-- Swiper -->
+         <div class="swiper-container swiper-container-avis bg-whiteOne  py-4 mx-auto  mt-3 max-w-full">
+          <div class="swiper-wrapper">
+            <% reviews.forEach(review => { %>
+              <div class="swiper-slide">
+                <div class="text-center p-4 space-y-3">
+                    <p class="font-arvo text-blueOne">"<%= review.comment %>"</p>
+                    <p class="font-arvo text-blueOne"><%= review.rating %>/5</p>
+                </div>
+              </div>
+            <% }) %>
+            </div>
           </div>
+        <% } else { %>
+          <div class="text-center mx-auto p-4 space-y-3 w-full bg-whiteOne flex items-center justify-center">
+            <p class="font-arvo text-blueOne">"Aucun avis pour ce film"</p>
 
-        </div>
-      </section>
+          </div>
+        <% } %>
 
-      <!-- cinema & hours section -->
-      <section class="w-full  flex flex-col mt-14" id="theater-section">
-        <%- include('../components/france-theater-card') %>
-      </section>
-    </main>
-    <!-- footer section -->
-    <%- include('../components/footer') %>
+          
+          
+  
+        
+        <section class="w-full  flex flex-col mt-28" id="theater">
+  
+          <div class="container  mx-auto w-[50vw]">
+            <h1 class="font-arvo text-blueOne font-semibold text-3xl md:ml-10">
+              CINEMAS
+            </h1>
+          </div>
+  
+          <!-- choose country section -->
+          <div class="container flex items-center justify-center space-x-16 mt-14 mx-auto w-[50vw]">
+            <a href="#" id="france-link" class="form-link " data-country="France" data-film-id="<%= filmId %>">
+              <h2 class="text-fill text-blueOne font-extrabold text-center tracking-wider">FRANCE</h2>
+            </a>
+            <a href="#" id="belgique-link" class="form-link" data-country="Belgique" data-film-id="<%= filmId %>">
+              <h2 class="text-fill text-blueOne font-extrabold text-center tracking-wider">BELGIQUE</h2>
+            </a>
+          </div>
+    
+  
+          <!-- Current days projection -->
+          <div class="w-full  bg-gray-200/60 h-[10vh] mt-1">
+            <div class="mx-auto flex flex-col justify-end h-full w-[50vw]">
+              <h1 class="font-arvo text-goldOne font-semibold md:text-lg text-sm h-fit py-4 md:ml-10" >
+                Veuillez séléctionner un pays
+              </h1>
+              
+            </div>
+  
+          </div>
+        </section>
+  
+        <!-- cinema & hours section -->
+        <section class="w-full  flex flex-col mt-14" id="theater-section">
+         
+        </section>
+      </main>
+      <!-- footer section -->
+      <%- include('../components/footer') %>
   </body>
 </html>

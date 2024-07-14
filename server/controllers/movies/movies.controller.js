@@ -11,7 +11,7 @@ async function getMovies(req, res) {
       res.status(404).json("No movies found !");
       return;
     }
-    res.status(200).json(results.rows);
+    return results.rows;
   } catch (err) {
     console.log(err);
     res.status(500).json("Internal server error !");
@@ -40,7 +40,7 @@ async function getLastWedMovies(req, res) {
 
 async function getMovieById(req, res) {
   try {
-    const { id } = req.params;
+    const id  = req.params.id;
     const query = "SELECT * FROM movies WHERE movie_id = $1";
     const result = await DB.query(query, [id]);
     if (result.rows.length === 0) {
@@ -52,6 +52,19 @@ async function getMovieById(req, res) {
   } catch (err) {
     console.error("Error fetching movie by ID:", err);
     res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+async function getMoviesAverageRating(movieId) {
+  try {
+    const query = 'SELECT AVG(rating) as average_rating FROM reviews WHERE movie_id = $1';
+    const result = await DB.query(query, [movieId]);
+    const averageRating = result.rows[0].average_rating;
+
+    return averageRating ? parseFloat(averageRating) : 0;
+  } catch (err) {
+    console.log(err);
+    throw new Error('Internal server error!');
   }
 }
 
@@ -280,6 +293,7 @@ async function deleteMovieById(req, res) {
 
 module.exports = {
   getMovies,
+  getMoviesAverageRating,
   getMovieById,
   postMovie,
   deleteMovieById,

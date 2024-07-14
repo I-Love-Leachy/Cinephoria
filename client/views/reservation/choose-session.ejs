@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
     <link rel="icon" href="../images/logo-blanc.png" />
-    <link type="text/css" rel="stylesheet" href="../css/output.css" />
+    <link type="text/css" rel="stylesheet" href="/css/output.css" />
     <link
       type="text/css"
       rel="stylesheet"
@@ -15,13 +15,13 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
     ></script>
-    <script type="text/javascript" defer src="../js/main.js"></script>
-    <script type="text/javascript" defer src="../js/swipper.js"></script>
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/form-switcher.js" defer></script>
-    <script src="../js/activeLink.js" defer></script>
-    <script src="../js/reservation-swipper.js"></script>
-
+    <script type="text/javascript" defer src="/js/main.js"></script>
+    <script type="text/javascript" defer src="/js/swipper.js"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script defer src="/js/choose-session.js"></script>
+    <script src="/js/activeLink.js" defer></script>
+    <style>
+  </style>
   </head>
   <body class="relative min-h-screen pb-20">
     <header class="relative">
@@ -30,150 +30,67 @@
 
       <!-- Slider main container -->
       <section class="hidden md:block relative">
+
         <div class="swiper hidden main-slider h-[60vh] ">
           <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide">
-                <img
-                    src="../images/Bannière/Capture d'écran 2024-06-05 165549.png"
-                    alt="photo header"
-                    class="object-cover w-full h-full"
-                />
-                </div>
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <img
+                src="/uploads/<%= film.banner %>"
+                alt="photo header"
+                class="object-cover w-full h-full"
+              />
             </div>
-        </div>
-            <!--Background-->
-            <div class=" h-full xl:w-[25vw] lg:w-[40vw] md:w-[40vw] absolute flex flex-col top-0 z-40 bg-blueOne bg-opacity-80">
+            <div class="swiper-slide">
+              <img
+                src="/uploads/<%= film.poster %>"
+                alt="photo header"
+                class="object-cover w-full h-full"
+              />
+            </div>
+          </div>
         </div>
 
-        <div class=" h-full w-[25vw] absolute flex flex-col top-0  z-40 pl-6 ml-7 mt-10">
+        <div class=" h-full w-[25vw] absolute flex flex-col top-0 z-40 ">
+       
+
+        </div>
+        <div class=" h-full w-[25vw] absolute flex flex-col top-0  z-40 pl-6">
           <!-- movie detail -->
         <div class="container flex flex-col h-full  w-[40vw] justify-start items-start space-y-6 py-8">
           <!-- movie title -->
           <h1 class="font-arvo text-white font-bold text-4xl">
-            Blade Runner
+            <%= film.title %>
           </h1>
 
-          <!-- movie score button-->
-          <button class="w-28 h-12 bg-redOne p-1 space-x-2 flex items-center justify-center group rounded-sm hover:scale-95 duration-200 ease-out">
-            <div class="mb-0.5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 128 128"><path fill="#fdd835" d="m68.05 7.23l13.46 30.7a7.047 7.047 0 0 0 5.82 4.19l32.79 2.94c3.71.54 5.19 5.09 2.5 7.71l-24.7 20.75c-2 1.68-2.91 4.32-2.36 6.87l7.18 33.61c.63 3.69-3.24 6.51-6.56 4.76L67.56 102a7.033 7.033 0 0 0-7.12 0l-28.62 16.75c-3.31 1.74-7.19-1.07-6.56-4.76l7.18-33.61c.54-2.55-.36-5.19-2.36-6.87L5.37 52.78c-2.68-2.61-1.2-7.17 2.5-7.71l32.79-2.94a7.047 7.047 0 0 0 5.82-4.19l13.46-30.7c1.67-3.36 6.45-3.36 8.11-.01"/><path fill="#ffff8d" d="m67.07 39.77l-2.28-22.62c-.09-1.26-.35-3.42 1.67-3.42c1.6 0 2.47 3.33 2.47 3.33l6.84 18.16c2.58 6.91 1.52 9.28-.97 10.68c-2.86 1.6-7.08.35-7.73-6.13"/><path fill="#f4b400" d="M95.28 71.51L114.9 56.2c.97-.81 2.72-2.1 1.32-3.57c-1.11-1.16-4.11.51-4.11.51l-17.17 6.71c-5.12 1.77-8.52 4.39-8.82 7.69c-.39 4.4 3.56 7.79 9.16 3.97"/></svg>
-            </div>
-            <p class="font-arvo text-white text-xl font-bold">
-              5 <span class="text-sm">/ 5</span> 
-            </p>
-          </button>
+
 
           <!-- movie info -->
           <div class="flex items-center space-x-3 text-xs">
-
-            <div class="flex items-center space-x-1">
-              <div class="mb-1 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="text-white" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M11.277 4.781A4 4 0 0 1 14.606 3h.213a2 2 0 0 1 1.973 2.329L16.18 9h2.38a3 3 0 0 1 2.942 3.588l-1.2 6A3 3 0 0 1 17.36 21H6a3 3 0 0 1-3-3v-8a1 1 0 0 1 1-1h3.93a1 1 0 0 0 .832-.445zM7 11H5v7a1 1 0 0 0 1 1h1z" clip-rule="evenodd"/></svg>
-              </div>
-              <p class="text-white font-arvo font-bold">248</p>
-            </div>
-
-            <p class="font-arvo text-white font-bold">1h31</p>
-            <p class="font-arvo text-white font-bold">Science-fiction</p>
+            <p class="font-arvo text-white font-bold"><%= film.duration %>min</p>
+            <p class="font-arvo text-white font-bold"><%= film.genre %></p>
 
           </div>
 
           <div class="container text-nowrap flex flex-col text-xs">
-            <p class="font-arvo text-white font-bold">Sortie : 01 mai 2024</p>
-            <p class="font-arvo text-white font-bold xl:block lg:hidden md:hidden">Avec Ryan Gosling, Harrison Ford, de Denis Villeneuve </p>
-            <p class="font-arvo text-white font-bold xl:hidden lg:block md:block">Avec Ryan Gosling, Harrison Ford, <br> de Denis Villeneuve </p>
+            <p class="font-arvo text-white font-bold">Sortie : <%= new Date(film.release_date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+            <p class="font-arvo text-white font-bold">Avec <%= film.casting %> </p>
           </div>
 
           <div class="container">
-            <p class="font-arvo text-white text-xs w-[50%]">
-              En 2049, la société est fragilisée par les nombreuses tensions entre les humains et leurs esclaves créés par bio-ingénierie. L'officier K est un blade runner: il fait partie d'une force...
+            <p class="font-arvo text-white text-xs w-[80%]">
+              <%= film.description %>
             </p>
           </div>
 
-          <!-- movie reservation button -->
-          <button class="w-36 h-14  cursor-none bg-goldOne p-1 space-x-2 flex items-center justify-center ease-out rounded-sm">
-            <p class="font-arvo text-white text-xl font-bold">
-              Séance  : 15 €
-            </p>
-          </button>
-
         </div>
 
 
         </div>
+
       </section>
       
-        <!--Movie Information Mobile Responsive-->
-<section class="md:hidden flex flex-col items-center mt-10">
-    <div class="container mx-auto w-[50vw] min-h-screen flex flex-col items-center space-y-6">
-
-        <!-- movie picture container -->
-        <div class="w-full h-auto flex justify-center">
-            <img src="../images/films/blade-runner.png" class="object-cover h-full" alt="movie picture">
-        </div>
-
-        <!-- movie detail -->
-        <div class="w-full flex flex-col items-center space-y-6 py-8">
-            <!-- movie title -->
-            <h1 class="font-arvo text-blueOne font-bold text-xl text-center">
-                Blade Runner
-            </h1>
-
-            <!-- movie score button -->
-            <button class="w-28 h-12 bg-redOne p-1 space-x-2 flex items-center justify-center group hover:scale-95 duration-200 ease-out">
-                <div class="mb-0.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 128 128"><path fill="#fdd835" d="m68.05 7.23l13.46 30.7a7.047 7.047 0 0 0 5.82 4.19l32.79 2.94c3.71.54 5.19 5.09 2.5 7.71l-24.7 20.75c-2 1.68-2.91 4.32-2.36 6.87l7.18 33.61c.63 3.69-3.24 6.51-6.56 4.76L67.56 102a7.033 7.033 0 0 0-7.12 0l-28.62 16.75c-3.31 1.74-7.19-1.07-6.56-4.76l7.18-33.61c.54-2.55-.36-5.19-2.36-6.87L5.37 52.78c-2.68-2.61-1.2-7.17 2.5-7.71l32.79-2.94a7.047 7.047 0 0 0 5.82-4.19l13.46-30.7c1.67-3.36 6.45-3.36 8.11-.01"/><path fill="#ffff8d" d="m67.07 39.77l-2.28-22.62c-.09-1.26-.35-3.42 1.67-3.42c1.6 0 2.47 3.33 2.47 3.33l6.84 18.16c2.58 6.91 1.52 9.28-.97 10.68c-2.86 1.6-7.08.35-7.73-6.13"/><path fill="#f4b400" d="M95.28 71.51L114.9 56.2c.97-.81 2.72-2.1 1.32-3.57c-1.11-1.16-4.11.51-4.11.51l-17.17 6.71c-5.12 1.77-8.52 4.39-8.82 7.69c-.39 4.4 3.56 7.79 9.16 3.97"/></svg>
-                </div>
-                <p class="font-arvo text-white text-xl font-bold">
-                    5 <span class="text-sm">/ 5</span>
-                </p>
-            </button>
-
-            <!-- movie info -->
-            <div class="flex items-center space-x-3 text-sm text-center">
-                <div class="flex items-center space-x-1">
-                    <div class="mb-1 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="text-blueOne" width="22" height="22" viewBox="0 0 24 24">
-                            <path fill="currentColor" fill-rule="evenodd" d="M11.277 4.781A4 4 0 0 1 14.606 3h.213a2 2 0 0 1 1.973 2.329L16.18 9h2.38a3 3 0 0 1 2.942 3.588l-1.2 6A3 3 0 0 1 17.36 21H6a3 3 0 0 1-3-3v-8a1 1 0 0 1 1-1h3.93a1 1 0 0 0 .832-.445zM7 11H5v7a1 1 0 0 0 1 1h1z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <p class="text-blueOne font-arvo font-bold text-xs md:text-sm">248</p>
-                </div>
-                <p class="font-arvo text-blueOne font-bold text-xs md:text-sm">1h31</p>
-                <p class="font-arvo text-blueOne font-bold text-xs md:text-sm">Science-fiction</p>
-            </div>
-
-            <div class="flex flex-col text-xs text-center">
-                <p class="font-arvo text-blueOne font-bold">Sortie : 01 mai 2024</p>
-                <p class="font-arvo text-blueOne font-bold block md:hidden">
-                    Avec Ryan Gosling,<br> Harrison Ford,<br> de Denis Villeneuve
-                </p>
-                <p class="font-arvo text-blueOne font-bold hidden md:block md:text-xs">
-                    Avec Ryan Gosling, Harrison Ford, de Denis Villeneuve
-                </p>
-            </div>
-
-            <div class="w-full text-center">
-                <p class="font-arvo text-blueOne md:w-[70%]">
-                    En 2049, la société est fragilisée par les nombreuses tensions entre les humains et leurs esclaves créés par bio-ingénierie. L'officier K est un blade runner: il fait partie d'une force...
-                </p>
-            </div>
-
-            <!-- movie reservation button -->
-            <button class="w-44 h-12 bg-goldOne p-1 space-x-2 flex items-center justify-center group hover:scale-95 duration-200 ease-out">
-                <p class="font-arvo text-white text-xl font-bold">
-                    Séance: 15 €
-                </p>
-            </button>
-
-        </div>
-    </div>
-</section>
-
-        
-      </div>
     </header>
 
     <!-- return back button -->
@@ -184,146 +101,31 @@
     </a>
 
     <!-- main content -->
-  <main class="mt-20">
-    <!-- select days section -->
-    <section class="swiper swiper-container h-[15vh]">
-      <div class="swiper-wrapper m-0 p-0">
-        <!--FIRST SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border border-gray-300">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-gray-400/80">Ven.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-gray-400/80">03</p>
-              <p class="font-arvo w-48 text-center font-bold text-gray-400/80">Mai</p>
-            </div>
-          </div>
-        </div>
+    <main class="flex-grow">
 
-        <!--SECOND SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border border-gray-300">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-gray-400/80">Sam.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-gray-400/80">04</p>
-              <p class="font-arvo w-48 text-center font-bold text-gray-400/80">Mai</p>
-            </div>
-          </div>
-        </div>
+      <!-- select days component section -->
+      <section class="w-full  flex justify-around py-4 mt-10 px-4">
+        <%- include('../components/select-days') %>
+      </section>
 
-        <!--THIRD SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border border-gray-300">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-gray-400/80">Dim.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-gray-400/80">05</p>
-              <p class="font-arvo w-48 text-center font-bold text-gray-400/80">Mai</p>
-            </div>
-          </div>
-        </div>
+      <!-- select hours fliter section -->
+      <section class="w-full  mt-20">
 
-        <!--FOURTH SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border hover:border-b-4 hover:border-b-goldOne cursor-pointer">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Lun.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-blueOne">06</p>
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mai</p>
-            </div>
-          </div>
-        </div>
-
-        <!--FIFTH SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border hover:border-b-4 hover:border-b-goldOne cursor-pointer">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mar.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-blueOne">07</p>
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mai</p>
-            </div>
-          </div>
-        </div>
-
-        <!--SIXTH SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border hover:border-b-4 hover:border-b-goldOne cursor-pointer">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mer.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-blueOne">08</p>
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mai</p>
-            </div>
-          </div>
-        </div>
-
-        <!--SEVENTH SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border hover:border-b-4 hover:border-b-goldOne cursor-pointer">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Jeu.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-blueOne">09</p>
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mai</p>
-            </div>
-          </div>
-        </div>
-
-        <!--EIGHT SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border hover:border-b-4 hover:border-b-goldOne cursor-pointer">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mer.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-blueOne">08</p>
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mai</p>
-            </div>
-          </div>
-        </div>
-
-        <!--NINETH SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border hover:border-b-4 hover:border-b-goldOne cursor-pointer">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mer.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-blueOne">08</p>
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mai</p>
-            </div>
-          </div>
-        </div>
-
-        <!--TENTH SLIDE-->
-        <div class="swiper-slide m-0 p-0">
-          <div class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border hover:border-b-4 hover:border-b-goldOne cursor-pointer">
-            <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mer.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl text-blueOne">08</p>
-              <p class="font-arvo w-48 text-center font-bold text-blueOne">Mai</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-          <!-- Boutons de navigation Swiper -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-    </section>
-  </main>
-
-      <!-- select hours section -->
-      <section class="w-full mt-20 mb-10 md:mb-0">
-
-        <div class="container md:flex md:flex-row flex flex-col md:pl-20 space-x-5 space-y-5 sm:space-y-0 items-center justify-start w-full">
+        <div class="container flex pl-20 space-x-5 items-center justify-start w-full">
           <h1 class="font-arvo text-blueOne font-bold text-2xl">
-            Cinéphoria Les Halles
+            <%= cinema.name %>
           </h1>
           <!-- filter -->
-          <form action="" class="flex space-x-3">
+          <form action="" class="space-x-3">
 
-            <select name="" id="" class=" border-2 font-arvo outline-none h-8 cursor-pointer border-gray-200 w-20 text-blueOne">
+            <select name="" id="" class=" border-2 font-arvo outline-none h-8 cursor-pointer border-gray-200 w-20 ">
               <option value="">4K</option>
               <option value="">3D</option>
               <option value="">4DX</option>
             </select>
 
-            <select name="" id="" class=" border-2 font-arvo outline-none h-8 cursor-pointer border-gray-200 w-64 w-full text-blueOne">
-              <option value="">Choisir le nombre de places</option>
+            <select name="" id="" class=" border-2 font-arvo outline-none h-8 cursor-pointer border-gray-200 w-64">
+              <option value="">Choisir un nombre de places</option>
               <option value="">1</option>
               <option value="">2</option>
               <option value="">3</option>
@@ -341,109 +143,18 @@
       </section>
 
       <!-- disponibility component section -->
-      <section  class="w-full md:flex md:flex-row flex flex-col gap-x-6 py-4 mt-5 px-7 mb-20">
-
-        <div class="container flex items-center md:w-[15vw] w-[40vw] bg-whiteOne shadow-xl h-[20vh] hover:border-b-4 hover:border-b-goldOne mb-7 md:mb-0 mx-auto md:mx-0 md:ml-6">
-          <div class="flex flex-col space-y-3 items-center justify-center w-[60%]">
-            <h3 class="font-arvo font-bold text-lg text-blueOne">
-              15 : 30
-            </h3>
-            <p class="w-full text-center px-2 text-slate-300 font-bold font-arvo text-lg">VF</p>
-          </div>
-          <div class="flex items-center space-y-3 justify-center flex-col">
-            <p class="font-arvo text-nowrap font-light text-sm tracking-wide text-blueOne">
-              (fin  17:01)
-            </p>
-            <div class="flex flex-col w-14 h-9 bg-goldOne items-center justify-center text-xs font-arvo font-bold text-blueOne py-4 mb-7 md:mb-0 mx-auto md:mx-0">
-              <p>Salle</p>
-              <p>2</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="container flex items-center  md:w-[15vw] w-[40vw] bg-whiteOne shadow-xl  h-[20vh] hover:border-b-4 hover:border-b-goldOne mb-7 md:mb-0 mx-auto md:mx-0">
-          <div class="flex flex-col space-y-3 items-center justify-center w-[60%]">
-            <h3 class="font-arvo font-bold text-lg text-blueOne">
-              15 : 30
-            </h3>
-            <p class="w-full text-center px-2 text-slate-300 font-bold font-arvo text-lg">VF</p>
-          </div>
-          <div class="flex items-center space-y-3 justify-center flex-col">
-            <p class="font-arvo text-nowrap font-light text-sm tracking-wide text-blueOne">
-              (fin  17:01)
-            </p>
-            <div class="flex flex-col w-14 h-9 bg-goldOne items-center justify-center text-xs font-arvo font-bold text-blueOne py-4 ">
-              <p>Salle</p>
-              <p>2</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="container flex items-center  md:w-[15vw] w-[40vw] bg-whiteOne shadow-xl  h-[20vh] hover:border-b-4 hover:border-b-goldOne mb-7 md:mb-0 mx-auto md:mx-0">
-          <div class="flex flex-col space-y-3 items-center justify-center w-[60%]">
-            <h3 class="font-arvo font-bold text-lg text-blueOne">
-              15 : 30
-            </h3>
-            <p class="w-full text-center px-2 text-slate-300 font-bold font-arvo text-lg">VF</p>
-          </div>
-          <div class="flex items-center space-y-3 justify-center flex-col">
-            <p class="font-arvo text-nowrap font-light text-sm tracking-wide text-blueOne">
-              (fin  17:01)
-            </p>
-            <div class="flex flex-col w-14 h-9 bg-goldOne items-center justify-center text-xs font-arvo font-bold text-blueOne py-4 ">
-              <p>Salle</p>
-              <p>2</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="container flex items-center  md:w-[15vw] w-[40vw] bg-whiteOne shadow-xl  h-[20vh] hover:border-b-4 hover:border-b-goldOne mb-7 md:mb-0 mx-auto md:mx-0">
-          <div class="flex flex-col space-y-3 items-center justify-center w-[60%]">
-            <h3 class="font-arvo font-bold text-lg text-blueOne">
-              15 : 30
-            </h3>
-            <p class="w-full text-center px-2 text-slate-300 font-bold font-arvo text-lg">VF</p>
-          </div>
-          <div class="flex items-center space-y-3 justify-center flex-col">
-            <p class="font-arvo text-nowrap font-light text-sm tracking-wide text-blueOne">
-              (fin  17:01)
-            </p>
-            <div class="flex flex-col w-14 h-9 bg-goldOne items-center justify-center text-xs font-arvo font-bold text-blueOne py-4 ">
-              <p>Salle</p>
-              <p>2</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="container flex items-center  md:w-[15vw] w-[40vw] bg-whiteOne shadow-xl  h-[20vh] hover:border-b-4 hover:border-b-goldOne mb-7 md:mb-0 mx-auto md:mx-0">
-          <div class="flex flex-col space-y-3 items-center justify-center w-[60%]">
-            <h3 class="font-arvo font-bold text-lg text-blueOne">
-              15 : 30
-            </h3>
-            <p class="w-full text-center px-2 text-slate-300 font-bold font-arvo text-lg">VF</p>
-          </div>
-          <div class="flex items-center space-y-3 justify-center flex-col">
-            <p class="font-arvo text-nowrap font-light text-sm tracking-wide text-blueOne">
-              (fin  17:01)
-            </p>
-            <div class="flex flex-col w-14 h-9 bg-goldOne items-center justify-center text-xs font-arvo font-bold text-blueOne py-4 ">
-              <p>Salle</p>
-              <p>2</p>
-            </div>
-          </div>
-        </div>
-
-      <a href="/reservation/choisir-place">
-          <div class="container flex justify-center items-center md:w-[15vw] w-[40vw] bg-whiteOne shadow-xl h-[20vh] hover:border-b-4 hover:border-b-goldOne mb-7 md:mb-0 mx-auto md:mx-0 cursor-pointer group">
-                <h3 class="font-arvo font-bold text-lg text-blueOne group-hover:text-goldOne">
-                  Réserver
-                </h3>   
-          </div>
-      </a>
+      <section  class="w-full flex py-4 mt-16 px-7">
+        <button class="" id="disponibility">
+          <%- include('../components/session-disponibility') %>
+        </button>
       </section>
-  
       
     </main>
+
+    <input type="hidden" id="cinema-id" value="<%= cinema.cinema_id %>">
+    <input type="hidden" id="film-id" value="<%= film.movie_id %>">
+
+    
     <!-- footer section -->
     <%- include('../components/footer') %>
   </body>

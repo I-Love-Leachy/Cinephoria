@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title></title>
     <link type="text/css" rel="stylesheet" href="css/output.css" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="/images/logo-blanc.png" type="image/x-icon">
@@ -35,10 +35,10 @@
                 </div>
             </div>
 
-            <!-- login and register form -->
-            <div class=""  id="form-container">
-                <%- include('../components/login-form') %>
-            </div>
+        <!-- login and register form -->
+        <div class=""  id="form-container">
+            <%- include('../components/login-form', { redirectUrl: redirectUrl }) %>
+        </div>
             
         </div>
     </main>

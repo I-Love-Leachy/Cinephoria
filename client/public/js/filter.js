@@ -1,4 +1,3 @@
-
 const filterApp = () => {
   const currentPage = window.location.pathname
 
