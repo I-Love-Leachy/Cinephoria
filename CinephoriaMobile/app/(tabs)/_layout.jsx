@@ -35,7 +35,8 @@ const TabsLayout = () => {
                 name="Home"
                 focused={focused}
                 />
-            )
+            ),
+            tabBarStyle: { display: 'none' },
           }}
           />
       </Tabs>

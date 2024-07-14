@@ -10,5 +10,9 @@ import uneAffaireDePrincipe from "../assets/images/films/une-affaire-de-principe
 import bg from "../assets/images/bg.jpg";
 import qr from "../assets/images/qr.png";
 import logo from "../assets/images/logo.png";
+import empty from "../assets/images/empty.png";
 
-export default { borderLine, commeUnLundi, fallGuy, furiosa, greenHouse, laFleurDuBuruti, leTableauVole, petitesMains, uneAffaireDePrincipe, bg, qr, logo };
+// Bannières 
+import fallGuyBan from "../assets/images/ban/fall-guy.jpeg"
+
+export default { borderLine, commeUnLundi, fallGuy, furiosa, greenHouse, laFleurDuBuruti, leTableauVole, petitesMains, uneAffaireDePrincipe, empty, bg, qr, logo, fallGuyBan };

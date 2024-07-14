@@ -9,7 +9,7 @@ const configurePassportJWT = require('./config/passport.jwt.config');
 const { checkUser } = require('./middlewares/enrichUserWithInfo');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
-
+const cors = require('cors');
 
 const accueilRoutes = require('./routes/accueil/accueil.routes');
 const filmsRoutes = require('./routes/film/films.routes');
@@ -22,8 +22,7 @@ const resetPasswordRoutes = require('./routes/resetPassword/resetPass.routes');
 const employeeDashboardRoutes = require('./routes/dashboard/employee/employeeDashboard.routes');
 const adminDashboardRoutes = require('./routes/dashboard/admin/adminDashboard.routes');
 
-
-//Api routes
+// API routes
 const usersRoutes = require('./api/users/users.routes');
 const moviesRoutes = require('./api/movies/movies.routes');
 const cinemasRoutes = require('./api/cinemas/cinemas.routes');
@@ -36,13 +35,14 @@ const showtimesRoutes = require('./api/showtimes/showtimes.routes');
 const resetPassApiRoutes = require('./api/resetPassword/resetPassApi.routes');
 const assignRouter = require('./api/assign/assignRouter.routes');
 
-
-
-//Login & Logout Apis
+// Login & Logout APIs
 const authRouter = require('./auth/login.api');
 const logoutRouter = require('./auth/logout.api');
 
 const app = express();
+
+// Utilisation de CORS pour autoriser les requêtes provenant de toutes les origines
+app.use(cors());
 
 // Middleware pour gérer les types MIME des fichiers CSS et JS
 app.use((req, res, next) => {
@@ -54,12 +54,9 @@ app.use((req, res, next) => {
     next();
 });
 
-
 app.use(methodOverride('_method'));
 app.use(flash());
 app.use(morgan("dev"));
-
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', 'client', 'public')));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -74,7 +71,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
-}))
+}));
 configurePassportJWT(passport);
 
 app.use(checkUser);
@@ -85,9 +82,10 @@ app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     next();
-  });
-//Application's routes
-app.get('/',(req, res) =>{
+});
+
+// Application's routes
+app.get('/', (req, res) => {
     res.redirect('/accueil');
 });
 
@@ -96,7 +94,7 @@ app.use('/films', filmsRoutes);
 app.use('/reservation', reservationRoutes);
 app.use('/contact', contactRoutes);
 
-app.get('/login',(req, res) =>{
+app.get('/login', (req, res) => {
     res.render('auth/login', {
         title: "Connectez-vous à votre compte."
     });
@@ -104,16 +102,15 @@ app.get('/login',(req, res) =>{
 
 app.use('/reset', resetPasswordRoutes);
 
-//Dashboard's routes
+// Dashboard's routes
 app.get('/dashboard/employee', (req, res) => {
     res.redirect('/dashboard/employee/films');
-})
+});
 app.use('/dashboard', userDashboardRoutes);
 app.use('/dashboard/employee', employeeDashboardRoutes);
 app.use('/dashboard/admin', adminDashboardRoutes);
 
-
-//API routes
+// API routes
 app.use('/api/v1', usersRoutes);
 app.use('/api/v1', moviesRoutes);
 app.use('/api/v1', cinemasRoutes);
@@ -126,12 +123,11 @@ app.use('/api/v1', showtimesRoutes);
 app.use('/api/v1', resetPassApiRoutes);
 app.use("/api/v1", assignRouter);
 
-//Login & Logout Api
+// Login & Logout API
 app.use('/api/v1', authRouter);
 app.use('/api/v1', logoutRouter);
 
-
-//Form components routes 
+// Form components routes 
 app.use('/components/login-form.ejs', loginRoutes);
 app.use('/components/register-form.ejs', registerRoutes);
 

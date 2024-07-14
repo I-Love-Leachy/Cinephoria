@@ -9,11 +9,12 @@ module.exports = {
         redOne: '#C10E0E',
         whiteOne: '#FFF2E5',
         creamOne: '#EADBC8',
-        beigeOne: '#DAC0A3'
+        beigeOne: '#DAC0A3',
+        deepBlue: '#040E1D'
       },
       fontFamily: {
         'arvo': ['Arvo', 'serif'],
-        'arvo-bold': ['Arvo-Bold', 'serif'],
+        'arvoBold': ['Arvo-Bold', 'serif'],
         'arvo-italic': ['Arvo-Italic', 'serif'],
         'arvo-bolditalic': ['Arvo-BoldItalic', 'serif']
       },

@@ -11,6 +11,7 @@ mongoose
 .then(() => console.log('Connexion à MongoDB réussie !'))
 .catch((err) => console.log('Connexion à MongoDB échouée', err));
 
-server.listen(PORT, () => {
-    console.log(`Vous êtes connecté au port ${PORT}`)
+// Écouter sur toutes les interfaces réseau
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Le serveur écoute sur http://0.0.0.0:${PORT}`)
 });
