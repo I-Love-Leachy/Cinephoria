@@ -1,6 +1,2 @@
-#dependencies
+# .gitignore
 /node_modules
-
-.env
-.env.production
-.env.development.local
