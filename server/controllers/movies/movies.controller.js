@@ -3,6 +3,8 @@ const { validationResult } = require("express-validator");
 const fs = require("fs");
 const path = require("path");
 
+const { deleteReservationsByShowtimesId } = require('../reservations/reservation.controller');
+
 async function getMovies(req, res) {
   try {
     const query = "SELECT * FROM movies";
@@ -259,6 +261,7 @@ async function deleteMovieById(req, res) {
     const currentMovie = movie.rows[0];
     const uploadsDir = path.join(__dirname, "..", "..", "uploads");
 
+    // Supprimer les fichiers associés au film
     if (currentMovie.banner) {
       const bannerPath = path.join(uploadsDir, currentMovie.banner);
       if (fs.existsSync(bannerPath)) {
@@ -280,10 +283,26 @@ async function deleteMovieById(req, res) {
       }
     }
 
+    // Supprimer les réservations associées aux showtimes du film
+    const showtimesQuery = "SELECT showtimes_id FROM showtimes WHERE movie_id = $1";
+    const showtimes = await DB.query(showtimesQuery, [id]);
+    for (const row of showtimes.rows) {
+      await deleteReservationsByShowtimesId(row.showtimes_id);
+    }
+
+    // Supprimer les showtimes associés au film
+    const deleteShowtimesQuery = "DELETE FROM showtimes WHERE movie_id = $1";
+    await DB.query(deleteShowtimesQuery, [id]);
+
+    // Supprimer les avis associés au film
+    const deleteReviewsQuery = "DELETE FROM reviews WHERE movie_id = $1";
+    await DB.query(deleteReviewsQuery, [id]);
+
+    // Supprimer le film
     const deleteMovieQuery = "DELETE FROM movies WHERE movie_id = $1";
     await DB.query(deleteMovieQuery, [id]);
 
-    return res.status(200).json({ success: true, message: "Movie deleted successfully" });
+    return res.status(200).json({ success: true, message: "Movie, associated reviews, showtimes, and reservations deleted successfully" });
   } catch (err) {
     console.log(err);
     res.status(500).json("Internal server error !");
