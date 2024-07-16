@@ -1,2 +1,4 @@
 *.exe filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+server/uploads/*.mp4 filter=lfs diff=lfs merge=lfs -text
+desktop/node_modules/electron/dist/electron.exe filter=lfs diff=lfs merge=lfs -text
