@@ -8,16 +8,16 @@
 </head>
 <body>
     <div id="no-movies-message" class="hidden w-full flex items-center justify-center">
-        <p class="font-arvo text-blackOne font-bold text-3xl">Aucun film disponible correspondant</p>
+        <p class="font-arvo text-blackOne font-bold text-2xl text-center">Oups, aucun film ne correspond à votre recherche pour l’instant !<br> Essayez avec d'autres mots-clés ou explorez notre sélection !</p>
     </div>
 
     <% if (!cinemaId) { %>
         <div class="w-full flex items-center justify-center">
-            <p class="font-arvo text-blackOne font-bold text-3xl">Choisir un cinéma pour afficher les séances disponibles</p>
+            <p class="font-arvo text-blackOne font-bold text-2xl">Choisir un cinéma pour afficher les séances disponibles</p>
         </div>
     <% } else if (showtimes.length === 0) { %>
         <div class="w-full flex items-center justify-center">
-            <p class="font-arvo text-blackOne font-bold text-3xl">Aucun film disponible correspondant à vos filtres</p>
+            <p class="font-arvo text-blackOne font-bold text-2xl text-center">Oups, aucun film ne correspond à votre recherche pour l’instant !<br> Essayez avec d'autres mots-clés ou explorez notre sélection !</p>
         </div>
     <% } else { %>
         <!-- current showtimes carousel -->
