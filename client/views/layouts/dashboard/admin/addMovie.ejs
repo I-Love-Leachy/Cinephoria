@@ -17,7 +17,7 @@
 </header>
 
 <!-- Cinema and Date Filters -->
-<main class="flex text-blueOne w-full flex-col items-center gap-y-7 justify-center md:w-[85vw] ml-auto md:pt-40" id="main-container">
+<main class="flex text-blackOne w-full flex-col items-center gap-y-7 justify-center md:w-[85vw] ml-auto md:pt-40" id="main-container">
 
     <section class="container w-full md:w-[85vw] ml-auto flex flex-col mt-10">
 
@@ -25,42 +25,42 @@
 
         <form action="/api/v1/movies" method="post" enctype="multipart/form-data" class="flex flex-col relative items-center justify-center bg-whiteOne w-[90%] md:w-[55%] mx-auto rounded-sm px-6 py-5 space-y-5 md:py-7 md:space-y-8" id="movie-form">
 
-            <h1 class="text-blueOne font-arvo text-3xl tracking-wide font-bold text-center">AJOUTER</h1>
+            <h1 class="text-blackOne font-arvo text-3xl tracking-wide font-bold text-center">AJOUTER</h1>
 
             <ul class="flex-col items-start justify-center space-y-1  w-fit mx-auto hidden" id="error-list">
                 <li class="font-arvo text-sm text-redOne list-disc"></li>
             </ul>
 
             <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="TITRE" name="title" id="title-input">
+                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="TITRE" name="title" id="title-input">
             </div>
 
             <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="GENRE" name="genre" id="genre-input">
+                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="GENRE" name="genre" id="genre-input">
             </div>
 
             <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="PUBLIC" name="pg" id="pg-input">
+                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="PUBLIC" name="pg" id="pg-input">
             </div>
 
             <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="DURÉE" name="duration" id="duration-input">
+                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="DURÉE" name="duration" id="duration-input">
             </div>
 
             <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="DATE DE SORTIE" name="release_date" id="release-date-input">
+                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="DATE DE SORTIE" name="release_date" id="release-date-input">
             </div>
 
             <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="CASTING" name="casting" id="casting-input">
+                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="CASTING" name="casting" id="casting-input">
             </div>
 
             <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="DESCRIPTION" name="description" id="description-input">
+                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="DESCRIPTION" name="description" id="description-input">
             </div>
 
             <div class="relative w-full h-16 bg-white flex items-center justify-between px-5">
-                <p class="text-blueOne font-arvo font-bold text-lg">IMAGE</p>
+                <p class="text-blackOne font-arvo font-bold text-lg">IMAGE</p>
                 <label for="file-upload-1" class="custom-file-upload bg-gray-200 border border-gray-400 text-gray-700 py-2 px-4 rounded cursor-pointer">
                     Choisir un fichier
                 </label>
@@ -68,7 +68,7 @@
             </div>
             
             <div class="relative w-full h-16 bg-white flex items-center justify-between px-5">
-                <p class="text-blueOne font-arvo font-bold text-lg">PHOTO DE COUVERTURE</p>
+                <p class="text-blackOne font-arvo font-bold text-lg">PHOTO DE COUVERTURE</p>
                 <label for="file-upload-2" class="custom-file-upload bg-gray-200 border border-gray-400 text-gray-700 py-2 px-4 rounded cursor-pointer">
                     Choisir un fichier
                 </label>
@@ -76,7 +76,7 @@
             </div>
             
             <div class="relative w-full h-16 bg-white flex items-center justify-between px-5">
-                <p class="text-blueOne font-arvo font-bold text-lg">VIDEO</p>
+                <p class="text-blackOne font-arvo font-bold text-lg">VIDEO</p>
                 <label for="file-upload-3" class="custom-file-upload bg-gray-200 border border-gray-400 text-gray-700 py-2 px-4 rounded cursor-pointer">
                     Choisir un fichier
                 </label>
@@ -84,13 +84,13 @@
             </div>
             
             <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="NOTE" name="favorite" id="favorite-input">
+                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="NOTE" name="favorite" id="favorite-input">
             </div>
 
             <button class="mx-auto bg-redOne font-arvo text-white font-bold text-lg px-10 py-2 mt-2 flex hover:scale-95 duration-200 ease-in-out items-center justifify-center" id="open-alert-btn">poster</button>
 
             <!-- hidden alert pop up -->
-            <div class="absolute z-50 animate-open-menu space-y-20 hidden flex-col items-center justify-around bg-blueOne/75 w-[50vw] h-[100vh] rounded-lg px-10 py-48" id="alert">
+            <div class="absolute z-50 animate-open-menu space-y-20 hidden flex-col items-center justify-around bg-blacktext-blackOne/75 w-[50vw] h-[100vh] rounded-lg px-10 py-48" id="alert">
                 <p class="text-center font-arvo text-white font-bold text-3xl">VOULEZ-VOUS VRAIMENT AJOUTER LE FILMS ?</p>
                 <div class="flex items-center justify-center space-x-10">
                     <button type="submit" id="submit-form" class="bg-green-500 w-36 h-14 text-white font-arvo font-bold flex items-center justify-center hover:scale-95 duration-200 hover:bg-green-400" id="submit-form">
