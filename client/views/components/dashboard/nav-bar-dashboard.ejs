@@ -19,13 +19,13 @@
         <li class="nav"><a href="/reservation" class="text-blackOne">RÉSERVATION</a></li>
         <li class="nav"><a href="/contact" class="text-blackOne">CONTACT</a></li>
         <% if (user && user.role === 'user') { %>
-          <li class="nav"><a href="/dashboard/user">MON ESPACE</a></li>
+          <li class="nav"><a href="/dashboard/user" class="text-blackOne">MON ESPACE</a></li>
         <% } else if (user && user.role === 'employee') { %>
-        <li class="nav"><a href="/dashboard/employee">INTRANET</a></li>
+        <li class="nav"><a href="/dashboard/employee" class="text-blackOne">INTRANET</a></li>
         <% } else if (user && user.role === 'admin') { %>
-        <li class="nav"><a href="/dashboard/admin">ADMINISTRATION</a></li>
+        <li class="nav"><a href="/dashboard/admin" class="text-blackOne">ADMINISTRATION</a></li>
         <% } else { %>
-        <li class="nav"><a href="/login">CONNEXION</a></li>
+        <li class="nav"><a href="/login" class="text-blackOne">CONNEXION</a></li>
         <% } %>
       </ul>
     </nav>
