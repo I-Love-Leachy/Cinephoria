@@ -5,32 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <script type="text/javascript" defer src="../js/activeLink.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/output.css" />
   </head>
   <body class="">
     <!-- desktop version -->
-    <nav class="w-full hidden bg-white overflow-hidden md:block">
+    <nav class="w-full hidden bg-white overflow-hidden md:block h-28">
       <ul
-        class="flex mt-8 mb-4 max-w-full mx-2 sm:mx-4 md:mx-8 lg:mx-12 xl:mx-16 justify-between text-blueOne font-arvo font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl items-center md:space-x-2"
+        class="flex mt-8 mb-4 max-w-full mx-2 sm:mx-4 md:mx-8 lg:mx-12 xl:mx-16 justify-between font-arvo font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl items-center md:space-x-2"
       >
-        <li class="nav"><a href="/accueil">ACCUEIL</a></li>
-        <li class="nav"><a href="/films">FILMS</a></li>
-        <li class="nav"><a href="/reservation">RÉSERVATION</a></li>
+        <li class="nav"><a href="/accueil" class="text-blackOne">ACCUEIL</a></li>
+        <li class="nav"><a href="/films" class="text-blackOne">FILMS</a></li>
+        <li class="nav"><a href="/reservation" class="text-blackOne">RÉSERVATION</a></li>
         <a href="/" class="-order-1"
-          ><li>
-            <img
-              src="/images/logo-principal.png"
-              class="max-w-36 md:mb-5"
-            /></li
+          ><li class="text-blackOne text-3xl lg:text-5xl">
+            CINEPHORIA</li
         ></a>
-        <li class="nav"><a href="/contact">CONTACT</a></li>
+        <li class="nav"><a href="/contact" class="text-blackOne">CONTACT</a></li>
         <% if (user && user.role === 'user') { %>
-          <li class="nav"><a href="/dashboard/user">MON ESPACE</a></li>
+          <li class="nav"><a href="/dashboard/user" class="text-blackOne">MON ESPACE</a></li>
         <% } else if (user && user.role === 'employee') { %>
-        <li class="nav"><a href="/dashboard/employee">INTRANET</a></li>
+        <li class="nav"><a href="/dashboard/employee" class="text-blackOne">INTRANET</a></li>
         <% } else if (user && user.role === 'admin') { %>
-        <li class="nav"><a href="/dashboard/admin">ADMINISTRATION</a></li>
+        <li class="nav"><a href="/dashboard/admin" class="text-blackOne">ADMINISTRATION</a></li>
         <% } else { %>
-        <li class="nav"><a href="/login">CONNEXION</a></li>
+        <li class="nav"><a href="/login" class="text-blackOne">CONNEXION</a></li>
         <% } %>
       </ul>
     </nav>
@@ -38,40 +36,24 @@
     <!-- NAVBAR RESPONSIVE MOBILE -->
     <nav class="w-full md:hidden overflow-hidden">
       <ul
-        class="flex mt-8 max-w-full mb-8 gap-x-8 justify-between text-blueOne font-arvo font-bold text-base items-center mx-4"
+        class="flex mt-8 max-w-full mb-8 gap-x-8 justify-between text-blackOne font-arvo font-bold text-base items-center mx-4"
       >
         <!-- MENU HAMBURGER -->
         <button id="hamburger-button" class="cursor-pointer relative w-8 h-8">
           <div
-            class="bg-blueOne w-8 h-1 rounded absolute top-4 -mt-0.5 transition-all duration-500 before:content-[''] before:bg-blueOne before:h-1 before:w-8 before:rounded before:absolute before:-translate-x-4 before:-translate-y-3 before:transition-all before:duration-500 after:content-[''] after:bg-blueOne after:h-1 after:w-8 after:rounded after:absolute after:-translate-x-4 after:translate-y-3 after:transition-all after:duration-500"
+            class="bg-blackOne w-8 h-1 rounded absolute top-4 -mt-0.5 transition-all duration-500 before:content-[''] before:bg-blackOne before:h-1 before:w-8 before:rounded before:absolute before:-translate-x-4 before:-translate-y-3 before:transition-all before:duration-500 after:content-[''] after:bg-blackOne after:h-1 after:w-8 after:rounded after:absolute after:-translate-x-4 after:translate-y-3 after:transition-all after:duration-500"
           ></div>
         </button>
 
         <!-- LOGO -->
         <li>
-          <a href="/"><img src="/images/logo-principal.png" class="w-40" /></a>
+          <a href="/" class="font-arvo text-blackOne text-3xl">CINEPHORIA</a>
         </li>
 
         <!-- USER LOGIN -->
         <a href="/login">
           <li class="md:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="35"
-              height="35"
-              viewBox="0 0 24 24"
-            >
-              <g
-                fill="none"
-                stroke="#102c57"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-              >
-                <circle cx="12" cy="8" r="5" />
-                <path d="M20 21a8 8 0 0 0-16 0" />
-              </g>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24"><path fill="#1E1E1E" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19M12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4"/></svg>
           </li>
         </a>
       </ul>
@@ -80,7 +62,7 @@
     <!-- mobile nav menu -->
     <section
       id="mobile-menu"
-      class="absolute z-20 top-[103px] bg-blueOne w-full text-5xl flex-col justify-center items-center origin-top animate-open-menu hidden"
+      class="absolute z-20 top-[103px] bg-blackOne w-full text-5xl flex-col justify-center items-center origin-top animate-open-menu hidden"
     >
       <nav
         class="flex flex-col min-h-screen items-center py-8"
