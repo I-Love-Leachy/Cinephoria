@@ -1976,6 +1976,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
+.text-black{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
 .opacity-0{
   opacity: 0;
 }
@@ -2275,6 +2279,16 @@ video {
 .placeholder\:text-blueOne::placeholder{
   --tw-text-opacity: 1;
   color: rgb(16 44 87 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-blackOne::-moz-placeholder{
+  --tw-text-opacity: 1;
+  color: rgb(30 30 30 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-blackOne::placeholder{
+  --tw-text-opacity: 1;
+  color: rgb(30 30 30 / var(--tw-text-opacity));
 }
 
 .placeholder\:opacity-70::-moz-placeholder{
