@@ -10,6 +10,7 @@
     <script src="js/form-switcher.js" defer></script>
     <script src="js/activeLink.js" defer></script>
     <script type="text/javascript" defer src="js/main.js"></script>
+    <script src="js/login.js" defer></script>
 </head>
 <body class="relative min-h-screen pb-20">
     <header class="relative">
@@ -18,8 +19,17 @@
     </header>
 
     <main class="flex items-center justify-center min-h-screen mb-28">
+
+        <% if (error_msg && error_msg.length > 0) { %>
+            <ul id="error-container" class="absolute w-fit h-fit top-0 flex flex-col items-center justify-center space-y-2">
+                <% error_msg.forEach(error => { %>
+                    <li class="font-arvo font-bold text-redOne text-center text-sm list-none"><%= error %></li>
+                <% }) %>
+            </ul>
+           
+        <% } %>
         
-        <!-- connection container -->
+        <!-- connexion container -->
         <div class="w-full max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
 
             <div class="font-arvo px-10 pt-20  w-full  ">
