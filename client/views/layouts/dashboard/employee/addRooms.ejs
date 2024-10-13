@@ -52,27 +52,27 @@
 
             <!-- Room Informations -->
             <section id="main-field" class="flex flex-col w-full gap-y-6 hidden">
-                <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                    <input type="text" name="name" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="SALLE" id="room-name" required>
+                <div class="w-full h-16 bg-white flex items-center justify-center pl-7">
+                    <input type="text" name="name" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="Salle" id="room-name" required>
                 </div>
 
-                <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                    <input type="text" name="quality" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="QUALITÉ" id="room-quality" required>
+                <div class="w-full h-16 bg-white flex items-center justify-center pl-7">
+                    <input type="text" name="quality" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="Qualité" id="room-quality" required>
                 </div>
                 
-                <h2 class="text-lg font-bold text-blackOne">Ajouter des Sièges</h2>
+                <h2 class="text-lg font-bold text-blackOne pl-2">Ajouter des sièges</h2>
                 <div id="seat-groups" class="flex flex-col gap-y-4">
                     <div class="seat-group flex items-center gap-x-2">
-                        <input type="text" class="seat-label outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="LIBELLÉ SIEGE" required>
-                        <input type="number" class="seat-count outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="NOMBRE DE SIEGES" min="1" max="24" required>
-                        <select class="seat-accessibility outline-none w-1/3 h-10 px-2 font-arvo text-blackOne font-bold text-sm" required>
+                        <input type="text" class="h-16 seat-label outline-none w-1/3 px-2 text-base placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="Référence du siège" required>
+                        <input type="number" class="h-16 seat-count outline-none w-1/3 px-2 text-base placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="Nombre de sièges" min="1" max="24" required>
+                        <select class="h-16 seat-accessibility outline-none w-1/3 px-2 font-arvo text-blackOne font-bold text-base" required>
                             <option value="true">Accessibilité: Oui</option>
                             <option value="false">Accessibilité: Non</option>
                         </select>
                         <button type="button" class="remove-seat-group bg-redOne text-white w-5 h-5 flex items-center justify-center hover:bg-red-600 duration-200 hover:scale-95">-</button>
                     </div>
                 </div>
-                <button type="button" id="add-seat-group" class="bg-blackOne font-arvo text-white px-4 py-4 mt-4">Ajouter un groupe de sièges</button>
+                <button type="button" id="add-seat-group" class="bg-blackOne font-arvo text-white text-lg px-4 py-4 mt-4">Ajouter un groupe de sièges</button>
             </section>
 
             <button type="button" id="open-alert-btn" class="mx-auto bg-redOne font-arvo text-white font-bold text-lg px-10 py-2 mt-2 flex hover:scale-95 duration-200 ease-in-out items-center justifify-center">Ajouter</button>
