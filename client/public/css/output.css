@@ -664,6 +664,12 @@ video {
 .top-\[130px\]{
   top: 130px;
 }
+.bottom-36{
+  bottom: 9rem;
+}
+.top-full{
+  top: 100%;
+}
 .-z-20{
   z-index: -20;
 }
@@ -1802,6 +1808,18 @@ video {
 }
 .pl-1{
   padding-left: 0.25rem;
+}
+.pr-4{
+  padding-right: 1rem;
+}
+.pr-8{
+  padding-right: 2rem;
+}
+.pr-9{
+  padding-right: 2.25rem;
+}
+.pr-6{
+  padding-right: 1.5rem;
 }
 .text-left{
   text-align: left;

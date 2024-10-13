@@ -29,14 +29,14 @@
                 <div class="relative w-[80%]">
                     <!-- search theater menu -->
                     <div class="w-full h-16 bg-white flex items-center justify-between px-7 cursor-pointer" id="select-theater">
-                        <p class="font-arvo text-lg font-bold text-blackOne" id="cinema-choosen">choisir un cinema</p>
+                        <p class="font-arvo text-lg font-bold text-blackOne" id="cinema-choosen">Choisir un cinéma</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
                             <path fill="currentColor" d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0c.436.445.408 1.197 0 1.615c-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615"/>
                         </svg>
                     </div>
 
                     <!-- hidden theater menu -->
-                    <div class="absolute bg-blackOne w-full h-fit py-8 px-2 left-0 -bottom-96 z-50 animate-open-menu hidden" id="theater-menu">
+                    <div class="absolute bg-blackOne w-full h-fit py-8 px-2 left-0 top-full z-50 animate-open-menu hidden" id="theater-menu">
                         <% if (cinemas.length > 0) { %>
                             <ul class="w-full space-y-5 font-arvo font-bold text-white text-lg" id="theater-list">
                                 <% cinemas.forEach(cinema => { %>
@@ -51,7 +51,7 @@
 
                 <div class="container relative w-[80%]">
                     <!-- choose room  -->
-                    <div class="w-full h-16 bg-white flex items-center justify-between px-7  cursor-pointer" id="select-room">
+                    <div class="w-full h-16 bg-white flex items-center justify-between px-7 cursor-pointer" id="select-room">
                         <p class="font-arvo text-lg font-bold text-blackOne" id="room-choosen">Choisir une salle</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
                             <path fill="currentColor" d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0c.436.445.408 1.197 0 1.615c-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615"/>
@@ -59,7 +59,7 @@
                     </div>
 
                     <!-- hidden room menu -->
-                    <div class="absolute bg-blackOne w-full h-fit py-8 px-2 left-0 -bottom-24 hidden  z-50 animate-open-menu " id="room-menu">
+                    <div class="absolute bg-blackOne w-full h-fit py-8 px-2 left-0 top-full hidden  z-50 animate-open-menu " id="room-menu">
                         <% if (rooms.length > 0) { %>
                             <ul class="w-full space-y-5 font-arvo font-bold text-white text-lg" id="room-list">
                                 <% rooms.forEach(room => { %>
