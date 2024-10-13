@@ -876,6 +876,12 @@ video {
 .mt-72{
   margin-top: 18rem;
 }
+.mt-80{
+  margin-top: 20rem;
+}
+.mt-48{
+  margin-top: 12rem;
+}
 .block{
   display: block;
 }
