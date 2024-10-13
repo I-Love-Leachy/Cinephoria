@@ -1,7 +1,7 @@
 {
   "name": "cinephoria",
   "version": "1.0.0",
-  "description": "Projet ECF Studi sur une chaîne de cinéma nommée Cinépholia",
+  "description": "Projet ECF Studi sur une chaîne de cinéma nommée Cinephoria",
   "main": "index.js",
   "scripts": {
     "server": "nodemon server/server.js",

@@ -55,7 +55,7 @@
 
     <!-- return back button -->
     <a href="/films" class="fixed z-40 top-11">
-      <div class=" w-12 h-10 flex items-center font-bold justify-center hover:scale-x-125 duration-200 text-white bg-blueOne ">
+      <div class=" w-12 h-10 flex items-center font-bold justify-center hover:scale-x-125 duration-200 text-white bg-blackOne ">
         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="26" viewBox="0 0 24 24"><path fill="white" d="M16.62 2.99a1.25 1.25 0 0 0-1.77 0L6.54 11.3a.996.996 0 0 0 0 1.41l8.31 8.31c.49.49 1.28.49 1.77 0s.49-1.28 0-1.77L9.38 12l7.25-7.25c.48-.48.48-1.28-.01-1.76"/></svg>
       </div>
     </a>
@@ -68,7 +68,7 @@
         </section>
 
         <div class="w-fit mx-auto">
-          <h1 class="font-arvo text-blueOne font-bold text-lg">Avis</h1>
+          <h1 class="font-arvo text-blackbg-blackOne font-bold text-lg">Avis</h1>
         </div>
 
         <% if (reviews && reviews.length > 0) { %>
@@ -78,8 +78,8 @@
             <% reviews.forEach(review => { %>
               <div class="swiper-slide">
                 <div class="text-center p-4 space-y-3">
-                    <p class="font-arvo text-blueOne">"<%= review.comment %>"</p>
-                    <p class="font-arvo text-blueOne"><%= review.rating %>/5</p>
+                    <p class="font-arvo text-blackbg-blackOne">"<%= review.comment %>"</p>
+                    <p class="font-arvo text-blackbg-blackOne"><%= review.rating %>/5</p>
                 </div>
               </div>
             <% }) %>
@@ -87,7 +87,7 @@
           </div>
         <% } else { %>
           <div class="text-center mx-auto p-4 space-y-3 w-full bg-whiteOne flex items-center justify-center">
-            <p class="font-arvo text-blueOne">"Aucun avis pour ce film"</p>
+            <p class="font-arvo text-blackbg-blackOne">"Aucun avis pour ce film"</p>
 
           </div>
         <% } %>
@@ -96,7 +96,7 @@
         <section class="w-full  flex flex-col mt-28" id="theater">
   
           <div class="container  mx-auto w-[50vw]">
-            <h1 class="font-arvo text-blueOne font-semibold text-3xl md:ml-10">
+            <h1 class="font-arvo text-blackbg-blackOne font-semibold text-3xl md:ml-10">
               CINEMAS
             </h1>
           </div>
@@ -104,10 +104,10 @@
           <!-- choose country section -->
           <div class="container flex items-center justify-center space-x-16 mt-14 mx-auto w-[50vw]">
             <a href="#" id="france-link" class="form-link " data-country="France" data-film-id="<%= filmId %>">
-              <h2 class="text-fill text-blueOne font-extrabold text-center tracking-wider">FRANCE</h2>
+              <h2 class="text-fill text-blackbg-blackOne font-extrabold text-center tracking-wider">FRANCE</h2>
             </a>
             <a href="#" id="belgique-link" class="form-link" data-country="Belgique" data-film-id="<%= filmId %>">
-              <h2 class="text-fill text-blueOne font-extrabold text-center tracking-wider">BELGIQUE</h2>
+              <h2 class="text-fill text-blackbg-blackOne font-extrabold text-center tracking-wider">BELGIQUE</h2>
             </a>
           </div>
     

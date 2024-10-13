@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const reservationSchema = new mongoose.Schema({
   movieId: String,
@@ -6,6 +6,6 @@ const reservationSchema = new mongoose.Schema({
   date: Date,
 });
 
-const Reservation = mongoose.model('Reservation', reservationSchema);
+const Reservation = mongoose.model("Reservation", reservationSchema);
 
 module.exports = Reservation;

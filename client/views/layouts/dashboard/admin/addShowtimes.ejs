@@ -18,26 +18,26 @@
 </header>
 
 <!-- Cinema and Date Filters -->
-<main class="flex text-blueOne w-full flex-col items-center gap-y-7 justify-center md:w-[85vw]  ml-auto md:pt-40 " id="main-container">
+<main class="flex text-blackOne w-full flex-col items-center gap-y-7 justify-center md:w-[85vw]  ml-auto md:pt-40 " id="main-container">
 
     <section class="container w-full  md:w-[85vw]  ml-auto flex flex-col mt-10 ">
 
        <form action="" method="post" class="flex flex-col items-center justify-center relative  bg-whiteOne w-[90%] md:w-[55%] mx-auto rounded-sm px-6 py-5 space-y-5 md:py-7 md:space-y-8">
 
-            <h1 class="text-blueOne font-arvo text-3xl tracking-wide font-bold text-center">AJOUTER UNE SCÉANCE</h1>
+            <h1 class="text-blackOne font-arvo text-3xl tracking-wide font-bold text-center">AJOUTER UNE SCÉANCE</h1>
 
             <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="BLADE RUNNER">
+                <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="BLADE RUNNER">
             </div>
 
             <div class="relative w-full">
                 <div class="w-full h-16 bg-white flex items-center justify-between px-4 cursor-pointer " id="select-theater">
-                    <p class="font-arvo text-lg font-bold text-blueOne" id="cinema-choosen">CHOISIR UN CINÉMA</p>
+                    <p class="font-arvo text-lg font-bold text-blackOne" id="cinema-choosen">CHOISIR UN CINÉMA</p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20"><path fill="currentColor" d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0c.436.445.408 1.197 0 1.615c-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615"/></svg>
                 </div>
 
                 <!-- hidden theater menu -->
-                <div class="absolute z-50 bg-blueOne w-full h-fit py-8 px-2 left-0 -bottom-60 animate-open-menu hidden" id="theater-menu">
+                <div class="absolute z-50 bg-blackOne w-full h-fit py-8 px-2 left-0 top-full animate-open-menu hidden" id="theater-menu">
                     <ul class="w-full space-y-5 font-arvo font-bold text-white text-lg" id="theater-list">
                         <li class="list-none hover:translate-x-5 duration-200 ease-out cursor-pointer hover:text-goldOne hover:scale-105">CINÉPHORIA - LES HALLES</li>
                         <li class="list-none hover:translate-x-5 duration-200 ease-out cursor-pointer hover:text-goldOne hover:scale-105">CINÉPHORIA - BRUXELLE</li>
@@ -52,12 +52,12 @@
 
                 <div class="relative w-full">
                     <div class="w-full h-16 bg-white flex items-center justify-between px-4 cursor-pointer " id="select-rooms">
-                        <p class="font-arvo text-lg font-bold text-blueOne" id="room-choosen">CHOISIR UNE SALLE</p>
+                        <p class="font-arvo text-lg font-bold text-blackOne" id="room-choosen">CHOISIR UNE SALLE</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20"><path fill="currentColor" d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0c.436.445.408 1.197 0 1.615c-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615"/></svg>
                     </div>
     
                     <!-- hidden theater menu -->
-                    <div class="absolute  z-50 bg-blueOne w-full h-fit py-8 px-2 left-0 -bottom-60 animate-open-menu hidden" id="room-menu">
+                    <div class="absolute  z-50 bg-blackOne w-full h-fit py-8 px-2 left-0 top-full animate-open-menu hidden" id="room-menu">
                         <ul class="w-full space-y-5 font-arvo font-bold text-white text-lg" id="room-list">
                             <li class="list-none hover:translate-x-5 duration-200 ease-out cursor-pointer hover:text-goldOne hover:scale-105">B31</li>
                             <li class="list-none hover:translate-x-5 duration-200 ease-out cursor-pointer hover:text-goldOne hover:scale-105">C21</li>
@@ -69,12 +69,12 @@
 
                 <div class="relative w-full">
                     <div class="w-full h-16 bg-white flex items-center justify-between px-4 cursor-pointer " id="select-quality">
-                        <p class="font-arvo text-lg font-bold text-blueOne" id="quality-choosen">CHOISIR UNE QUALITÉ</p>
+                        <p class="font-arvo text-lg font-bold text-blackOne" id="quality-choosen">CHOISIR UNE QUALITÉ</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20"><path fill="currentColor" d="M4.516 7.548c.436-.446 1.043-.481 1.576 0L10 11.295l3.908-3.747c.533-.481 1.141-.446 1.574 0c.436.445.408 1.197 0 1.615c-.406.418-4.695 4.502-4.695 4.502a1.095 1.095 0 0 1-1.576 0S4.924 9.581 4.516 9.163c-.409-.418-.436-1.17 0-1.615"/></svg>
                     </div>
     
                     <!-- hidden theater menu -->
-                    <div class="absolute  z-50 bg-blueOne w-full h-fit py-8 px-2 left-0 -bottom-48 hidden animate-open-menu " id="quality-menu">
+                    <div class="absolute  z-50 bg-blackOne w-full h-fit py-8 px-2 left-0 top-full hidden animate-open-menu " id="quality-menu">
                         <ul class="w-full space-y-5 font-arvo font-bold text-white text-lg" id="quality-list">
                             <li class="list-none hover:translate-x-5 duration-200 ease-out cursor-pointer hover:text-goldOne hover:scale-105">3D</li>
                             <li class="list-none hover:translate-x-5 duration-200 ease-out cursor-pointer hover:text-goldOne hover:scale-105">4DX</li>
@@ -84,26 +84,26 @@
                 </div>
 
                 <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                    <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="HEURE DE DÉBUT">
+                    <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="HEURE DE DÉBUT">
                 </div>
 
                 <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                    <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="HEURE DE FIN">
+                    <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="HEURE DE FIN">
                 </div>
 
                 <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                    <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="JOUR">
+                    <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="JOUR">
                 </div>
 
                 <div class="w-full h-16 bg-white flex items-center justify-center pl-4">
-                    <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="PRIX">
+                    <input type="text" class="outline-none flex-1 w-full h-full flex items-center placeholder:text-lg placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="PRIX">
                 </div>
             </section>
            
             <button class="mx-auto bg-redOne font-arvo text-white font-bold text-lg px-10 py-2 mt-2 flex hover:scale-95 duration-200 ease-in-out items-center justifify-center" id="open-alert-btn">MODIFIER</button>
 
             <!-- hidden alert pop up -->
-            <div class="absolute   z-50  animate-open-menu hidden  flex-col items-center justify-around bg-blueOne/75 w-[50vw] h-[100vh] rounded-lg px-10 py-48 " id="alert">
+            <div class="absolute   z-50  animate-open-menu hidden  flex-col items-center justify-around bg-blackOne/75 w-[50vw] h-[100vh] rounded-lg px-10 py-48 " id="alert">
                 <p class="text-center font-arvo text-white font-bold text-3xl">VOULEZ-VOUS VRAIMENT AJOUTER UNE SCÉANCE A LA SALLE "B13" ?</p>
                 <div class="flex items-center justify-center space-x-10">
                     <button type="submit" id="submit-form" class="bg-green-500 w-36 h-14 text-white font-arvo font-bold flex items-center justify-center hover:scale-95 duration-200 hover:bg-green-400">

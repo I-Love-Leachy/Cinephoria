@@ -10,11 +10,18 @@
 
 <body>
 
-    <main class="bg-blueOne min-w-[15vw] h-screen hidden md:block">
+    <main class="bg-blackOne min-w-[15vw] h-screen hidden md:block">
         
         <div class="flex space-x-20 p-7 px-auto">
             <p class="text-white text-2xl"> Bonjour, <br> <span class="text-3xl"> <%= user.first_name %> </span> </p>
-            <img class=" h-28 w-12 " src="/images/logo-blanc.png" alt="Cinéphoria small white logo">
+            <svg width="70" height="70" viewBox="0 0 117 117" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M38.3616 19.3823L76.8498 19.1038L57.9524 38.5883L38.3616 19.3823Z" fill="white" stroke="white"/>
+                <path d="M57.9515 38.5874L96.4397 38.3089L77.5422 57.7934L57.9515 38.5874Z" fill="white" stroke="white"/>
+                <path d="M19.1573 38.9736L57.8498 38.4866L38.748 58.1796L19.1573 38.9736Z" fill="white" stroke="white"/>
+                <path d="M38.7483 58.1792L77.2365 57.9007L58.3391 77.3852L38.7483 58.1792Z" fill="white" stroke="white"/>
+                <path d="M77.8261 96.7967L39.3373 96.9738L58.286 77.5392L77.8261 96.7967Z" fill="white" stroke="white"/>
+                </svg>
+                
         </div>
 
 
@@ -99,7 +106,7 @@
                 </form>
             <% } else if (user && user.role === 'user') { %>
                 <form action="/api/v1/logout" method="post" class="w-full pt-16">
-                    <button class="h-12 w-full flex flex-row justify-start items-center text-white font-arvo font-bold lg:px-14 md:px-6 gap-4 hover:bg-goldOne active:bg-goldOne">
+                    <button class="mt-32 h-12 w-full flex flex-row justify-start items-center text-white font-arvo font-bold lg:px-14 md:px-6 gap-4 hover:bg-goldOne active:bg-goldOne">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="white" d="M5 5h6c.55 0 1-.45 1-1s-.45-1-1-1H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h6c.55 0 1-.45 1-1s-.45-1-1-1H5z"/><path fill="white" d="m20.65 11.65l-2.79-2.79a.501.501 0 0 0-.86.35V11h-7c-.55 0-1 .45-1 1s.45 1 1 1h7v1.79c0 .45.54.67.85.35l2.79-2.79c.2-.19.2-.51.01-.7"/></svg>
                         <p>Déconnexion</p>
                     </button>
