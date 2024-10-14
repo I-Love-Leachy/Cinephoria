@@ -11,4 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.removeItem("loginMessage");
     }, 5000);
   }
+
+  const errorContainer = document.getElementById("error-container");
+  if (errorContainer && !errorContainer.classList.contains("hidden")) {
+    setTimeout(() => {
+      errorContainer.classList.add("hidden");
+    }, 3000);
+  }
 });

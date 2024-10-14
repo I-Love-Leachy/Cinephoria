@@ -137,7 +137,7 @@ async function forgotPassword(req, res) {
     sendEmail(
       email,
       "Reset Password Request",
-      `Bonjours,\n\nVotre mot de passe temporaire est: ${temporaryPassword}\nPour des raison de sécuriter veuillez vous connectez et changer votre mot de passe au plus vite.\n\nMerci!`
+      `Bonjours,\n\nVotre mot de passe temporaire est: ${temporaryPassword}\nPour des raison de sécurité veuillez vous connectez et changer votre mot de passe au plus vite.\n\nMerci!`
     );
   } catch (err) {
     console.log(err);
