@@ -42,7 +42,13 @@
           <% } %>
         <!-- Reviews Section -->
         <section class="w-full md:w-[48%] flex items-center gap-y-2 justify-center flex-col md:gap-y-10 mt-40">
-            <h1 class="text-blackOne font-bold text-3xl text-center font-arvo">Nouveaux avis</h1>
+            <% if (reviews.length > 0) { %>
+                <h1 class="text-blackOne font-bold text-3xl text-center font-arvo">Nouveaux avis</h1>
+            <% } else { %> 
+                <h1 class="text-blackOne font-bold text-3xl text-center font-arvo">Aucun avis pour le moment. <br> Revenez bientôt pour découvrir les retours des spectateurs !</h1>
+            <% } 
+             %>
+
 
             <% if (reviews && reviews.length > 0) { %>
                 <% reviews.forEach(review => { %>
