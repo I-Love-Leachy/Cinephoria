@@ -7,7 +7,7 @@ const DB = require("../../config/postgres.config");
 async function authUser(req, res) {
   try {
     const isElectronRequest = req.headers["x-electron-request"];
-    const { email, password, redirect } = req.body;
+    const { email, password, redirect, remember } = req.body;
     const findUserQuery = `SELECT * FROM users WHERE email = $1`;
     const { rows } = await DB.query(findUserQuery, [email]);
 
