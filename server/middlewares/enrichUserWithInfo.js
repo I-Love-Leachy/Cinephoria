@@ -1,8 +1,8 @@
 const { getUserById } = require("../controllers/users/users.controllers");
 const jwt = require("jsonwebtoken");
-const passport = require('passport');
+const passport = require("passport");
 require("dotenv").config({ path: "../../.env" });
-const { ExtractJwt } = require('passport-jwt');
+const { ExtractJwt } = require("passport-jwt");
 
 // get specific user data
 async function enrichUserWithInfo(req, res, next) {
@@ -23,7 +23,6 @@ async function enrichUserWithInfo(req, res, next) {
   next();
 }
 
-
 function checkUser(req, res, next) {
   // Extract the token from the cookie
   const token = req.cookies.token;
@@ -38,11 +37,11 @@ function checkUser(req, res, next) {
   const jwtPayload = ExtractJwt.fromAuthHeaderAsBearerToken()(req);
   req.headers.authorization = `Bearer ${token}`;
 
-  passport.authenticate('jwt', { session: false }, (err, user, info) => {
+  passport.authenticate("jwt", { session: false }, (err, user, info) => {
     if (err) {
       return next(err);
     }
-    console.log('User:', user);
+    console.log("User:", user);
     if (user) {
       req.user = user;
       res.locals.isAuthenticated = true;
@@ -55,7 +54,4 @@ function checkUser(req, res, next) {
   })(req, res, next);
 }
 
-
 module.exports = { enrichUserWithInfo, checkUser };
-
-

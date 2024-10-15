@@ -1,5 +1,4 @@
 require("dotenv").config({ path: "../../../.env" });
-
 const { compareHashedPassword } = require("../../utils/hashPassword");
 const jwtToken = require("jsonwebtoken");
 const DB = require("../../config/postgres.config");
@@ -7,35 +6,38 @@ const DB = require("../../config/postgres.config");
 async function authUser(req, res) {
   try {
     const isElectronRequest = req.headers["x-electron-request"];
-    const { email, password, redirect, remember } = req.body;
+    const { email, password, redirect } = req.body;
     const findUserQuery = `SELECT * FROM users WHERE email = $1`;
     const { rows } = await DB.query(findUserQuery, [email]);
 
-    // Vérifie si l'utilisateur existe
+    if (isElectronRequest) {
+      if (rows.length <= 0) {
+        return res.status(404).json({
+          message: "Aucun utilisateur trouvé avec cette adresse email.",
+        });
+      }
+    }
+
     if (rows.length <= 0) {
       req.flash(
         "error_msg",
         "Aucun utilisateur trouvé avec cette adresse email."
       );
-      if (isElectronRequest) {
-        return res.status(404).json({
-          message: "Aucun utilisateur trouvé avec cette adresse email.",
-        });
-      }
       return res.redirect("/login");
     }
 
     const user = rows[0];
 
-    // Vérifie le mot de passe
     const verifyPassword = await compareHashedPassword(password, user.password);
 
-    if (!verifyPassword) {
-      req.flash("error_msg", "Mot de passe incorrect.");
-      console.log(req.flash("error_msg"));
-      if (isElectronRequest) {
-        return res.status(401).json({ message: "Mot de passe incorrect." });
+    if (isElectronRequest) {
+      if (!verifyPassword) {
+        return res.status(401).json({ message: "Mot de passe incorrecte." });
       }
+    }
+
+    if (!verifyPassword) {
+      req.flash("error_msg", "Mot de passe incorrecte.");
       return res.redirect("/login");
     }
 
@@ -53,6 +55,14 @@ async function authUser(req, res) {
       secure: true,
       maxAge: 1 * 60 * 60 * 1000,
     });
+
+    if (req.headers["x-react-native-request"]) {
+      return res.status(200).json({
+        message: "user logged in.",
+        accessToken: token,
+        id: user.user_id,
+      });
+    }
 
     if (user.must_change_password) {
       if (user.role === "user") {

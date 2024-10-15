@@ -6,7 +6,9 @@ function checkAuthenticated(req, res, next) {
 
   if (!token) {
     console.log("No token found, redirecting to login.");
-    const redirectUrl = req.params.id ? `/reservation/login/${req.params.id}` : "/login";
+    const redirectUrl = req.params.id
+      ? `/reservation/login/${req.params.id}`
+      : "/login";
     return res.redirect(redirectUrl);
   }
 
@@ -17,14 +19,16 @@ function checkAuthenticated(req, res, next) {
     next();
   } catch (err) {
     console.log("Error verifying token: ", err.message);
-    const redirectUrl = req.params.id ? `/reservation/login/${req.params.id}` : "/login";
+    const redirectUrl = req.params.id
+      ? `/reservation/login/${req.params.id}`
+      : "/login";
     res.redirect(redirectUrl);
   }
 }
 
 async function isLogged(req, res) {
   const token = req.cookies.token;
-  
+
   if (!token) {
     return res.json({ loggedIn: false });
   }
