@@ -16,7 +16,7 @@
      <!-- movie detail -->
      <div class="container flex flex-col h-full w-[75vw] justify-center items-start space-y-6 py-5 ">
        <!-- movie title -->
-       <h1 class="font-arvo text-blueOne font-bold md:text-4xl text-center text-xl ml-4 md:ml-0">
+       <h1 class="font-arvo text-blackOne font-bold md:text-4xl text-center text-xl ml-4 md:ml-0">
          <%= movie.title %>
        </h1>
 
@@ -41,23 +41,23 @@
 
       
 
-         <p class="font-arvo text-blueOne font-bold text-xs md:text-sm"><%= movie.duration %> min</p>
-         <p class="font-arvo text-blueOne font-bold text-xs md:text-sm"><%= movie.genre %></p>
+         <p class="font-arvo text-blackOne font-bold text-xs md:text-sm"><%= movie.duration %> min</p>
+         <p class="font-arvo text-blackOne font-bold text-xs md:text-sm"><%= movie.genre %></p>
 
        </div>
 
        <div class="container text-nowrap flex flex-col text-xs ml-7 md:ml-0">
-         <p class="font-arvo text-blueOne font-bold">Sortie : <%= new Date(movie.release_date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
-         <p class="font-arvo text-blueOne font-bold block md:hidden">
+         <p class="font-arvo text-blackOne font-bold">Sortie : <%= new Date(movie.release_date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+         <p class="font-arvo text-blackOne font-bold block md:hidden">
            <%= movie.casting %>
            </p>
-           <p class="font-arvo text-blueOne font-bold hidden md:block md:text-xs">
+           <p class="font-arvo text-blackOne font-bold hidden md:block md:text-xs">
              <%= movie.casting %>
            </p>
        </div>
 
        <div class="container">
-         <p class="font-arvo text-blueOne w-full md:w-[100%]">
+         <p class="font-arvo text-blackOne w-full md:w-[100%]">
            <%= movie.description %>
          </p>
        </div>

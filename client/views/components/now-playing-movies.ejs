@@ -33,10 +33,10 @@
                     - <%= movie.pg %>
                    </div>
                 </div>
-                <h1 class="font-arvo text-blabg-blackOne text-lg font-bold tracking-wide">
+                <h1 class="font-arvo text-blackOne text-lg font-bold tracking-wide">
                   <%= movie.title %>
                 </h1>
-                <p class="font-arvo text-blabg-blackOne font-thin text-sm tracking-wide">
+                <p class="font-arvo text-blackOne font-thin text-sm tracking-wide">
                   Depuis le <%= new Date(movie.release_date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) %>
                 </p>
               </div>
@@ -45,7 +45,7 @@
         <% }) %>
       <% } else { %>
         <div class="w-full flex items-center justify-center">
-          <p class="font-arvo text-blabg-blackOne font-bold text-2xl text-center">Oups, aucune séance disponible pour le moment ! <br> Patience, de nouvelles projections arrivent très bientôt. Préparez vos pop-corns !</p>
+          <p class="font-arvo text-blackOne font-bold text-2xl text-center">Oups, aucune séance disponible pour le moment ! <br> Patience, de nouvelles projections arrivent très bientôt. Préparez vos pop-corns !</p>
         </div>
       <% } %>
       

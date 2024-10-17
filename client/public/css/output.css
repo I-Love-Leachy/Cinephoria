@@ -1550,6 +1550,9 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(255 242 229 / var(--tw-bg-opacity));
 }
+.bg-blackOne\/20{
+  background-color: rgb(30 30 30 / 0.2);
+}
 .bg-opacity-50{
   --tw-bg-opacity: 0.5;
 }
@@ -1949,6 +1952,19 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-blackOne\/45{
+  color: rgb(30 30 30 / 0.45);
+}
+.text-black{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+.text-blackOne\/20{
+  color: rgb(30 30 30 / 0.2);
+}
+.text-blackOne\/60{
+  color: rgb(30 30 30 / 0.6);
 }
 .opacity-0{
   opacity: 0;

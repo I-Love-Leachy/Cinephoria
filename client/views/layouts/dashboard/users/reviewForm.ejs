@@ -37,25 +37,25 @@
         <% }) %>
       <% } %>
 
-    <h1 class="font-arvo text-blueOne font-bold text-4xl w-full text-center tracking-wide mt-4">Donner votre avis</h1>
+    <h1 class="font-arvo text-blackOne font-bold text-4xl w-full text-center tracking-wide mt-4">Donner votre avis</h1>
     <!-- let reviews section -->
     <div class="flex flex-col px-16 gap-y-5" id="top">
         <div class="container w-full px-4 flex items-center bg-white h-20 rounded-md">
-            <p class="text-lg font-arvo font-bold text-blueOne"><%= movies.title %></p>
+            <p class="text-lg font-arvo font-bold text-blackOne"><%= movies.title %></p>
         </div>
 
         <div class="container relative" >
             <button id="notation-button" class="w-full">
                 <div class="container w-full px-4 flex items-center justify-between bg-white h-20 rounded-md ">
-                    <p class="text-lg font-arvo font-bold text-blueOne" id="display-score" value="" name="rating">1 sur 5</p>
+                    <p class="text-lg font-arvo font-bold text-blackOne" id="display-score" value="" name="rating">1 sur 5</p>
                     <input type="hidden" id="final-score" name="rating" value="">
-                    <div class="text-blueOne">
+                    <div class="text-blackOne">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20"><path fill="currentColor" d="M15.794 7.733a.75.75 0 0 1-.026 1.06l-5.25 5.001a.75.75 0 0 1-1.035 0l-5.25-5a.75.75 0 0 1 1.034-1.087l4.734 4.509l4.733-4.51a.75.75 0 0 1 1.06.027"/></svg>
                     </div>
                 </div>
             </button>
 
-            <div id="notation-menu" class="absolute top-20  flex-col items-start justify-around  h-fit w-full bg-blueOne z-10 hidden animate-open-menu">
+            <div id="notation-menu" class="absolute top-20  flex-col items-start justify-around  h-fit w-full bg-blackOne z-10 hidden animate-open-menu">
                 <button class="px-4 py-2 hover:bg-white duration-100 ease-in-out w-full flex items-center justify-start h-10 valueBtn" value="1">
                     <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
                 </button>
@@ -86,7 +86,7 @@
        
 
         <div class="container w-full px-4 flex items-center bg-white h-fit rounded-md">
-            <textarea class="text-lg font-arvo font-bold text-blueOne flex-1 outline-none h-80 pt-7 placeholder:text-blueOne" placeholder="Message" name="comment"></textarea>
+            <textarea class="text-lg font-arvo font-bold text-blackOne flex-1 outline-none h-80 pt-7 placeholder:text-blackOne" placeholder="Message" name="comment"></textarea>
         </div>
 
         <button id="submit-button" type="submit" class="w-36 h-10 mt-4 bg-redOne hover:bg-red-500 hover:scale-95 duration-150 ease-out flex items-center justify-center mx-auto">
@@ -94,7 +94,7 @@
         </button>
     </div>
 
-    <div class="absolute top-0  animate-open-menu  flex-col items-center justify-around bg-blueOne/75 w-[50vw] h-[100vh] rounded-lg px-10 py-48 hidden" id="submit-form-menu">
+    <div class="absolute top-0  animate-open-menu  flex-col items-center justify-around bg-blackOne/75 w-[50vw] h-[100vh] rounded-lg px-10 py-48 hidden" id="submit-form-menu">
         <p class="text-center font-arvo text-white font-bold text-3xl">VOULEZ-VOUS ENVOYER L'AVIS POUR LE FILM "<%= movies.title %>" ?</p>
         <div class="flex items-center justify-center space-x-10">
             <button type="submit" id="submit-form" class="bg-green-500 w-36 h-14 text-white font-arvo font-bold flex items-center justify-center hover:scale-95 duration-200 hover:bg-green-400">

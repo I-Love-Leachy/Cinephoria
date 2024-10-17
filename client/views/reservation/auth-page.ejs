@@ -60,13 +60,13 @@
                 </div>
                 
                 <div class="container flex flex-col items-center justify-center space-y-2 bg-whiteOne rounded-tl-3xl rounded-br-3xl mx-auto w-[30%] h-[25%] md:w-[18%] md:h-[35%]">
-                    <h1 class="font-arvo font-bold text-lg text-blueOne"><%= showtimes.movie_title %></h1>
-                    <p class="font-arvo text-sm text-blueOne text-nowrap"><%= showtimes.cinema_name %></p>
-                    <p class="font-arvo text-xs text-blueOne">Accès bus</p>
+                    <h1 class="font-arvo font-bold text-lg text-blackOne"><%= showtimes.movie_title %></h1>
+                    <p class="font-arvo text-sm text-blackOne text-nowrap"><%= showtimes.cinema_name %></p>
+                    <p class="font-arvo text-xs text-blackOne">Accès bus</p>
                     
                 </div>
                 
-                <div class="container flex flex-col items-center justify-center space-y-2 bg-blueOne rounded-tl-3xl rounded-br-3xl mx-auto w-[30%] h-[25%] md:w-[18%] md:h-[35%]">
+                <div class="container flex flex-col items-center justify-center space-y-2 bg-blackOne rounded-tl-3xl rounded-br-3xl mx-auto w-[30%] h-[25%] md:w-[18%] md:h-[35%]">
                     <h1 class="font-arvo text-lg text-white"><%= new Date(showtimes.day).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' }) %>-<%= showtimes.start_time.substring(0, 5) %></h1>
                     <p class="font-arvo text-sm text-white"><%= showtimes.end_time.substring(0, 5) %></p>
                     <p class="font-arvo font-bold text-xs text-white">VF</p>
@@ -91,14 +91,14 @@
         <div class="w-full max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
 
             <div class="font-arvo px-10 pt-20  w-full  ">
-                <h1 class="text-blueOne font-extrabold text-center text-2xl mb-20 md:text-3xl">CONNEXION</h1>
+                <h1 class="text-blackOne font-extrabold text-center text-2xl mb-20 md:text-3xl">CONNEXION</h1>
     
                 <div class="flex space-x-4 justify-between mb-16">
                     <a href="/login" id="login-link" class="form-link active">
-                        <h2 class="text-fill  text-blueOne font-extrabold text-center text-base md:text-xl">JE M'IDENTIFIE</h2>
+                        <h2 class="text-fill  text-blackOne font-extrabold text-center text-base md:text-xl">JE M'IDENTIFIE</h2>
                     </a>
                     <a href="/register" id="register-link" class="form-link">
-                        <h2 class="text-fill  text-blueOne font-extrabold text-center text-base md:text-xl">JE CRÉE UN COMPTE</h2>
+                        <h2 class="text-fill  text-blackOne font-extrabold text-center text-base md:text-xl">JE CRÉE UN COMPTE</h2>
                     </a>
                 </div>
             </div>
