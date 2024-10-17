@@ -1,6 +1,9 @@
 const currentPage = window.location.pathname;
 
-if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/employee/rooms/add") {
+if (
+  currentPage === "/dashboard/admin/rooms/add" ||
+  currentPage === "/dashboard/employee/rooms/add"
+) {
   document.addEventListener("DOMContentLoaded", () => {
     const selectTheaterBtn = document.getElementById("select-theater");
     const openTheaterMenu = document.getElementById("theater-menu");
@@ -76,8 +79,11 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
 
     openAlertBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      document.getElementById("alert-message").textContent =
-        `VOULEZ-VOUS VRAIMENT AJOUTER LA SALLE ${document.getElementById("room-name").value} ?`;
+      document.getElementById(
+        "alert-message"
+      ).textContent = `VOULEZ-VOUS VRAIMENT AJOUTER LA SALLE ${
+        document.getElementById("room-name").value
+      } ?`;
       alertMenu.classList.toggle("hidden");
       alertMenu.classList.toggle("flex");
     });
@@ -94,9 +100,9 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
       seatGroup.classList.add("seat-group", "flex", "items-center", "gap-x-2");
 
       seatGroup.innerHTML = `
-            <input type="text" class="seat-label outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="LIBELLÉ SIEGE" required>
-            <input type="number" class="seat-count outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="NOMBRE DE SIEGES" min="1" max="24" required>
-            <select class="seat-accessibility outline-none w-1/3 h-10 px-2 font-arvo text-blueOne font-bold text-sm" required>
+            <input type="text" class="seat-label outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="LIBELLÉ SIEGE" required>
+            <input type="number" class="seat-count outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="NOMBRE DE SIEGES" min="1" max="24" required>
+            <select class="seat-accessibility outline-none w-1/3 h-10 px-2 font-arvo text-blackOne font-bold text-sm" required>
                 <option value="true">Accessibilité: Oui</option>
                 <option value="false">Accessibilité: Non</option>
             </select>
@@ -180,11 +186,19 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
       alertMenu.classList.toggle("flex");
     });
   });
-} else if (currentPage === "/dashboard/admin/rooms/update" || currentPage === "/dashboard/employee/rooms/update") {
+} else if (
+  currentPage === "/dashboard/admin/rooms/update" ||
+  currentPage === "/dashboard/employee/rooms/update"
+) {
   document.addEventListener("DOMContentLoaded", () => {
-    if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/employee/rooms/add") {
-
-    } else if (currentPage === "/dashboard/admin/rooms/update" || currentPage === "/dashboard/employee/rooms/update") {
+    if (
+      currentPage === "/dashboard/admin/rooms/add" ||
+      currentPage === "/dashboard/employee/rooms/add"
+    ) {
+    } else if (
+      currentPage === "/dashboard/admin/rooms/update" ||
+      currentPage === "/dashboard/employee/rooms/update"
+    ) {
       const selectTheaterBtn = document.getElementById("select-theater");
       const openTheaterMenu = document.getElementById("theater-menu");
       const theaterListItems = document.querySelectorAll("#theater-list li");
@@ -285,13 +299,13 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
                     "hover:scale-105"
                   );
                   li.dataset.roomId = room.room_id;
-                  li.dataset.roomName = room.name; 
+                  li.dataset.roomName = room.name;
                   roomListContainer.appendChild(li);
 
                   li.addEventListener("click", () => {
                     roomChoosen.textContent = room.name;
                     roomIdInput.value = room.room_id;
-                    currentRoomNameInput.value = room.name; 
+                    currentRoomNameInput.value = room.name;
                     openRoomMenu.classList.add("hidden");
                   });
                 });
@@ -330,8 +344,9 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
       openAlertBtn.addEventListener("click", (e) => {
         e.preventDefault();
         const currentRoomName = currentRoomNameInput.value || "SALLE";
-        document.getElementById("alert-message").textContent =
-          `VOULEZ-VOUS VRAIMENT MODIFIER LA SALLE ${currentRoomName} ?`;
+        document.getElementById(
+          "alert-message"
+        ).textContent = `VOULEZ-VOUS VRAIMENT MODIFIER LA SALLE ${currentRoomName} ?`;
         alertMenu.classList.toggle("hidden");
         alertMenu.classList.toggle("flex");
       });
@@ -353,9 +368,9 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
         );
 
         seatGroup.innerHTML = `
-                <input type="text" class="seat-label outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="LIBELLÉ SIEGE" required>
-                <input type="number" class="seat-count outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blueOne placeholder:font-arvo placeholder:font-bold" placeholder="NOMBRE DE SIEGES" min="1" max="24" required>
-                <select class="seat-accessibility outline-none w-1/3 h-10 px-2 font-arvo text-blueOne font-bold text-sm" required>
+                <input type="text" class="seat-label outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="LIBELLÉ SIEGE" required>
+                <input type="number" class="seat-count outline-none w-1/3 h-10 px-2 text-sm placeholder:text-blackOne placeholder:font-arvo placeholder:font-bold" placeholder="NOMBRE DE SIEGES" min="1" max="24" required>
+                <select class="seat-accessibility outline-none w-1/3 h-10 px-2 font-arvo text-blackOne font-bold text-sm" required>
                     <option value="true">Accessibilité: Oui</option>
                     <option value="false">Accessibilité: Non</option>
                 </select>
@@ -446,18 +461,24 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
       });
     }
   });
-} else if (currentPage === "/dashboard/admin/rooms/delete" || currentPage === "/dashboard/employee/rooms/delete") {
+} else if (
+  currentPage === "/dashboard/admin/rooms/delete" ||
+  currentPage === "/dashboard/employee/rooms/delete"
+) {
   document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.pathname === "/dashboard/admin/rooms/delete" || window.location.pathname === "/dashboard/employee/rooms/delete") {
+    if (
+      window.location.pathname === "/dashboard/admin/rooms/delete" ||
+      window.location.pathname === "/dashboard/employee/rooms/delete"
+    ) {
       const selectTheaterBtn = document.getElementById("select-theater");
       const openTheaterMenu = document.getElementById("theater-menu");
       const theaterListItems = document.querySelectorAll("#theater-list li");
       const cinemaChoosen = document.getElementById("cinema-choosen");
-  
+
       const openAlertBtn = document.getElementById("open-alert-btn");
       const alertMenu = document.getElementById("alert");
       const closeAlertBtn = document.getElementById("close-alert");
-  
+
       const selectRoomsBtn = document.getElementById("select-room");
       const openRoomsMenu = document.getElementById("room-menu");
       const roomChoosen = document.getElementById("room-choosen");
@@ -466,13 +487,13 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
       const currentRoomNameInput = document.getElementById("current-room-name");
       const roomListContainer = document.getElementById("room-list");
 
-      const submitFormBtn = document.getElementById('submit-form');
-  
+      const submitFormBtn = document.getElementById("submit-form");
+
       const closeAllMenus = () => {
         openTheaterMenu.classList.add("hidden");
         openRoomsMenu.classList.add("hidden");
       };
-  
+
       selectTheaterBtn.addEventListener("click", (e) => {
         e.preventDefault();
         const isHidden = openTheaterMenu.classList.contains("hidden");
@@ -482,22 +503,22 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
         }
       });
 
-      selectRoomsBtn.addEventListener('click', (e) => {
+      selectRoomsBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        const isHidden = openRoomsMenu.classList.contains('hidden');
+        const isHidden = openRoomsMenu.classList.contains("hidden");
         closeAllMenus();
         if (isHidden) {
-          openRoomsMenu.classList.toggle('hidden')
+          openRoomsMenu.classList.toggle("hidden");
         }
-      })
-  
+      });
+
       theaterListItems.forEach((item) => {
         item.addEventListener("click", () => {
           cinemaChoosen.textContent = item.textContent;
           openTheaterMenu.classList.add("hidden");
-  
+
           const selectedCinemaId = item.dataset.cinemaId;
-          
+
           // Fetch rooms for the selected cinema
           fetch(`/api/v1/getRoomsByCinema/${selectedCinemaId}`)
             .then((response) => response.json())
@@ -517,13 +538,13 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
                     "hover:scale-105"
                   );
                   li.dataset.roomId = room.room_id;
-                  li.dataset.roomName = room.name; 
+                  li.dataset.roomName = room.name;
                   roomListContainer.appendChild(li);
-  
+
                   li.addEventListener("click", () => {
                     roomChoosen.textContent = room.name;
                     roomIdInput.value = room.room_id;
-                    currentRoomNameInput.value = room.name; 
+                    currentRoomNameInput.value = room.name;
                     openRoomsMenu.classList.add("hidden");
                   });
                 });
@@ -543,52 +564,56 @@ if (currentPage === "/dashboard/admin/rooms/add" || currentPage === "/dashboard/
             })
             .catch((error) => {
               console.error("Error:", error);
-              showError("Une erreur s'est produite lors de la récupération des salles.");
+              showError(
+                "Une erreur s'est produite lors de la récupération des salles."
+              );
             });
         });
       });
-  
+
       openAlertBtn.addEventListener("click", (e) => {
         e.preventDefault();
         const currentRoomName = currentRoomNameInput.value || "SALLE";
-        document.getElementById("alert-message").textContent =
-          `VOULEZ-VOUS VRAIMENT SUPPRIMER LA SALLE ${currentRoomName} ?`;
+        document.getElementById(
+          "alert-message"
+        ).textContent = `VOULEZ-VOUS VRAIMENT SUPPRIMER LA SALLE ${currentRoomName} ?`;
         alertMenu.classList.toggle("hidden");
         alertMenu.classList.toggle("flex");
       });
-  
+
       closeAlertBtn.addEventListener("click", (e) => {
         e.preventDefault();
         alertMenu.classList.toggle("hidden");
         alertMenu.classList.toggle("flex");
       });
-  
+
       // Soumission du formulaire pour suppression
       submitFormBtn.addEventListener("click", async (e) => {
         e.preventDefault();
-  
+
         const roomId = roomIdInput.value;
-  
+
         try {
           const response = await fetch(`/api/v1/rooms/${roomId}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
           });
-  
+
           if (!response.ok) {
             throw new Error(`Server error: ${response.status}`);
           }
-  
+
           const data = await response.json();
-          console.log(data); 
+          console.log(data);
           localStorage.setItem("success-msg", "Salle supprimée avec succès");
-          window.location.href = "/dashboard/admin/rooms"; 
-  
+          window.location.href = "/dashboard/admin/rooms";
         } catch (error) {
-          console.error('Error:', error);
-          showError("Une erreur s'est produite lors de la suppression de la salle.");
+          console.error("Error:", error);
+          showError(
+            "Une erreur s'est produite lors de la suppression de la salle."
+          );
         }
-  
+
         alertMenu.classList.toggle("hidden");
         alertMenu.classList.toggle("flex");
       });

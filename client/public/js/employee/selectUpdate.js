@@ -42,7 +42,7 @@ if (currentPage === "/dashboard/employee/films/update") {
                   <img src="/uploads/${movie.poster}" class="object-cover" alt="Movie picture">
                 </button>
               </a>
-              <p class="text-blueOne font-arvo text-sm md:text-lg tracking-wide font-bold text-center">${movie.title}</p>
+              <p class="text-blackOne font-arvo text-sm md:text-lg tracking-wide font-bold text-center">${movie.title}</p>
             `;
 
           movieContent.appendChild(movieElement);

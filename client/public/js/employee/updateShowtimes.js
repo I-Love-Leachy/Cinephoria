@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="/uploads/${movie.poster}" class="object-cover" alt="Movie picture">
                   </button>
                 </div>
-                <p class="text-blueOne font-arvo text-sm md:text-lg tracking-wide font-bold text-center">${movie.title}</p>
+                <p class="text-blackOne font-arvo text-sm md:text-lg tracking-wide font-bold text-center">${movie.title}</p>
               `;
 
         movieContent.appendChild(movieElement);
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
           noShowtimesMessage.classList.add(
             "text-center",
             "font-arvo",
-            "text-blueOne",
+            "text-blackOne",
             "font-bold",
             "text-2xl",
             "w-fit"
@@ -422,9 +422,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     datetimePicker.innerHTML = `
           <input type="date" class="outline-none border border-gray-300 rounded p-2 date-input" required>
-          <label for="" class="font-arvo text-blueOne flex items-center">Début:</label>
+          <label for="" class="font-arvo text-blackOne flex items-center">Début:</label>
           <input type="time" class="outline-none border border-gray-300 rounded p-2 time-input" required>
-          <label for="" class="font-arvo text-blueOne flex items-center">Fin:</label>
+          <label for="" class="font-arvo text-blackOne flex items-center">Fin:</label>
           <input type="time" class="outline-none border border-gray-300 rounded p-2 end-time-input" required readonly>
           <span class="text-redOne error-message hidden">Chevauchement détecté!</span>
           <button type="button" class="remove-datetime-picker text-redOne">Remove</button>
@@ -500,5 +500,4 @@ document.addEventListener("DOMContentLoaded", () => {
       addDatetimePickerBtn.disabled = false;
     }
   };
-
 });

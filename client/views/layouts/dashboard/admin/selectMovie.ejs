@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
-    <link rel="icon" href="/images/logo-blanc.png" type="image/x-icon">
+    <link rel="icon" href="/images/logo-2.svg" type="image/x-icon">
     <link type="text/css" rel="stylesheet" href="/css/output.css" />
     <link rel="stylesheet" href="/admin/css/style.css">
     <script defer src="/js/admin/selectShowtimes.js"></script>
@@ -37,7 +37,7 @@
                     </div>
 
                     <!-- hidden theater menu -->
-                    <div class="absolute bg-blacktext-blackOne w-full h-fit py-8 px-2 left-0 top-full z-50 animate-open-menu hidden" id="theater-menu">
+                    <div class="absolute bg-blackOne w-full h-fit py-8 px-2 left-0 top-full z-50 animate-open-menu hidden" id="theater-menu">
                         <% if (cinemas.length > 0) { %>
                             <ul class="w-full space-y-5 font-arvo font-bold text-white text-lg" id="theater-list">
                                 <% cinemas.forEach(cinema => { %>
@@ -60,7 +60,7 @@
                     </div>
 
                     <!-- hidden room menu -->
-                    <div class="absolute bg-blacktext-blackOne w-full h-fit py-8 px-2 left-0 top-full hidden  z-50 animate-open-menu " id="room-menu">
+                    <div class="absolute bg-blackOne w-full h-fit py-8 px-2 left-0 top-full hidden  z-50 animate-open-menu " id="room-menu">
                         <% if (rooms.length > 0) { %>
                             <ul class="w-full space-y-5 font-arvo font-bold text-white text-lg" id="room-list">
                                 <% rooms.forEach(room => { %>
@@ -95,7 +95,7 @@
                 <input type="hidden" id="selected-showtimes" name="selected-showtimes">
 
                 <!-- hidden confirmation alert pop up -->
-                <div class="absolute z-50 animate-open-menu hidden flex-col items-center justify-around bg-blacktext-blackOne/75 w-[50vw] h-[100vh] rounded-lg px-10 py-48" id="alert">
+                <div class="absolute z-50 animate-open-menu hidden flex-col items-center justify-around bg-blackOne/75 w-[50vw] h-[100vh] rounded-lg px-10 py-48" id="alert">
                     <p id="alert-message" class="text-center font-arvo text-white font-bold text-3xl">VOULEZ-VOUS VRAIMENT AJOUTER LA SÉANCE ?</p>
                     <div class="flex items-center justify-center space-x-10">
                         <!-- submit Form btn -->
@@ -120,7 +120,7 @@
 
         
             <!-- date and time selection button -->
-            <button type="button" id="open-datetime-picker" class="bg-blacktext-blackOne w-[80%] text-white font-arvo text-lg px-4 py-2 rounded">
+            <button type="button" id="open-datetime-picker" class="bg-blackOne w-[80%] text-white font-arvo text-lg px-4 py-2 rounded">
                 Sélectionner les dates et horaires
             </button>
                 
@@ -146,7 +146,7 @@
         <div id="datetime-picker-container">
             <!-- Dynamic date and time pickers will be added here -->
         </div>
-        <button type="button" id="add-datetime-picker" class="bg-blacktext-blackOne text-white font-arvo text-lg px-4 py-2 rounded mt-4">Ajouter une autre date et horaire</button>
+        <button type="button" id="add-datetime-picker" class="bg-blackOne text-white font-arvo text-lg px-4 py-2 rounded mt-4">Ajouter une autre date et horaire</button>
         <div class="flex justify-end mt-4">
             <button type="button" id="close-datetime-picker" class="bg-redOne text-white font-arvo text-lg px-4 py-2 rounded">Fermer</button>
         </div>

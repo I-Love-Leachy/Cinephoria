@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <img src="/uploads/${movie.poster}" class="object-cover" alt="Movie picture">
           </button>
         </div>
-        <p class="text-blueOne font-arvo text-sm md:text-lg tracking-wide font-bold text-center">${movie.title}</p>
+        <p class="text-blackOne font-arvo text-sm md:text-lg tracking-wide font-bold text-center">${movie.title}</p>
       `;
 
         movieContent.appendChild(movieElement);
@@ -108,7 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (isSelected) {
             const urlParams = new URLSearchParams(window.location.search);
             urlParams.set("movieId", movieId);
-            const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+            const newUrl = `${
+              window.location.pathname
+            }?${urlParams.toString()}`;
             history.pushState(null, "", newUrl);
 
             selectedMovieId = movieId;
@@ -116,7 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
           } else {
             const urlParams = new URLSearchParams(window.location.search);
             urlParams.delete("movieId");
-            const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+            const newUrl = `${
+              window.location.pathname
+            }?${urlParams.toString()}`;
             history.pushState(null, "", newUrl);
             selectedMovieId = null;
             selectedMovieTitle = null;
@@ -143,32 +147,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Gestionnaire d'événements pour le bouton de confirmation de suppression
-  confirmDeleteButton.addEventListener('click', async () => {
+  confirmDeleteButton.addEventListener("click", async () => {
     if (selectedMovieId) {
       try {
         const response = await fetch(`/api/v1/movies/${selectedMovieId}`, {
-          method: 'DELETE'
+          method: "DELETE",
         });
 
         if (response.ok) {
-          localStorage.setItem('delete-message', 'Le film a été supprimé avec succès.');
+          localStorage.setItem(
+            "delete-message",
+            "Le film a été supprimé avec succès."
+          );
           location.reload();
         } else {
-          alert('Erreur lors de la suppression du film.');
+          alert("Erreur lors de la suppression du film.");
         }
       } catch (error) {
-        console.error('Error deleting movie:', error);
-        alert('Erreur lors de la suppression du film.');
+        console.error("Error deleting movie:", error);
+        alert("Erreur lors de la suppression du film.");
       }
     }
   });
 
   const confirmationDeleteMessage = localStorage.getItem("delete-message");
-    
+
   if (confirmationDeleteMessage) {
     const messageElement = document.getElementById("confirmation-message");
     const textElement = document.getElementById("confirmation-text");
-    
+
     textElement.innerText = confirmationDeleteMessage;
 
     messageElement.classList.remove("hidden");
