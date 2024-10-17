@@ -32,6 +32,7 @@
       <section class="hidden md:block relative">
 
         <div class="swiper hidden main-slider h-[60vh] ">
+
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
@@ -42,6 +43,7 @@
                 class="object-cover w-full h-full"
               />
             </div>
+
             <div class="swiper-slide">
               <img
                 src="/uploads/<%= film.poster %>"
@@ -50,39 +52,37 @@
               />
             </div>
           </div>
+          
         </div>
 
-        <div class=" h-full w-[25vw] absolute flex flex-col top-0 z-40 ">
-       
-
-        </div>
-        <div class=" h-full w-[25vw] absolute flex flex-col top-0  z-40 pl-6">
-          <!-- movie detail -->
-        <div class="container flex flex-col h-full  w-[40vw] justify-start items-start space-y-6 py-8">
-          <!-- movie title -->
-          <h1 class="font-arvo text-white font-bold text-4xl">
-            <%= film.title %>
-          </h1>
+        <div class=" h-full w-[25vw] absolute flex flex-col top-0 z-40"> </div>
 
 
+        <div class=" h-full w-[55vw] absolute flex flex-col top-0 z-40 pl-12 py-24 bg-gradient-to-r from-blackOne to-transparent">
+            <!-- movie detail -->
+          <div class="container flex flex-col h-full  w-[40vw] justify-start items-start space-y-6 py-8">
+            <!-- movie title -->
+            <h1 class="font-arvo text-white font-bold text-4xl">
+              <%= film.title %>
+            </h1>
 
-          <!-- movie info -->
-          <div class="flex items-center space-x-3 text-xs">
-            <p class="font-arvo text-white font-bold"><%= film.duration %>min</p>
-            <p class="font-arvo text-white font-bold"><%= film.genre %></p>
+            <!-- movie info -->
+            <div class="flex items-center space-x-3 text-sm">
+              <p class="font-arvo text-white font-bold"><%= film.duration %>min</p>
+              <p class="font-arvo text-white font-bold"><%= film.genre %></p>
 
-          </div>
+            </div>
 
-          <div class="container text-nowrap flex flex-col text-xs">
-            <p class="font-arvo text-white font-bold">Sortie : <%= new Date(film.release_date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) %>
-            <p class="font-arvo text-white font-bold">Avec <%= film.casting %> </p>
-          </div>
+            <div class="container text-nowrap flex flex-col text-sm">
+              <p class="font-arvo text-white font-bold">Sortie : <%= new Date(film.release_date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+              <p class="font-arvo text-white font-bold">Avec <%= film.casting %> </p>
+            </div>
 
-          <div class="container">
-            <p class="font-arvo text-white text-xs w-[80%]">
-              <%= film.description %>
-            </p>
-          </div>
+            <div class="container">
+              <p class="font-arvo text-white text-sm w-[50%]">
+                <%= film.description %>
+              </p>
+            </div>
 
         </div>
 

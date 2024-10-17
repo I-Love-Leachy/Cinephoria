@@ -1106,6 +1106,12 @@ video {
 .w-full{
   width: 100%;
 }
+.w-\[35vw\]{
+  width: 35vw;
+}
+.w-\[55vw\]{
+  width: 55vw;
+}
 .min-w-60{
   min-width: 15rem;
 }
@@ -1559,9 +1565,17 @@ video {
 .bg-\[url\(\'\/images\/siege-cinema\.jpg\'\)\]{
   background-image: url('/images/siege-cinema.jpg');
 }
+.bg-gradient-to-r{
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
 .from-whiteOne{
   --tw-gradient-from: #FFF2E5 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(255 242 229 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-blackOne{
+  --tw-gradient-from: #1E1E1E var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(30 30 30 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 .to-blackOne\/15{
@@ -1569,6 +1583,9 @@ video {
 }
 .to-blackOne\/30{
   --tw-gradient-to: rgb(30 30 30 / 0.3) var(--tw-gradient-to-position);
+}
+.to-transparent{
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
 }
 .bg-\[length\:200\%_100\%\]{
   background-size: 200% 100%;
@@ -1692,6 +1709,14 @@ video {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.py-32{
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+.py-24{
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
 .pb-1{
   padding-bottom: 0.25rem;
 }
@@ -1805,6 +1830,12 @@ video {
 }
 .pt-0\.5{
   padding-top: 0.125rem;
+}
+.pl-14{
+  padding-left: 3.5rem;
+}
+.pl-12{
+  padding-left: 3rem;
 }
 .text-left{
   text-align: left;
