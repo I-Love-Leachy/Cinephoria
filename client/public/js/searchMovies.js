@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         movieElement.classList.add("movie-item");
         movieElement.innerHTML = `
                     <div class="flex space-y-2 items-center justify-center flex-col w-60 pb-3">
-                       <a href="/films/disponibiliter">
+                       <a href="/films/disponibiliter/${movie.movie_id}">
                         <div class="w-full h-fit relative group">
                             <div class="relative">
                                 <img src="uploads/${
@@ -40,10 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </div>
                             </div>
                         </div>
-                        <h1 class="font-arvo text-blackOne text-lg font-bold tracking-wide">
+                        <h1 class="font-arvo text-white text-lg font-bold tracking-wide">
                             ${movie.title}
                         </h1>
-                        <p class="font-arvo text-blackOne font-thin text-sm tracking-wide">
+                        <p class="font-arvo text-white font-thin text-sm tracking-wide">
                             Depuis le ${new Date(
                               movie.release_date
                             ).toLocaleDateString("fr-FR", {
