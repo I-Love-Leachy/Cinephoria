@@ -979,6 +979,15 @@ video {
 .h-\[12\.8vh\]{
   height: 12.8vh;
 }
+.h-\[7vh\]{
+  height: 7vh;
+}
+.h-\[9vh\]{
+  height: 9vh;
+}
+.h-\[10\.2vh\]{
+  height: 10.2vh;
+}
 .max-h-\[30vh\]{
   max-height: 30vh;
 }

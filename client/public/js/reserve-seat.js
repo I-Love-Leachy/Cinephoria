@@ -88,11 +88,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         const result = await response.json();
         if (response.ok) {
+          // Afficher le message de succès
           localStorage.setItem(
             "success-message",
             "La réservation a bien été confirmée."
           );
-          location.reload();
+
+          window.location.href = "/dashboard/user";
         } else {
           alert("Erreur de réservation: " + result.error);
         }

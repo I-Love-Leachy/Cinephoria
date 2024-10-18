@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <script defer src="/js/movie-listing.js"></script>
     <script src="https://kit.fontawesome.com/1126a5f03b.js" crossorigin="anonymous"></script>
+    <script src="/js/reserve-seat.js" defer></script>
+    <script src="/js/employee/succesMessage.js" defer></script>
     
 </head>
 
@@ -18,9 +20,16 @@
     <header class="relative z-10 ">
         <%- include('../../../components/dashboard/nav-bar-dashboard') %>
     </header>
+
+
     
     <!-- Cinema and Date Filters -->
     <main class="flex text-blackOne flex-col md:flex-col items-center gap-y-7 justify-center w-[85vw]  ml-auto   md:pt-40 relative" id="main-container ">
+
+                   <!-- Success message container -->
+                   <div class="container hidden w-fit mx-auto" id="message">
+                    <p id="text" class="text-sm font-arvo font-bold text-green-600"></p>
+                </div>
     
         <!-- Movie Listing Section -->
         <section class="mt-8">
