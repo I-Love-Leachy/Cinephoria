@@ -93,7 +93,7 @@
     <main class=" h-full w-full md:flex relative">
         
         <!-- DESKTOP sidebar -->
-        <aside class="h-full  w-[20%] relative hidden md:block">
+        <aside class="h-full w-[20%] relative hidden md:block">
 
             <div class="swiper hidden main-slider h-full">
                 <!-- Additional required wrapper -->
@@ -136,17 +136,17 @@
 
           <!-- session details -->
             <div class="container">
-                <div class=" px-3 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-3">
+                <div class=" px-3 mx-auto bg-blackOne w-full border-t border-b border-zinc-600 flex flex-col space-y-1 items-start justify-center h-fit py-3">
                     <h1 class="font-arvo text-white text-sm">Cinéma</h1>
                     <h2 class="font-arvo text-white text-lg font-bold"><%= showtimes.cinema_name %></h2>
                 </div>
     
-                <div class=" px-3 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-3">
+                <div class=" px-3 mx-auto bg-blackOne w-full border-b border-zinc-600 flex flex-col space-y-1 items-start justify-center h-fit py-3">
                     <h1 class="font-arvo text-white text-sm">Date</h1>
                     <h2 class="font-arvo text-white text-lg font-bold"><%= new Date(showtimes.day).toLocaleDateString('fr-FR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) %></h2>
                 </div>
     
-                <div class=" px-3 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-3">
+                <div class=" px-3 mx-auto bg-blackOne w-full border-t border-b border-blackOne flex flex-col space-y-1 items-start justify-center h-full py-3">
                     <h1 class="font-arvo text-white text-sm">Scéance</h1>
                     <h2 class="font-arvo text-white text-lg font-bold"><%= showtimes.start_time.substring(0, 5) %> VF</h2>
                     <p class="font-arvo font-light text-white text-xs">Fin prévue à <%= showtimes.end_time.substring(0, 5) %></p>
@@ -158,17 +158,17 @@
         <!--MOBILE session information -->
         <section class="flex flex-col w-full md:hidden">
 
-            <div class=" px-5 mx-auto bg-[#060F1E]  w-full   border-b-1  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-4">
+            <div class=" px-5 mx-auto bg-blackOne w-full   border-b-1  border-zinc-600 flex flex-col space-y-1 items-start justify-center h-fit py-4">
                 <h1 class="font-arvo text-white text-lg">Cinéma</h1>
                 <h2 class="font-arvo text-white text-2xl font-bold"><%= showtimes.cinema_name %></h2>
             </div>
 
-            <div class=" px-5 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-4">
+            <div class=" px-5 mx-auto bg-blackOne w-full border-t border-b  border-zinc-600 flex flex-col space-y-1 items-start justify-center h-fit py-4">
                 <h1 class="font-arvo text-white text-lg">Date</h1>
                 <h2 class="font-arvo text-white text-2xl font-bold"><%= new Date(showtimes.day).toLocaleDateString('fr-FR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' }) %></h2>
             </div>
 
-            <div class=" px-5 mx-auto bg-[#060F1E]  w-full  border-t border-b  border-gray-300 flex flex-col space-y-1 items-start justify-center h-fit py-4">
+            <div class=" px-5 mx-auto bg-blackOne w-full  border-t border-b  border-blackOne flex flex-col space-y-1 items-start justify-center h-full py-4">
                 <h1 class="font-arvo text-white text-lg">Scéance</h1>
                 <h2 class="font-arvo text-white text-2xl font-bold"><%= showtimes.start_time.substring(0, 5) %> VF</h2>
                 <p class="font-arvo font-light text-white text-xs">Fin prévue à <%= showtimes.end_time.substring(0, 5) %></p>
@@ -246,7 +246,7 @@
         </div>
 
         <!-- RESERVATION CONFIRMATION BUTTON -->
-        <button class=" flex items-center justify-center text-blackOne font-arvo font-bold tracking-wide gap-x-1 text-xl w-full bg-goldOne reservation-confirmation h-[13vh]" >
+        <button class=" flex items-center justify-center text-blackOne font-arvo font-bold tracking-wide gap-x-1 text-xl w-full bg-goldOne reservation-confirmation h-[12.8vh]" >
          RÉSERVER
          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 16 16"><path fill="currentColor" d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.042-.018a.75.75 0 0 1-.018-1.042l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06"/></svg>
         </button>
