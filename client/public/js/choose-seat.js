@@ -1,6 +1,7 @@
 const chooseSeatInitApp = () => {
   const playTrailerBtn = document.getElementById("start-trailer");
   const closeTrailerBtn = document.getElementById("close-video");
+  const closeTotalSummary = document.getElementById("close-total");
   const movieContainer = document.getElementById("movie");
   const reserveMovieBtn = document.querySelectorAll(
     ".reservation-confirmation"
@@ -34,6 +35,7 @@ const chooseSeatInitApp = () => {
   const toggleMovieReservationMenue = (event) => {
     event.stopPropagation();
     movieReservationMenu.classList.toggle("hidden");
+    body.classList.toggle("blur-body");
     body.classList.toggle("darken-background");
   };
 
@@ -43,8 +45,15 @@ const chooseSeatInitApp = () => {
       !event.target.classList.contains("reservation-confirmation")
     ) {
       movieReservationMenu.classList.add("hidden");
+      body.classList.remove("blur-body");
       body.classList.remove("darken-background");
     }
+  };
+
+  const closeTotal = () => {
+    movieReservationMenu.classList.add("hidden");
+    body.classList.remove("blur-body");
+    body.classList.remove("darken-background");
   };
 
   playTrailerBtn.addEventListener("click", toggleVideoTrailer);
@@ -53,6 +62,7 @@ const chooseSeatInitApp = () => {
     btn.addEventListener("click", toggleMovieReservationMenue);
   });
   body.addEventListener("click", closeMovieReservationMenu);
+  closeTotalSummary.addEventListener("click", closeTotal);
 };
 
 document.addEventListener("DOMContentLoaded", chooseSeatInitApp);
