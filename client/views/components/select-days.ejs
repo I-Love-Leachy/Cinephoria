@@ -15,9 +15,9 @@
         <div class="swiper-slide m-0 p-0">
           <button class="m-0 p-0 flex shadow-xl h-[15vh] bg-whiteOne border border-gray-300 day-button" data-date="<%= date %>">
             <div class="m-0 p-0 flex flex-col items-center justify-center h-full">
-              <p class="font-arvo w-48 text-center font-bold"><%= new Date(date).toLocaleDateString('fr-FR', { weekday: 'short' }) %>.</p>
-              <p class="font-arvo font-bold w-48 text-center text-2xl"><%= new Date(date).getDate() %></p>
-              <p class="font-arvo w-48 text-center font-bold"><%= new Date(date).toLocaleDateString('fr-FR', { month: 'short' }) %></p>
+              <p class="font-arvo w-48 text-center font-bold"><%= new Date(new Date(date).setDate(new Date(date).getDate() + 1)).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', weekday: 'short' }) %>.</p>
+              <p class="font-arvo font-bold w-48 text-center text-2xl"><%= new Date(new Date(date).setDate(new Date(date).getDate() + 1)).getDate() %></p>
+              <p class="font-arvo w-48 text-center font-bold"><%= new Date(new Date(date).setDate(new Date(date).getDate() + 1)).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', month: 'short' }) %></p>
             </div>
           </button>
         </div>

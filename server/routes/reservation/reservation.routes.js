@@ -12,8 +12,8 @@ const {
 const {
   getSeatsByRoomId,
   getReservedSeats,
-  getSeatCountByRoomId
-} = require('../../controllers/seats/seats.controller')
+  getSeatCountByRoomId,
+} = require("../../controllers/seats/seats.controller");
 const {
   getCinemas,
   getCinemaById,
@@ -196,7 +196,7 @@ reservationRoutes.get(
     const decShowtimes = decodeData(showtimes);
     const roomId = decShowtimes.room_id;
     console.log(roomId);
-    const seats  = await getSeatsByRoomId(roomId)
+    const seats = await getSeatsByRoomId(roomId);
     console.log(seats);
     const seatsCount = await getSeatCountByRoomId(roomId);
     console.log(seatsCount);
@@ -206,7 +206,7 @@ reservationRoutes.get(
       showtimes: decShowtimes,
       seats: seats,
       reservedSeats: reservedSeats,
-      seatsCount: seatsCount
+      seatsCount: seatsCount,
     });
   }
 );

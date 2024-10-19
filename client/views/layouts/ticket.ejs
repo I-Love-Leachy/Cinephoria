@@ -18,7 +18,7 @@
                 <!-- movies date info -->
                  <% reservations.forEach(reservation => { %>
                     <div class="mx-auto flex flex-col space-y-1 w-fit h-fit">
-                        <div class="font-arvo font-bold text-lg text-blackOne text-center tracking-wide movie-date"><%= new Date(reservation.showtime_day).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></div>
+                        <div class="font-arvo font-bold text-lg text-blackOne text-center tracking-wide movie-date"><%= new Date(reservations.showtime_day).toLocaleDateString('fr-FR', {  timeZone: 'Europe/Paris', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></div>
                         <p class="font-arvo font-bold text-sm text-blackOne text-center tracking-wide movie-time"><%= reservation.start_time.substring(0, 5) %></p>
                         <p class="font-arvo font-bold text-xs text-blackOne/45 text-center tracking-wide movie-version">VF</p>
                     </div>

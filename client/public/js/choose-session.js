@@ -103,8 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
             );
             sessionDiv.dataset.showtimeId = showtime.showtimes_id; // Ajouter l'ID de la séance comme data attribute
 
-            const startTime = new Date(`1970-01-01T${showtime.start_time}Z`);
-            const endTime = new Date(`1970-01-01T${showtime.end_time}Z`);
+            const startTime = new Date(`1970-01-01T${showtime.start_time}`);
+            const endTime = new Date(`1970-01-01T${showtime.end_time}`);
 
             console.log("Showtime data:", showtime);
 
