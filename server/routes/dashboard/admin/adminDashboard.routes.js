@@ -67,9 +67,19 @@ adminDashboardRoutes.get(
       console.log("Today's date:", today);
       const newReservations = reservations
         .filter((res) => {
-          const reservationDate = res.date.toISOString().split("T")[0];
+          // Créer un nouvel objet Date à partir de res.date
+          const reservationDate = new Date(res.date);
+
+          // Ajouter un jour à la date de réservation
+          reservationDate.setDate(reservationDate.getDate() + 1);
+
+          // Comparer uniquement la partie de la date (sans l'heure)
+          const formattedReservationDate = reservationDate
+            .toISOString()
+            .split("T")[0];
+
           console.log("Reservation date:", reservationDate);
-          return reservationDate === today;
+          return formattedReservationDate === today;
         })
         .reduce((acc, cur) => acc + cur.count, 0);
 

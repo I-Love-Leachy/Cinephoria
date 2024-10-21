@@ -1,6 +1,7 @@
 const db = require("../../config/postgres.config");
 const Reservation = require("../../models/reservationStats.mongo");
 require("dotenv", { path: "../../../.env" });
+const moment = require("moment-timezone");
 
 async function transferReservationsToMongo() {
   const query = `
