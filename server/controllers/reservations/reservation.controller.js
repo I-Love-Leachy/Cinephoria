@@ -1,6 +1,7 @@
 // Import the database configuration
 const DB = require("../../config/postgres.config");
-const crypto = require('crypto');
+const crypto = require("crypto");
+const transferReservationsToMongo = require("../data/dataTransfert.controller");
 
 async function getReservation(req, res) {
   try {
@@ -144,14 +145,16 @@ async function postReservation(req, res) {
     const { user_id, cinema_id, showtimes_id, seats_reserved } = req.body;
 
     if (!user_id || !cinema_id || !showtimes_id || !seats_reserved) {
-      return res.status(400).json({ error: "You must enter all required fields!" });
+      return res
+        .status(400)
+        .json({ error: "You must enter all required fields!" });
     }
 
     // Convertir seats_reserved en JSON string pour le stockage
     const seats_reserved_json = JSON.stringify(seats_reserved);
 
     // Commencer une transaction
-    await DB.query('BEGIN');
+    await DB.query("BEGIN");
 
     // Acquérir un verrou de conseil partagé pour les sièges réservés
     const lockKey = showtimes_id;
@@ -164,33 +167,44 @@ async function postReservation(req, res) {
       FROM reservations
       WHERE showtimes_id = $1 AND seats_reserved @> $2::jsonb
     `;
-    const checkResult = await DB.query(checkQuery, [showtimes_id, seats_reserved_json]);
+    const checkResult = await DB.query(checkQuery, [
+      showtimes_id,
+      seats_reserved_json,
+    ]);
     if (checkResult.rows.length > 0) {
-      await DB.query('ROLLBACK');
-      return res.status(400).json({ error: "One or more seats are already reserved!" });
+      await DB.query("ROLLBACK");
+      return res
+        .status(400)
+        .json({ error: "One or more seats are already reserved!" });
     }
 
     // Insérer la nouvelle réservation et générer un token
-    const token = crypto.randomBytes(16).toString('hex');
+    const token = crypto.randomBytes(16).toString("hex");
     const insertQuery = `
       INSERT INTO reservations (user_id, cinema_id, showtimes_id, seats_reserved, status, reserved_at, token)
       VALUES ($1, $2, $3, $4::jsonb, false, NOW(), $5)
       RETURNING *
     `;
-    const result = await DB.query(insertQuery, [user_id, cinema_id, showtimes_id, seats_reserved_json, token]);
+    const result = await DB.query(insertQuery, [
+      user_id,
+      cinema_id,
+      showtimes_id,
+      seats_reserved_json,
+      token,
+    ]);
 
     // Commit la transaction
-    await DB.query('COMMIT');
+    await DB.query("COMMIT");
+
+    await transferReservationsToMongo();
 
     res.status(201).json({ ...result.rows[0], token });
   } catch (err) {
-    await DB.query('ROLLBACK');
+    await DB.query("ROLLBACK");
     console.log(err);
     res.status(500).json({ error: "Internal server error!" });
   }
 }
-
-
 
 // Function to update a reservation by ID
 async function updateReservationById(req, res) {
@@ -215,12 +229,10 @@ async function updateReservationById(req, res) {
     }
 
     // Send a success message as response
-    return res
-      .status(200)
-      .json({
-        message: "Reservation updated successfully",
-        reservation: result.rows[0],
-      });
+    return res.status(200).json({
+      message: "Reservation updated successfully",
+      reservation: result.rows[0],
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal server error!" });
@@ -251,7 +263,7 @@ async function deleteReservationById(req, res) {
   }
 }
 
-//Get reservation by user id mobile version API 
+//Get reservation by user id mobile version API
 async function getReservationByUserIdMobile(req, res) {
   const userId = req.params.userId;
   try {
@@ -301,7 +313,9 @@ async function getReservationByUserIdMobile(req, res) {
     const results = await DB.query(query, [userId]);
     // Check if any reservations are found
     if (results.rows.length <= 0) {
-      res.status(404).json({ message: "No reservations found for the current user." });
+      res
+        .status(404)
+        .json({ message: "No reservations found for the current user." });
       return;
     }
     // Send the found reservations as response
@@ -312,8 +326,9 @@ async function getReservationByUserIdMobile(req, res) {
   }
 }
 
-//Get reservation by user id mobile version API 
-async function getFullReservationInfoById(req, res) {//get it by params
+//Get reservation by user id mobile version API
+async function getFullReservationInfoById(req, res) {
+  //get it by params
   const reservationId = req.params.reservationId;
   try {
     const query = `
@@ -361,21 +376,23 @@ async function getFullReservationInfoById(req, res) {//get it by params
     const results = await DB.query(query, [reservationId]);
     // Check if the reservation with the given ID is found
     if (results.rows.length <= 0) {
-      res.status(404).json({message: "No reservation found for the current user."});
+      res
+        .status(404)
+        .json({ message: "No reservation found for the current user." });
       return [];
     }
     // Send the found reservation as response
-    return  results.rows;
+    return results.rows;
   } catch (err) {
     console.log(err);
     res.status(500).json("Internal server error !");
   }
 }
 
-
 async function deleteReservationsByShowtimesId(showtimesId) {
   try {
-    const deleteReservationsQuery = "DELETE FROM reservations WHERE showtimes_id = $1";
+    const deleteReservationsQuery =
+      "DELETE FROM reservations WHERE showtimes_id = $1";
     await DB.query(deleteReservationsQuery, [showtimesId]);
   } catch (err) {
     console.log(err);
@@ -394,5 +411,5 @@ module.exports = {
   updateReservationById,
   getReservationByUserIdMobile,
   getFullReservationInfoById,
-  deleteReservationsByShowtimesId
+  deleteReservationsByShowtimesId,
 };
