@@ -25,31 +25,29 @@
 
         <!-- Contact form container -->
         <div class="relative z-0 w-full max-w-lg mx-auto mb-44 md:mb-20 ">
-            <form class="bg-white font-arvo p-10 w-full max-w-lg mx-auto rounded-xl" action="" method="">
+            <% if (message) { %>
+                <div id="message-alert" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 flex items-center justify-center rounded relative mb-4" role="alert">
+                    <span class="block sm:inline"><%= message %></span>
+                </div>
+            <% } %>
+            <form class="bg-white font-arvo p-10 w-full max-w-lg mx-auto rounded-xl" action="/contact" method="post">
                 
                 <h1 class="text-blackOne font-extrabold text-center text-3xl mb-7">CONTACTEZ-NOUS</h1>
                 <!-- Form fields -->
                 <div class="flex flex-col md:flex-row md:space-x-4 md:mb-4">
                     <!-- Last Name field -->
                     <div class="md:w-1/2">
-                        <label class="block text-sm font-normal text-blackOne opacity-60 mb-1" for="nom">Nom</label>
+                        <label class="block text-sm font-normal text-blackOne opacity-60 mb-1" for="email">email</label>
                         <div class="w-full border border-gray-300 p-1 rounded-sm bg-whiteOne mb-3 md:mb-0">
-                            <input class="bg-whiteOne outline-none flex-1 placeholder:opacity-70 text-blackOne" type="text" id="nom" name="name" placeholder="ex: Dupuy" required>
-                        </div>
-                    </div>
-                    <!-- First Name field -->
-                    <div class="md:w-1/2">
-                        <label class="block text-sm font-normal text-blackOne opacity-60 mb-1" for="prenom">Prénom</label>
-                        <div class="w-full border border-gray-300 p-1 rounded-sm bg-whiteOne mb-3 md:mb-0">
-                            <input class="bg-whiteOne m-0 outline-none flex-1 placeholder:opacity-70 text-blackOne" type="text" id="prenom" name="first_name" placeholder="ex: Jacques" required>
+                            <input class="bg-whiteOne outline-none flex-1 placeholder:opacity-70 text-blackOne" type="email" id="email" name="email" placeholder="ex: Dupuy" required>
                         </div>
                     </div>
                 </div>
                 <!-- Username field -->
                 <div class="mb-4">
-                    <label class="block text-sm font-normal text-blackOne opacity-60 mb-1" for="user_name">Nom d'utilisateur</label>
+                    <label class="block text-sm font-normal text-blackOne opacity-60 mb-1" for="username">Nom d'utilisateur</label>
                     <div class="w-full border border-gray-300 p-1 rounded-sm bg-whiteOne">
-                        <input class="bg-whiteOne w-full outline-none flex-1 placeholder:opacity-70 text-blackOne" type="text" id="user_name" name="user_name" placeholder="ex: JacquesDupuy55" required>
+                        <input class="bg-whiteOne w-full outline-none flex-1 placeholder:opacity-70 text-blackOne" type="text" id="username" name="username" placeholder="ex: JacquesDupuy55" required>
                     </div>
                 </div>
                 <!-- Subject field -->
