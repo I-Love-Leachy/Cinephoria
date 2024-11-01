@@ -32,43 +32,43 @@
             <% } %>
             <form class="bg-white font-arvo p-10 w-full max-w-lg mx-auto rounded-xl" action="/contact" method="post">
                 
-                <h1 class="text-blackOne font-extrabold text-center text-3xl mb-7">CONTACTEZ-NOUS</h1>
+                <h1 class="text-blackOne font-extrabold text-center text-2xl mb-7">CONTACTEZ-NOUS</h1>
                 <!-- Form fields -->
-                <div class="flex flex-col md:flex-row md:space-x-4 md:mb-4">
-                    <!-- Last Name field -->
-                    <div class="md:w-1/2">
-                        <label class="block text-sm font-normal text-blackOne opacity-60 mb-1" for="email">email</label>
-                        <div class="w-full border border-gray-300 p-1 rounded-sm bg-whiteOne mb-3 md:mb-0">
-                            <input class="bg-whiteOne outline-none flex-1 placeholder:opacity-70 text-blackOne" type="email" id="email" name="email" placeholder="ex: Dupuy" required>
+               
+                    <!-- Email field -->
+                    <div class="mb-4">
+                        <label class="block text-sm font-normal text-blackOne mb-1" for="email">Email</label>
+                        <div class="w-full border border-gray-300 p-1 rounded-sm ">
+                            <input class="outline-none flex-1 placeholder:opacity-70 text-blackOne placeholder:text-sm" type="email" id="email" name="email" placeholder="dupuy@gmail.com" required>
                         </div>
                     </div>
-                </div>
+
                 <!-- Username field -->
                 <div class="mb-4">
-                    <label class="block text-sm font-normal text-blackOne opacity-60 mb-1" for="username">Nom d'utilisateur</label>
-                    <div class="w-full border border-gray-300 p-1 rounded-sm bg-whiteOne">
-                        <input class="bg-whiteOne w-full outline-none flex-1 placeholder:opacity-70 text-blackOne" type="text" id="username" name="username" placeholder="ex: JacquesDupuy55" required>
+                    <label class="block text-sm font-normal text-blackOne mb-1" for="username">Nom </label>
+                    <div class="w-full border border-gray-300 p-1 rounded-sm ">
+                        <input class="w-full outline-none flex-1 placeholder:opacity-70 text-blackOne placeholder:text-sm" type="text" id="username" name="username" placeholder=" JacquesDupuy55" required>
                     </div>
                 </div>
                 <!-- Subject field -->
                 <div class="mb-4">
-                    <label class="block text-sm font-normal text-blackOne opacity-60 mb-1" for="objet">Objet*</label>
-                    <div class="w-full border border-gray-300 p-1 rounded-sm bg-whiteOne">
-                        <input class="bg-whiteOne w-full outline-none flex-1 placeholder:opacity-70 text-blackOne" type="text" id="objet" name="objet" placeholder="ex: Horaire" required>
+                    <label class="block text-sm font-normal text-blackOne mb-1" for="objet">Objet*</label>
+                    <div class="w-full border border-gray-300 p-1 rounded-sm ">
+                        <input class="w-full outline-none flex-1 placeholder:opacity-70 text-blackOne placeholder:text-sm" type="text" id="objet" name="objet" placeholder="Horaire" required>
                     </div>
                 </div>
                 <!-- Message field -->
                 <div class="">
-                    <label class="block text-sm font-normal text-blackOne opacity-60 mb-1" for="message">Message*</label>
-                    <div class="w-full border border-gray-300 rounded-sm p-1 bg-whiteOne">
-                    <textarea class="text-blackOne w-full h-40 bg-whiteOne outline-none flex-1 placeholder:opacity-70" id="message" name="message" placeholder="Ecrivez votre message ici..." required></textarea>
+                    <label class="block text-sm font-normal text-blackOne mb-1" for="message">Message*</label>
+                    <div class="w-full border border-gray-300 rounded-sm p-1 ">
+                    <textarea class="text-blackOne w-full h-40  outline-none flex-1 placeholder:opacity-70 placeholder:text-sm" id="message" name="message" placeholder="Ecrivez votre message ici..." required></textarea>
                     </div>
                 </div>
                 <!-- Required fields note -->
-                <p class="text-xxs text-center font-extrabold text-blackOne opacity-60 mt-2 mb-6">*Champs obligatoires</p>
+                <p class="text-xxs text-center font-extrabold text-blackOne mt-2 mb-6">*Champs obligatoires</p>
                 <!-- Submit button -->
                 <div class="flex justify-center">
-                    <button class="bg-redOne text-white py-2 px-4 w-52 rounded hover:bg-red-500 hover:scale-95 duration-150">ENVOYER</button>
+                    <button class="bg-redOne text-white py-2 px-4 w-52 rounded-sm hover:bg-red-500 hover:scale-95 duration-150 font-arvo font-bold">ENVOYER</button>
                 </div>
             </form>
         </div>

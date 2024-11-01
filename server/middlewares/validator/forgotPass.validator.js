@@ -11,10 +11,12 @@ const postForgotPassValidator = () => {
         const query = `SELECT * FROM users WHERE email = $1`;
         const user = await DB.query(query, [email]);
         if (user.rows.length === 0) {
-          throw new Error("Aucun utilisateur avec cette adresse email existe.");
+          throw new Error(
+            "Aucun utilisateur avec cette adresse email n'existe."
+          );
         }
       })
-      .withMessage("Aucun utilisateur avec cette adresse email existe.")
+      .withMessage("Aucun utilisateur avec cette adresse email n'existe.")
       .trim(),
   ];
 };

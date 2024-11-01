@@ -13,7 +13,8 @@ async function authUser(req, res) {
     if (isElectronRequest) {
       if (rows.length <= 0) {
         return res.status(404).json({
-          message: "Aucun utilisateur trouvé avec cette adresse email.",
+          message:
+            "Aucun utilisateur trouvé avec cette adresse email ou ce mot de passe.",
         });
       }
     }
@@ -21,7 +22,7 @@ async function authUser(req, res) {
     if (rows.length <= 0) {
       req.flash(
         "error_msg",
-        "Aucun utilisateur trouvé avec cette adresse email."
+        "Aucun utilisateur trouvé avec cette adresse email ou ce mot de passe."
       );
       return res.redirect("/login");
     }
@@ -32,12 +33,14 @@ async function authUser(req, res) {
 
     if (isElectronRequest) {
       if (!verifyPassword) {
-        return res.status(401).json({ message: "Mot de passe incorrecte." });
+        return res
+          .status(401)
+          .json({ message: "Email ou Mot de passe incorrecte." });
       }
     }
 
     if (!verifyPassword) {
-      req.flash("error_msg", "Mot de passe incorrecte.");
+      req.flash("error_msg", "Email ou Mot de passe incorrecte.");
       return res.redirect("/login");
     }
 
