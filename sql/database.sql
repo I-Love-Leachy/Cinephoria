@@ -1,1 +1,1 @@
-CREATE DATABASE cinephoria
+CREATE DATABASE cinephoria;

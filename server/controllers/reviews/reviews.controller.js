@@ -7,9 +7,9 @@ async function getReviews(req, res) {
     const query = "SELECT * FROM reviews";
     const results = await DB.query(query);
 
-     // Check if any reviews are found
+    // Check if any reviews are found
     if (results.rows.length <= 0) {
-      res.status(404).json({message:"No reviews found !"});
+      res.status(404).json({ message: "No reviews found !" });
       return;
     }
     // Send the found reviews as response
@@ -38,7 +38,7 @@ async function getAllReviewsInfo(req, res) {
     if (results.rows.length <= 0) {
       return [];
     }
-    return results.rows
+    return results.rows;
   } catch (err) {
     console.log(err);
     res.status(500).json("Internal server error !");
@@ -53,7 +53,7 @@ async function getReviewsById(req, res) {
     const results = await DB.query(query, [id]);
     // Check if the reviews with the given ID is found
     if (results.rows.length <= 0) {
-      res.status(404).json({message:"No reviews id found !"});
+      res.status(404).json({ message: "No reviews id found !" });
       return;
     }
     // Send the found reviews as response
@@ -85,33 +85,41 @@ async function postReviews(req, res) {
 
     // Validate the request body fields
     if (!user_id || !movie_id || !rating || !comment) {
-      req.flash('error_msg', 'Vous devez remplir tous les champs obligatoires !');
-      return res.redirect('back');
+      req.flash(
+        "error_msg",
+        "Vous devez remplir tous les champs obligatoires !"
+      );
+      return res.redirect("back");
     }
 
     // Vérifier s'il existe déjà une revue pour cet utilisateur et ce film
-    const checkQuery = "SELECT * FROM reviews WHERE user_id = $1 AND movie_id = $2";
+    const checkQuery =
+      "SELECT * FROM reviews WHERE user_id = $1 AND movie_id = $2";
     const checkResult = await DB.query(checkQuery, [user_id, movie_id]);
 
     if (checkResult.rows.length > 0) {
-      req.flash('error_msg', 'Vous avez déjà soumis un avis pour ce film.');
-      return res.redirect('back');
+      req.flash("error_msg", "Vous avez déjà soumis un avis pour ce film.");
+      return res.redirect("back");
     }
 
     // Insérer une nouvelle revue
-    const insertQuery = "INSERT INTO reviews (user_id, movie_id, rating, comment, status, created_at) VALUES ($1, $2, $3, $4, 'false', NOW()) RETURNING *";
-    const insertResult = await DB.query(insertQuery, [user_id, movie_id, rating, comment]);
+    const insertQuery =
+      "INSERT INTO reviews (user_id, movie_id, rating, comment, status, created_at) VALUES ($1, $2, $3, $4, 'false', NOW()) RETURNING *";
+    const insertResult = await DB.query(insertQuery, [
+      user_id,
+      movie_id,
+      rating,
+      comment,
+    ]);
 
-    req.flash('success_msg', 'Votre avis a été soumis avec succès !');
-    res.redirect(`layouts/dashboard/users/reviews-form/${movie_id}`);
+    req.flash("success_msg", "Votre avis a été soumis avec succès !");
+    res.redirect(`/dashboard/user`);
   } catch (err) {
     console.log(err);
-    req.flash('error_msg', 'Erreur interne du serveur !');
-    res.redirect('back');
+    req.flash("error_msg", "Erreur interne du serveur !");
+    res.redirect("back");
   }
 }
-  
-  
 
 async function updateReviewsById(req, res) {
   try {
@@ -121,30 +129,34 @@ async function updateReviewsById(req, res) {
     const reviewExist = await DB.query(checkIfExistQuery, [review_id]);
 
     if (reviewExist.rows.length <= 0) {
-      return res.status(404).json({ message: "Review with the provided ID does not exist." });
+      return res
+        .status(404)
+        .json({ message: "Review with the provided ID does not exist." });
     }
 
-    const query = "UPDATE reviews SET status = true WHERE review_id = $1 RETURNING *";
+    const query =
+      "UPDATE reviews SET status = true WHERE review_id = $1 RETURNING *";
     const result = await DB.query(query, [review_id]);
 
-    return res.status(200).json({ message: "Review updated successfully", review: result.rows[0] });
+    return res
+      .status(200)
+      .json({ message: "Review updated successfully", review: result.rows[0] });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal server error!" });
   }
 }
 
-
 async function deleteReviewsById(req, res) {
   try {
     const id = req.params.id;
     const foundReviewsQuery = "SELECT * FROM reviews WHERE review_id = $1";
     const reviews = await DB.query(foundReviewsQuery, [id]);
-    
+
     if (reviews.rows.length !== 0) {
       const query = "DELETE FROM reviews WHERE review_id = $1";
       await DB.query(query, [id]);
-      
+
       return res.status(200).json({ message: "Review deleted successfully" });
     } else {
       return res.status(404).json({ message: "No review found!" });
@@ -154,7 +166,6 @@ async function deleteReviewsById(req, res) {
     res.status(500).json({ error: "Internal server error!" });
   }
 }
-  
 
 // Export the functions as a module
 module.exports = {
