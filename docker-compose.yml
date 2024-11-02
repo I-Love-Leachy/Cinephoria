@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.server
+    ports:
+      - "4000:3000"
+    environment:                     
+      - NODE_ENV=production           
+      - DATABASE_URL=${DB_URL} 
+      - JWT_SECRET=${JWT_SECRET}  
+      - MONGODB_URI=${MONGODB_URI}
+      - USER_EMAIL=${USER_EMAI}
+      - USER_PASSWORD=${USER_PASSWORD}
+      - SECRET=${SECRET} 
+    volumes:
+      - ./server/uploads:/app/uploads 
+
+  client:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.client    
+    ports: 
+      - "3000:80"                      
+
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_DB: ${DB_NAME}          
+      POSTGRES_USER: ${DB_USER}        
+      POSTGRES_PASSWORD: ${DB_PASSWORD} 
+    volumes:
+      - db_data:/var/lib/postgresql/data 
+
+  mongo:
+    image: mongo:latest
+    environment: 
+      MONGODB: ${MONGODB_URI}
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  db_data:
+  mongo_data:

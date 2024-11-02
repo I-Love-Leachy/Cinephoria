@@ -1,0 +1,11 @@
+# Ignorer le dossier node_modules
+node_modules
+
+# Ignorer les dossiers mobile et desktop
+CinephoriaMobile
+mobile/
+desktop/
+
+# Ignorer les fichiers de configuration spécifiques
+.env
+.git
