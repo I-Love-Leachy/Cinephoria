@@ -146,7 +146,8 @@ DB_NAME=your_db_name
 DB_PORT=5432
 DB_PASSWORD=your_db_password
 SECRET=your_secret
-JWT_SECRET=your_jwt_secretUSER_EMAIL=your_email@example.com
+JWT_SECRET=your_jwt_secret
+USER_EMAIL=your_email@example.com
 USER_PASSWORD=your_email_password
 MONGODB_URI=your_mongodb_uri
 ```
