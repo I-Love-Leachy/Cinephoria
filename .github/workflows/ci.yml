@@ -47,12 +47,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd server
-          npm install
-          cd ../client
           npm install
 
-      - name: Build client
+      - name: Build Tailwind CSS
         run: |
-          cd client
-          npm run build
+          npm run build-css
+
+      - name: Run test
+        run: |
+          cd server
+          npm run test controllers/movies/movies.test.js
