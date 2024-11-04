@@ -3,14 +3,15 @@ const { validationResult } = require("express-validator");
 const fs = require("fs");
 const path = require("path");
 
-const { deleteReservationsByShowtimesId } = require('../reservations/reservation.controller');
+const {
+  deleteReservationsByShowtimesId,
+} = require("../reservations/reservation.controller");
 
 async function getMovies(req, res) {
   try {
     const query = "SELECT * FROM movies";
     const results = await DB.query(query);
     if (results.rows.length <= 0) {
-      
       return [];
     }
     return results.rows;
@@ -36,13 +37,13 @@ async function getLastWedMovies(req, res) {
     const movies = result.rows;
     return movies;
   } catch (err) {
-    throw err
+    throw err;
   }
 }
 
 async function getMovieById(req, res) {
   try {
-    const id  = req.params.id;
+    const id = req.params.id;
     const query = "SELECT * FROM movies WHERE movie_id = $1";
     const result = await DB.query(query, [id]);
     if (result.rows.length === 0) {
@@ -59,14 +60,15 @@ async function getMovieById(req, res) {
 
 async function getMoviesAverageRating(movieId) {
   try {
-    const query = 'SELECT AVG(rating) as average_rating FROM reviews WHERE movie_id = $1';
+    const query =
+      "SELECT AVG(rating) as average_rating FROM reviews WHERE movie_id = $1";
     const result = await DB.query(query, [movieId]);
     const averageRating = result.rows[0].average_rating;
 
     return averageRating ? parseFloat(averageRating) : 0;
   } catch (err) {
     console.log(err);
-    throw new Error('Internal server error!');
+    throw new Error("Internal server error!");
   }
 }
 
@@ -152,7 +154,6 @@ async function postMovie(req, res) {
     res.status(500).json({ error: "Internal server error!" });
   }
 }
-
 
 async function updateMovieById(req, res) {
   console.log("Received request body:", req.body);
@@ -284,7 +285,8 @@ async function deleteMovieById(req, res) {
     }
 
     // Supprimer les réservations associées aux showtimes du film
-    const showtimesQuery = "SELECT showtimes_id FROM showtimes WHERE movie_id = $1";
+    const showtimesQuery =
+      "SELECT showtimes_id FROM showtimes WHERE movie_id = $1";
     const showtimes = await DB.query(showtimesQuery, [id]);
     for (const row of showtimes.rows) {
       await deleteReservationsByShowtimesId(row.showtimes_id);
@@ -302,13 +304,18 @@ async function deleteMovieById(req, res) {
     const deleteMovieQuery = "DELETE FROM movies WHERE movie_id = $1";
     await DB.query(deleteMovieQuery, [id]);
 
-    return res.status(200).json({ success: true, message: "Movie, associated reviews, showtimes, and reservations deleted successfully" });
+    return res
+      .status(200)
+      .json({
+        success: true,
+        message:
+          "Movie, associated reviews, showtimes, and reservations deleted successfully",
+      });
   } catch (err) {
     console.log(err);
     res.status(500).json("Internal server error !");
   }
 }
-
 
 module.exports = {
   getMovies,
@@ -317,5 +324,5 @@ module.exports = {
   postMovie,
   deleteMovieById,
   updateMovieById,
-  getLastWedMovies
+  getLastWedMovies,
 };
