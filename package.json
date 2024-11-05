@@ -47,6 +47,7 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.9",
     "@iconify/tailwind": "^1.1.1",
     "tailwindcss": "^3.4.3"
   }
