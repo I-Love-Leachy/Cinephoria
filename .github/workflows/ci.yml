@@ -54,6 +54,8 @@ jobs:
           npm run build-css
 
       - name: Run test
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: |
           cd server
           npm run test controllers/movies/movies.test.js
