@@ -11,11 +11,11 @@ accueilRoutes.get("/", async (req, res) => {
     const decMovies = decodeData(lastMovies);
     res.render("layouts/accueil", {
       title: "Bienvenue à Cinéphoria.",
-      lastMovies: decMovies, 
+      lastMovies: decMovies,
     });
   } catch (err) {
     console.log("Error while fetching last Wednesday movies:", err);
-    res.status(500).render("error", { error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
